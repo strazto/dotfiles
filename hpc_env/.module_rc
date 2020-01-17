@@ -1,0 +1,10 @@
+# Load commonly used modules 
+# This is usually sourced by .bashrc
+
+echo "${BASH_SOURCE} sourced, loading modules"
+
+module load R/3.6.1
+module load zeromq
+
+
+module list
