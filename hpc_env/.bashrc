@@ -11,6 +11,16 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
+# Source commands for querying state over ssh
+
+if [ -e ~/misc_prj/job-monitor-widget/bin ]; then
+	export PATH="${PATH}:~/misc_prj/job-monitor-widget/bin"
+fi
+
+if [ -e ~/usr/local/bin ]; then
+	export PATH="~/usr/local/bin:${PATH}"
+fi
+
 if [ -z "$LD_LIBRARY_PATH" ]; then
     LD_LIBRARY_PATH="/usr/local/mpc/1.1.0/lib/"
 else
