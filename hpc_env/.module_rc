@@ -10,4 +10,7 @@ module load zeromq
 module load libevent
 module load ncurses
 
+# For SpaceVim's fuzzy search
+module load ag
+
 module list
