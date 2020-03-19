@@ -12,6 +12,9 @@ global PEN_1ST_BTN_TOUCHING := 0x11 ; 1st button is pressed, pen is touching scr
 global PEN_2ND_BTN_HOVERING := 0x5  ; 2nd button is pressed.
 global PEN_2ND_BTN_TOUCHING := 0x7  ; 3nd button is pressed, pen is touching screen.
 
+; Allow matching on Prefix of windows
+SetTitleMatchMode, 1
+
 ; Respond to the pen inputs
 ; Fill this section with your favorite AutoHotkey scripts!
 ; lastInput is the last input that was detected before a state change.
@@ -29,7 +32,9 @@ PenCallback(input, lastInput) {
     }
 
     if (input = PEN_1ST_BTN_HOVERING) {
-
+	#IfWinActive Miro
+	SendInput p
+	#IfWinActive
     }
 
     if (input = PEN_1ST_BTN_TOUCHING) {
@@ -37,7 +42,9 @@ PenCallback(input, lastInput) {
     }
 
     if (input = PEN_2ND_BTN_HOVERING) {
-
+	#IfWinActive Miro
+	SendInput e
+	#IfWinActive
     }
 
     if (input = PEN_2ND_BTN_TOUCHING) {
