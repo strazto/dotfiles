@@ -22,3 +22,11 @@ sudo -s sshfs "${UNIKEY}@hpc.sydney.edu.au:/project/STEMI/" /project/STEMI -o al
 
 ssh -X "${UNIKEY}@hpc.sydney.edu.au"
 echo "Finsihed ssh-ing"
+
+echo "Open Connect Process:\n"
+
+ps | grep -E openconnect
+
+# Okay give the user back their command line
+bash
+
