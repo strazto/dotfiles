@@ -3,7 +3,7 @@
 
 echo "${BASH_SOURCE} sourced, loading modules"
 
-module load R/3.6.1
+module load R/3.6.3
 module load zeromq
 
 # Tmux requirements
