@@ -20,10 +20,6 @@ function update_pkg {
 }
 
 
-function xrstudio {
-  RSTUDIO_WHICH_R=/usr/local/R/3.6.3/bin/R rstudio 
-}
-
 function qkill {
   qdel $(qselect -u mstr3336)
 }
