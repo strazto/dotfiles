@@ -3,6 +3,10 @@
 
 echo "${BASH_SOURCE} sourced, loading modules"
 
+echo "Before loading:"
+
+module list
+
 module load R/3.6.3
 module load zeromq
 
