@@ -18,6 +18,7 @@ sleep 1
 #ssh -v -fN "${UNIKEY}@hpc.sydney.edu.au" 
 
 sudo -s sshfs "${UNIKEY}@hpc.sydney.edu.au:/project/STEMI/" /project/STEMI -o allow_other -o IdentityFile=~/.ssh/id_rsa -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3
+sudo -s sshfs "${UNIKEY}@hpc.sydney.edu.au:/project/ACS/" /project/ACS -o allow_other -o IdentityFile=~/.ssh/id_rsa -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3
 
 ssh -XYC "${UNIKEY}@hpc.sydney.edu.au"
 echo "Finsihed ssh-ing"
