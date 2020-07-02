@@ -28,3 +28,5 @@ function update_pkg {
   pkginst
 }
 
+alias colcat='highlight -O xterm256'
+
