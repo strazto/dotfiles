@@ -1,0 +1,6 @@
+- defaults:
+    create: true
+- link:
+   ~/.bashrc: shells/bash/bashrc
+   ~/.bash_profile: shells/bash/profile
+
