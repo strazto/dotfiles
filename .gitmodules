@@ -4,3 +4,6 @@
 [submodule "bootstrap/tmux/tpm"]
 	path = bootstrap/tmux/tpm
 	url = https://github.com/tmux-plugins/tpm.git
+[submodule "bootstrap/vim/config"]
+	path = bootstrap/vim/config
+	url = git@github.com:mstr3336/spacevim-rstudio.git
