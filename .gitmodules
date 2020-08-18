@@ -8,11 +8,11 @@
 	ignore = dirty
 [submodule "bootstrap/vim/config"]
 	path = bootstrap/vim/config
-	url = git@github.com:mstr3336/.spacevim.git
-	ignore = dirty
+  url = https://github.com/mstr3336/.spacevim.git
+  ignore = dirty
 [submodule "bootstrap/tmux/config"]
 	path = bootstrap/tmux/config
-	url = git@github.com:mstr3336/.tmux.git
+	url = https://github.com/mstr3336/.tmux.git
 	ignore = dirty
 [submodule "bootstrap/tools/git/diff-so-fancy"]
 	path = bootstrap/tools/git/diff-so-fancy
