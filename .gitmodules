@@ -10,3 +10,6 @@
 [submodule "bootstrap/tmux/config"]
 	path = bootstrap/tmux/config
 	url = git@github.com:mstr3336/tmux.git
+[submodule "bootstrap/tools/git/diff-so-fancy"]
+	path = bootstrap/tools/git/diff-so-fancy
+	url = https://github.com/so-fancy/diff-so-fancy.git
