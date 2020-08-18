@@ -6,3 +6,11 @@
 [[ -f ~/.profile ]] && . ~/.profile
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
+
+# Run any executables found in .config/dotfiles/run.d
+# This will allow for dynamic loading of certain profile components
+# That may not be present for all profiles
+if [ -d "$HOME/.config/dotfiles/run.d" ] ; then
+  run-parts "$HOME/.config/dotfiles/run.d"
+fi
+
