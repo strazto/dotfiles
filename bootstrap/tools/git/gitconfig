@@ -1,0 +1,45 @@
+[credential]
+        helper = cache --timeout=7200
+[user]
+        email = mstr3336@uni.sydney.edu.au
+        name = Matthew Strasiotto
+[core]
+        editor = vim
+        pager = diff-so-fancy | less --tabs=4 -RFX # https://github.com/so-fancy/diff-so-fancy
+
+[color]
+  branch = true
+  diff = true
+  grep = true
+  pager = true
+  status = true
+  ui = true
+
+[pager]
+  diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
+
+[push]
+  default = simple
+
+[filter "lfs"]
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+        required = true
+[alias]
+        pushnew = push -u origin HEAD
+
+        # https://github.com/anishathalye/dotfiles/blob/master/gitconfig
+        update-submodules = submodule update --init --recursive
+        upgrade-submodules = submodule update --init --remote
+        # http://stackoverflow.com/a/34467298
+        graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+
+[url "git@github.com:"]
+  insteadOf = gh:
+  insteadOf = github:
+  insteadOf = https://github.com
+
+[url "git@github.sydney.edu.au:"]
+  insteadOf = uni:
+
