@@ -1,0 +1,8 @@
+#!/bin/env bash
+# ~/.bash_profile
+
+# Just source the generic profile, and bashrc
+
+[[ -f ~/.profile ]] && . ~/.profile
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
