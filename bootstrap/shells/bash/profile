@@ -14,7 +14,9 @@
 run_d="$HOME/.config/dotfiles/run.d" 
 if [ -d "${run_d}" ] ; then
   for f in "$(ls "${run_d}")"; do
-    source "${run_d}/${f}" 
+    if [[ ! -z "${f}" ]]; then
+      source "${run_d}/${f}"
+    fi
   done
 fi
 
