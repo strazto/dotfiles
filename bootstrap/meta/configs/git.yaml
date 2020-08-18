@@ -1,10 +1,12 @@
 - link:
-   ~/.gitconfig:
+   ~/.config/dotfiles/git/config:
      path: tools/git/gitconfig
      relink: true
+     create: true
 - link:
    ~/bin/diff-so-fancy:
      path: tools/git/diff-so-fancy/diff-so-fancy
      relink: true
-
+- shell:
+  - [git config --global include.path '~/.config/dotfiles/git/config', Setting up git config!]
 
