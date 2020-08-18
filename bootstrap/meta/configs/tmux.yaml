@@ -1,5 +1,5 @@
 - link:
    ~/.tmux/plugins/tpm:
      create: true
-     path: tmux/config/tpm
+     path: tmux/tpm
    ~/.tmux.conf: tmux/config/tmux.conf
