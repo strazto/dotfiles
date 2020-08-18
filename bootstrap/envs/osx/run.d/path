@@ -4,5 +4,15 @@
 
 export PATH="/usr/local/Cellar/vim/8.2.0200/bin:${PATH}"
 
+
+# MacPorts Installer addition on 2019-12-09_at_14:32:25: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+export PATH=$PATH:$(go env GOPATH)/bin
+
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/libxml2/lib/pkgconfig"
+
+
 # bash-combpletion
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
