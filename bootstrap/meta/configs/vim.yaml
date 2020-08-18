@@ -1,0 +1,5 @@
+- link:
+   ~/.SpaceVim.d: vim/config/SpaceVim.d
+- shell:
+   - [source vim/spacevim_install.sh, Installing SpaceVim]
+

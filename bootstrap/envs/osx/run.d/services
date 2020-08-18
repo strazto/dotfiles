@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Initialize the skhd (Shortcut Daemon) in the background
+# Would be better to use the following:
+# brew service start skhd
+# But the brew version is out of date and doesnt correctly load the config files as of 14/01/2020
+skhd &
+

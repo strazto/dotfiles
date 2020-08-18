@@ -1,0 +1,104 @@
+#!/bin/env bash
+
+# From bash_bindings/linux/bash_aliases
+# Check the distro
+function check_distro {
+  unameOut="$(uname -s)"
+  case "${unameOut}" in
+      Linux*)     machine=Linux;;
+      Darwin*)    machine=Mac;;
+      CYGWIN*)    machine=Cygwin;;
+      MINGW*)     machine=MinGw;;
+      *)          machine="UNKNOWN:${unameOut}"
+  esac
+
+  echo ${machine}
+}
+
+distro="$(check_distro)"
+
+# If you're running osx, use treat xdg-open as alias of open
+if [[ "${distro}" == "Mac" ]]; then
+  alias xdg-open='open'
+fi
+
+
+function gui_run {
+  (xdg-open $1 > /dev/null 2>&1 &)
+}
+
+alias please=sudo
+
+
+####################
+# SSH Helpers
+####################
+# ssh server helpers
+
+alias sshlog='tail -n 1000 /var/log/auth.log | grep -E ssh'
+alias check_ssh='curl https://ifconfig.co/port/22'
+
+# ssh client helpers
+
+HOME_DOMAIN=mstrasiotto.hopto.org
+alias sshpc='ssh -CXY mstr3336@hpc.sydney.edu.au'
+
+function sshome {
+  ssh -XYC matty@${HOME_DOMAIN}
+}
+
+######################
+# R workflow helpers
+
+function Rproj_open {
+  (xdg-open $(find . -maxdepth 1 -name "*.Rproj") > /dev/null 2>&1 &)
+}
+alias Rproj=Rproj_open
+
+alias pkginst="R CMD INSTALL --no-multiarch --with-keep.source ."
+alias pull_deps="Rscript --no-save --no-restore -e 'renv::restore(confirm = FALSE)'"
+alias test_pkg='Rscript --no-save --no-restore -e "devtools::test()"'
+
+
+function update_pkg {
+  git pull
+  pull_deps
+  pkginst
+}
+
+
+# General helpers
+
+alias mvim='qmv -f do'
+
+alias colcat='highlight --out-format=xterm256'
+
+
+#############################
+# Aliases From linux/bashrc
+
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
