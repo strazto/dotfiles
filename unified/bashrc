@@ -6,8 +6,5 @@
 
 # Resolve symlink paths/dirs
 
-function lpwd {
-  echo "$(dirname "$(readlink -f "$0")")"
-}
 
 
