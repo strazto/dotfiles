@@ -1,0 +1,8 @@
+- link:
+  ~/.config/dotfiles/run.d/:
+    glob: true
+    path: envs/hpc/run.d/*
+    relink: true
+    create: true
+
+
