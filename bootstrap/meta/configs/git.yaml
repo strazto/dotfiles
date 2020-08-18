@@ -2,3 +2,9 @@
    ~/.gitconfig:
      path: tools/git/gitconfig
      relink: true
+- link:
+   ~/bin/diff-so-fancy:
+     path: tools/git/diff-so-fancy/diff-so-fancy
+     relink: true
+
+
