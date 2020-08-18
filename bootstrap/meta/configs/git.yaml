@@ -1,0 +1,4 @@
+- link:
+   ~/.gitconfig:
+     path: tools/git/gitconfig
+     relink: true
