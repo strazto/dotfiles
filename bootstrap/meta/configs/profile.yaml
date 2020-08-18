@@ -1,4 +1,5 @@
 - link:
-   ~/.profile: shells/profile
-   relink: true
+   ~/.profile: 
+    path: shells/profile
+    relink: true
 
