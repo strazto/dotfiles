@@ -1,7 +1,6 @@
 export PATH=$PATH:/Library/Frameworks/R.framework/Versions/3.5/Resources
 
 export PATH=$PATH:$HOME/bin
-export PATH="/usr/local/Cellar/vim/8.2.0200/bin:${PATH}"
 export PATH="/usr/local/bin:${PATH}"
 
 # User specific alias' and functions

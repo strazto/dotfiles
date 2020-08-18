@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Goes in bootstrap/envs/osx/run.d
+# Should link into ~/.config/dotfiles/run.d/
+
+export PATH="/usr/local/Cellar/vim/8.2.0200/bin:${PATH}"
+
+# bash-combpletion
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
