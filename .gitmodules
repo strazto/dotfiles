@@ -7,3 +7,6 @@
 [submodule "bootstrap/vim/config"]
 	path = bootstrap/vim/config
 	url = git@github.com:mstr3336/spacevim-rstudio.git
+[submodule "bootstrap/tmux/config"]
+	path = bootstrap/tmux/config
+	url = git@github.com:mstr3336/tmux.git
