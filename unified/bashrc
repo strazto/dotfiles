@@ -1,0 +1,13 @@
+#!/bin/env bash
+
+# Unified bashrc
+
+# Contains anything that should be common to all distros
+
+# Resolve symlink paths/dirs
+
+function lpwd {
+  echo "$(dirname "$(readlink -f "$0")")"
+}
+
+
