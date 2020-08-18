@@ -1,10 +1,6 @@
+#!/bin/sh
+
 # ~/.profile: executed by the command interpreter for login shells.
-
-##########################
-# NOTE: MIGRATING TO bootstrap/shells/profile
-##########################
-
-
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
 # see /usr/share/doc/bash/examples/startup-files for examples.
@@ -32,12 +28,10 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Everything above has been migrated
-#######
-# Everything below has not been migrated
 
-export GTAGSLABEL=pygments
-
-export SINGULARITYENV_RENV_PATHS_CACHE="~/work/renv_container/"
-
-nohup odriveagent >> ~/.odrive-agent/stdout.log 2>>~/.odrive-agent/stderr.log &
+# Run any executables found in .config/dotfiles/run.d
+# This will allow for dynamic loading of certain profile components
+# That may not be present for all profiles
+if [ -d "$HOME/.config/dotfiles/run.d" ] ; then
+  run-parts "$HOME/.config/dotfiles/run.d"
+fi
