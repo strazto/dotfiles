@@ -2,3 +2,5 @@
 	path = meta/dotbot
 	url = https://github.com/anishathalye/dotbot
 	branch = master
+[submodule "dotbot"]
+	ignore = dirty
