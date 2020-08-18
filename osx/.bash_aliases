@@ -1,3 +1,6 @@
+#!/bin/env bash
+# MIGRATED TO unified/bash_aliases
+
 function Rproj_open {
   open $(find . -maxdepth 1 -name "*.Rproj") > /dev/null 2>&1 &
 }
