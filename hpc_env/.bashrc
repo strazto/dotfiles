@@ -1,4 +1,6 @@
 # .bashrc
+#####################
+# NOTE: Mainly superseded / migrated to bootstap/envs/hpc 
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
