@@ -10,7 +10,11 @@
 # Run any executables found in .config/dotfiles/run.d
 # This will allow for dynamic loading of certain profile components
 # That may not be present for all profiles
-if [ -d "$HOME/.config/dotfiles/run.d" ] ; then
-  run-parts "$HOME/.config/dotfiles/run.d"
+
+run_d="$HOME/.config/dotfiles/run.d" 
+if [ -d "${run_d}" ] ; then
+  for f in "$(ls "${run_d}")"; do
+    source "${run_d}/${f}" 
+  done
 fi
 
