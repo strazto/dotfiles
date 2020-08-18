@@ -17,9 +17,6 @@ if [ -e ~/misc_prj/job-monitor-widget/bin ]; then
 	export PATH="${PATH}:~/misc_prj/job-monitor-widget/bin"
 fi
 
-if [ -e ~/usr/local/bin ]; then
-	export PATH="~/usr/local/bin:${PATH}"
-fi
 
 # I DONT KNOW WHY I ADDED THE FOLLOWING
 
