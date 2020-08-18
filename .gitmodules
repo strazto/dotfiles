@@ -1,3 +1,6 @@
 [submodule "bootstrap/meta/dotbot"]
 	path = bootstrap/meta/dotbot
 	url = https://github.com/anishathalye/dotbot
+[submodule "bootstrap/tmux/tpm"]
+	path = bootstrap/tmux/tpm
+	url = https://github.com/tmux-plugins/tpm.git
