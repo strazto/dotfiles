@@ -1,11 +1,11 @@
 - link:
-  ~/.config/dotfiles/run.d/:
+   ~/.config/dotfiles/run.d/:
     glob: true
     path: envs/hpc/run.d/*
     relink: true
     create: true
 - link:
-  ~/usr/local/bin/:
+   ~/usr/local/bin/:
     glob: true
     path: envs/hpc/usr/local/bin/*
     relink: true
