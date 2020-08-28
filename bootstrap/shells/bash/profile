@@ -13,9 +13,10 @@
 
 run_d="$HOME/.config/dotfiles/run.d" 
 if [ -d "${run_d}" ] ; then
-  for f in "$(ls "${run_d}")"; do
-    if [[ ! -z "${f}" ]]; then
-      source "${run_d}/${f}"
+  for f in ${run_d}/{.*,*} ; do
+    if [[ ( ! -z "${f}" ) && "$f" != "." && "$f" != ".." ]]; then
+      echo "Sourcing ${f}"
+      source "${f}"
     fi
   done
 fi
