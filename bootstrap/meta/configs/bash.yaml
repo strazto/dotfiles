@@ -1,0 +1,8 @@
+- defaults:
+    create: true
+    relink: true
+- link:
+   ~/.bashrc: shells/bash/bashrc
+   ~/.bash_profile: shells/bash/profile
+   ~/.bash_aliases: shells/bash/aliases
+   ~/.bash_prompt:  shells/bash/prompt

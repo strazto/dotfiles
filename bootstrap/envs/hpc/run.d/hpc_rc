@@ -1,0 +1,8 @@
+#!/bin/env bash
+
+# Intended to be linked into ~/.config/dotfiles/run.d
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi

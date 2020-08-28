@@ -1,0 +1,5 @@
+# ~/.profile: executed by the command interpreter for login shells.
+
+
+# Only thing not migrated - not actually useful
+nohup odriveagent >> ~/.odrive-agent/stdout.log 2>>~/.odrive-agent/stderr.log &

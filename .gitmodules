@@ -1,0 +1,22 @@
+[submodule "bootstrap/meta/dotbot"]
+	path = bootstrap/meta/dotbot
+	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
+[submodule "bootstrap/tmux/tpm"]
+	path = bootstrap/tmux/tpm
+	url = https://github.com/tmux-plugins/tpm.git
+	ignore = dirty
+[submodule "bootstrap/vim/config"]
+	path = bootstrap/vim/config
+  url = https://github.com/mstr3336/.spacevim.git
+  ignore = dirty
+[submodule "bootstrap/tmux/config"]
+	path = bootstrap/tmux/config
+	url = https://github.com/mstr3336/.tmux.git
+	ignore = dirty
+[submodule "bootstrap/tools/git/diff-so-fancy"]
+	path = bootstrap/tools/git/diff-so-fancy
+	url = https://github.com/so-fancy/diff-so-fancy.git
+	ignore = dirty
+[submodule "dotbot"]
+	ignore = dirty
