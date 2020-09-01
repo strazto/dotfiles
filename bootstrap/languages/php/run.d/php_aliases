@@ -1,0 +1,10 @@
+
+# "serve" quickly jumps to the correct dir and serves the website
+function serve {
+  pushd ~/public_html
+  php -S localhost:8080
+  popd
+}
+# lout redirects external:8080 <-> localhost:8080 , so that host can easily connect
+alias lout='socat -d -d TCP4-LISTEN:8080,bind=10.0.2.15,fork TCP4:localhost:8080'
+alias serve='serve'
