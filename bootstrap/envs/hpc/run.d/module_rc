@@ -20,4 +20,7 @@ module load ag
 # For ragg, a pkgdown dependency
 module load freetype libpng libtiff
 
+# Load a git that isn't super old
+module load git/2.25.0
+
 module list
