@@ -10,5 +10,8 @@
     path: envs/hpc/usr/local/bin/*
     relink: true
     create: true
-
-
+- link:
+   ~/usr/local/bin/vd:
+    path: envs/hpc/visidata_hpc/bin/vd
+    relink: true
+    create: true
