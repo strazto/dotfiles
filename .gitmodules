@@ -20,3 +20,6 @@
 	ignore = dirty
 [submodule "dotbot"]
 	ignore = dirty
+[submodule "bootstrap/envs/hpc/visidata_hpc"]
+	path = bootstrap/envs/hpc/visidata_hpc
+	url = https://github.com/mstr3336/visidata_hpc
