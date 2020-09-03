@@ -1,0 +1,1 @@
+options.clipboard_copy_cmd = 'xclip -selection clipboard'
