@@ -1,0 +1,6 @@
+- link:
+   ~/.visidatarc: 
+    path: tools/visidata/visidatarc
+    clean: true
+
+
