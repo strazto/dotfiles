@@ -15,5 +15,10 @@ function db_url {
   echo "mysql://$DBUSER:$DBPASS@localhost:3306/cronnit"
 }
 
+function access_db {
+  local args="${@:1}"
+  mysql --user="$DBUSER" --password="$DBPASS" "$@"
+}
+
 alias explore_db='vd $(db_url)'
 
