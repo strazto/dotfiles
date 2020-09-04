@@ -43,12 +43,84 @@ xterm*|rxvt*)
     ;;
 esac
 
-########################################
-# Personal, loving prompt
+_truncate_path() {
+  local arr
+  local out
+  local breadcrumbs
+  local IFS="/"
+  set -f # Disable glob expansion
+  arr=( $@ ) # Deliberately unquoted 
+  set +f
+ 
+  local n_comps="${#arr[@]}"
 
-col_red="\[\033[01;31m\]"
-col_off="\[\033[01;00m\]"
+  if [[ n_comps > 5 || "${#1}" > 20 ]]; then
+    #out="${arr[0]}/../${arr[-1]}"
+    for i in "${!arr[@]}"; do
+      if (( i == 0 || i+1 >= n_comps )); then
+        :
+      else
+        breadcrumbs="$breadcrumbs/."
+      fi
+    done
+
+    out="${arr[0]}${breadcrumbs}/${arr[-1]}"
+  fi
+  
+  echo "$out"
+}
+
+_handle_path() {
+  local out="$1"
+  # sub in ~
+  [[ "$out" =~ ^"$HOME"(/|$) ]] && out="~${out#$HOME}"
+  
+  _truncate_path "$out"
+}
+
+_decode_unicode_escapes() {
+  printf '%s' "$*" | perl -CS -pe 's/(\\u([0-9A-Fa-f]{1,4})|\\U([0-9A-Fa-f]{1,8}))/chr(hex($2.$3))/eg' 2>/dev/null
+}
 
 
-export PS1="${col_red}♥${col_off} \W\$ "
+_get_ps1() {
+  
+  ########################################
+  # Personal, loving prompt
+  # 
+  # Red was "\[\033[01;31m\]" for bright, but looked bad
 
+  local r_fg="\[\033[31m\]"
+  local r_bg="\[\033[41m\]"
+
+  local w_bg="\[\033[47m\]"
+  local w_fg="\[\033[37m\]"
+
+  local b_bg="\[\033[40m\]"
+  local b_fg="\[\033[30m\]"
+
+  local y_fg="\[\033[38;2;255;255;00m\]"
+  local y_bg="\[\033[48;2;255;255;00m\]"
+
+  local col_off="\[\033[01;00m\]"
+
+  local _ms='\uE0B0'  # /!\ you don't need to install Powerline
+  local _ss='\uE0B1'   #   you only need fonts patched with
+  
+  local cwd='$(_handle_path "$(pwd)")'
+  
+  cwd="${cwd//\//${_ss}}"
+
+  local rw="$r_fg$w_bg"
+  local wr="$w_fg$r_bg"
+  local wb="$w_fg$b_bg"
+  local bw="$b_fg$r_fg"
+  local yb="$y_fg$b_bg"
+  local by="$b_fg$y_bg"
+
+  local out="${rw} ♥${w_fg}${y_bg}${_ms}${by}${_ss}${cwd}${y_fg}${r_bg}${_ms}${wr} \$ ${r_fg}${b_bg}${_ms}${col_off}  "
+  
+  _decode_unicode_escapes "$out"
+}
+
+export PS1="$(_get_ps1)"
