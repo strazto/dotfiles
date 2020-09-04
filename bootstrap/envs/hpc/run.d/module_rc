@@ -20,6 +20,9 @@ module load ag
 # For ragg, a pkgdown dependency
 module load freetype libpng libtiff
 
+# For whatever reason, libpng seems to depend on zlib
+# and if libpng is loaded w/o zlib, vim won't start lmao
+module load zlib
 # Load a git that isn't super old
 module load git/2.25.0
 
