@@ -54,7 +54,7 @@ _truncate_path() {
  
   local n_comps="${#arr[@]}"
 
-  if [[ n_comps > 5 || "${#1}" > 20 ]]; then
+  if [[ n_comps > 5 || "${#1}" > 50 ]]; then
     #out="${arr[0]}/../${arr[-1]}"
     for i in "${!arr[@]}"; do
       if (( i == 0 || i+1 >= n_comps )); then
@@ -64,23 +64,29 @@ _truncate_path() {
       fi
     done
 
-    out="${arr[0]}${breadcrumbs}/${arr[-1]}"
+    out="${arr[0]}${breadcrumbs}/ ${arr[-1]}"
   fi
   
   echo "$out"
 }
 
-_handle_path() {
-  local out="$1"
-  # sub in ~
-  [[ "$out" =~ ^"$HOME"(/|$) ]] && out="~${out#$HOME}"
-  
-  _truncate_path "$out"
-}
-
 _decode_unicode_escapes() {
   printf '%s' "$*" | perl -CS -pe 's/(\\u([0-9A-Fa-f]{1,4})|\\U([0-9A-Fa-f]{1,8}))/chr(hex($2.$3))/eg' 2>/dev/null
 }
+
+_handle_path() {
+  local out="$1"
+   
+  local _ss='\uE0B1'   #   you only need fonts patched with
+  # sub in ~
+  [[ "$out" =~ ^"$HOME"(/|$) ]] && out="~${out#$HOME}"
+  
+  out="$(_truncate_path "$out")"
+
+  out="${out//\//${_ss}}"
+  _decode_unicode_escapes "$out"
+}
+
 
 
 _get_ps1() {
@@ -109,7 +115,6 @@ _get_ps1() {
   
   local cwd='$(_handle_path "$(pwd)")'
   
-  cwd="${cwd//\//${_ss}}"
 
   local rw="$r_fg$w_bg"
   local wr="$w_fg$r_bg"
@@ -118,7 +123,7 @@ _get_ps1() {
   local yb="$y_fg$b_bg"
   local by="$b_fg$y_bg"
 
-  local out="${rw} ♥${w_fg}${y_bg}${_ms}${by}${_ss}${cwd}${y_fg}${r_bg}${_ms}${wr} \$ ${r_fg}${b_bg}${_ms}${col_off}  "
+  local out="${rw} ♥${wb}${_ms} ${by}${_ms}${by} ${cwd}${y_fg}${r_bg}${_ms}${wr} \$ ${r_fg}${b_bg}${_ms}${col_off}  "
   
   _decode_unicode_escapes "$out"
 }
