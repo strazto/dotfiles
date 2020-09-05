@@ -97,26 +97,44 @@ _get_ps1() {
   # Personal, loving prompt
   # 
   # Red was "\[\033[01;31m\]" for bright, but looked bad
+  
+  # red: #d70000
+  # new ansi escape
+  local r_fg="\[\033[38;2;215;000;000m\]"
+  local r_bg="\[\033[48;2;215;000;000m\]"
+  # Old ansi escape
+  #local r_fg="\[\033[31m\]"
+  #local r_bg="\[\033[41m\]"
+  
+  # white: #e4e4e4 
 
-  local r_fg="\[\033[31m\]"
-  local r_bg="\[\033[41m\]"
-
-  local w_bg="\[\033[47m\]"
-  local w_fg="\[\033[37m\]"
+  local w_fg="\[\033[38;2;228;228;228m\]"
+  local w_bg="\[\033[48;2;228;228;228m\]"
+  # old ansi escape
+  #local w_bg="\[\033[47m\]"
+  #local w_fg="\[\033[37m\]"
 
   local b_bg="\[\033[40m\]"
   local b_fg="\[\033[30m\]"
 
   local y_fg="\[\033[38;2;255;255;00m\]"
   local y_bg="\[\033[48;2;255;255;00m\]"
-
+ 
+  local p_fg="\[\033[38;2;255;000;175m\]"
+  local p_bg="\[\033[48;2;255;000;175m\]"
+  
   local col_off="\[\033[01;00m\]"
 
+  local bold="\[\033[01m\]"
+  local unbold="\[\033[22m\]"
+  
   local _ms='\uE0B0'  # /!\ you don't need to install Powerline
   local _ss='\uE0B1'   #   you only need fonts patched with
   
   local cwd='$(_handle_path "$(pwd)")'
   
+  local py="$p_fg$y_bg"
+  local yp="$y_fg$p_bg"
 
   local rw="$r_fg$w_bg"
   local wr="$w_fg$r_bg"
@@ -124,8 +142,7 @@ _get_ps1() {
   local bw="$b_fg$r_fg"
   local yb="$y_fg$b_bg"
   local by="$b_fg$y_bg"
-
-  local out="${rw} ♥${wb}${_ms} ${by}${_ms}${by} ${cwd}${y_fg}${r_bg}${_ms}${wr}"
+  local out="${py} ♥${yp}${_ms}${bold}${w_fg} ${cwd}${unbold} ${p_fg}${r_bg}${_ms}${wr}"
   out+=' \$ '
   out+="${r_fg}${b_bg}${_ms}${col_off}  "
   
