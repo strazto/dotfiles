@@ -53,8 +53,8 @@ _truncate_path() {
   set +f
  
   local n_comps="${#arr[@]}"
-
-  if [[ n_comps > 5 || "${#1}" > 50 ]]; then
+  
+  if (( n_comps > 5 || "${#1}" > 50 )); then
     #out="${arr[0]}/../${arr[-1]}"
     for i in "${!arr[@]}"; do
       if (( i == 0 || i+1 >= n_comps )); then
@@ -64,7 +64,9 @@ _truncate_path() {
       fi
     done
 
-    out="${arr[0]}${breadcrumbs}/ ${arr[-1]}"
+    out="${arr[0]}${breadcrumbs}/${arr[-1]}"
+    else
+      out="$1"
   fi
   
   echo "$out"
