@@ -1,5 +1,5 @@
 - shell:
-  - command: 'CI="dotbot" /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"'
+  - command: '/bin/env bash tools/linuxbrew/install_linuxbrew'
     stdout: true
     quiet: false
     description: Install linuxbrew via online script.
