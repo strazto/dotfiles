@@ -2,6 +2,8 @@
 
 install_linuxbrew () {
   if [[ -e "~/.config/dotfiles/run.d/hpc_rc" ]]; then
+    module load ruby
+
     HAVE_SUDO_ACCESS="no" CI="headless" /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   else
     CI="headless" /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
