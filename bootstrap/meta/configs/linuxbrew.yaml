@@ -4,7 +4,7 @@
     quiet: false
     description: Install linuxbrew via online script.
 - link:
-  ~/.config/dotfiles/run.d/linuxbrew:
+   ~/.config/dotfiles/run.d/linuxbrew:
     path: tools/linuxbrew/run.d/linuxbrew
     relink: true
     create: true
