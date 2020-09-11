@@ -63,8 +63,10 @@ _truncate_path() {
         breadcrumbs="$breadcrumbs/."
       fi
     done
-
-    out="${arr[0]}${breadcrumbs}/${arr[-1]}"
+    # -ve array indices only added in bash 4.2, hpc has 4.1 :(
+    # https://github.com/bminor/bash/blob/36f2c40/CHANGES#L3034-L3035
+    
+    out="${arr[0]}${breadcrumbs}/${arr[${#arr[@]}-1]}"
     else
       out="$1"
   fi
