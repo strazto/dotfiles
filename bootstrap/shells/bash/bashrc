@@ -70,7 +70,15 @@ if [ -f ~/.bash_prompt ]; then
   . ~/.bash_prompt
 fi
 
+
+# If fzf exists, use it
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# IF zoxide exists, use it
+if hash zoxide 2>/dev/null; then
+  eval "$(zoxide init bash)"
+fi
+
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/matty/.sdkman"
