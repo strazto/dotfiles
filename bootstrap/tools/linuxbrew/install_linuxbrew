@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
 
-CI="headless" /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+install_linuxbrew () {
+  if [[ -e "~/.config/dotfiles/run.d/hpc_rc" ]]; then
+    HAVE_SUDO_ACCESS="no" CI="headless" /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  else
+    CI="headless" /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  fi
+}
 
+install_linuxbrew
