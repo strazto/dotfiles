@@ -14,8 +14,11 @@ have_sudo_access() {
     fi
     HAVE_SUDO_ACCESS="$?"
   fi
-
+  
+  echo $HAVE_SUDO_ACCESS
 
   return "$HAVE_SUDO_ACCESS"
 }
 
+
+"$@"
