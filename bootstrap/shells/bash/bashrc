@@ -53,7 +53,8 @@ if ! shopt -oq posix; then
 fi
 export GOPATH=${HOME}/go
 export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin
-. /usr/local/etc/bash_completion.d/singularity
+
+[[ -e "/usr/local/etc/bash_completion.d/singularity" ]] && . /usr/local/etc/bash_completion.d/singularity
 
 #export PATH=/usr/jdk/bin:${PATH}
 
