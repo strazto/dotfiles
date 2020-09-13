@@ -28,6 +28,10 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [-d "$HOME/.local/share/man" ]; then
+    MANPATH="$HOME/.local/share/man:$MANPATH"
+fi
+
 # set PATH to include another user bin
 if [ -e ~/usr/local/bin ]; then
 	export PATH="~/usr/local/bin:${PATH}"
