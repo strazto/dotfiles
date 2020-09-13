@@ -1,0 +1,6 @@
+- link:
+   ~/.config/dotfiles/z.lua:
+    path: tools/z/z.lua
+    relink: true
+    create: true
+
