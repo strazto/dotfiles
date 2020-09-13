@@ -28,7 +28,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [-d "$HOME/.local/share/man" ]; then
+if [ -d "$HOME/.local/share/man" ]; then
     MANPATH="$HOME/.local/share/man:$MANPATH"
 fi
 
