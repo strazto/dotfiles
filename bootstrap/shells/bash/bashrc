@@ -73,13 +73,37 @@ fi
 
 
 # If fzf exists, use it
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if [ -f ~/.fzf.bash ]; then
+  source ~/.fzf.bash
+
+  _FZF_EXISTS="fzf"
+fi
+
+# This will be changed if fzf exists && we can use z.lua
+alias zf='z'
 
 # IF zoxide exists, use it
+# https://github.com/ajeetdsouza/zoxide
+# zoxide is the slickest z implementation
+# (and fastest) - implemented in rust
+# But it's a bit less portable to old envs
+# eg the hpc. I install it w/ linuxbrew
 if hash zoxide 2>/dev/null; then
   eval "$(zoxide init bash)"
-elif [ -e ~/.config/dotfiles/z/z.sh ]; then
-  . ~/.config/dotfiles/z/z.sh
+elif [ -e ~/.config/dotfiles/z.lua/z.lua ]; then
+  # https://github.com/skywind3000/z.lua
+  # z.lua is faster than z.sh, and more portable
+  # than zoxide. 
+  # It also integrates w/ fzf
+  eval "$(lua /path/to/z.lua --init bash enhanced ${_FZF_EXISTS:-})"
+
+  if [ -z ${_FZF_EXISTS+x} ]; then 
+    alias zf='z -I'
+  fi
+elif [ -e ~/.config/dotfiles/z.sh/z.sh ]; then
+  # z.sh is the most portable z implementation
+  # That i've noticed (maybe z.lua is equal)
+  . ~/.config/dotfiles/z.sh/z.sh
 fi
 
 
