@@ -1,0 +1,22 @@
+# Commented for now bc I think I might
+# resolve this in bashrc
+# I think I'll make this elif w/ zoxide
+# zoxide is more featured, & active, but less
+# portable
+#- link:
+#   ~/.config/dotfiles/run.d/:
+#    glob: true
+#    path: tools/z/run.d/*
+#    relink: true
+#    create: true
+- link:
+   ~/.config/dotfiles/z:
+    path: tools/z/z
+    relink: true
+    create: true
+- link:
+   ~/.local/share/share/man/man1/z.1:
+    path: tools/z/z.1
+    relink: true
+    create: true
+
