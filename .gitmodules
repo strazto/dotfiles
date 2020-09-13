@@ -24,7 +24,7 @@
 	path = bootstrap/envs/hpc/visidata_hpc
 	url = https://github.com/mstr3336/visidata_hpc
 [submodule "bootstrap/tools/z/z"]
-	path = bootstrap/tools/z/z
+	path = bootstrap/tools/z/z.sh
 	url = https://github.com/rupa/z.git
 [submodule "bootstrap/tools/z/z.lua/z.lua"]
 	path = bootstrap/tools/z/z.lua
