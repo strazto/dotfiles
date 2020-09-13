@@ -97,7 +97,7 @@ elif [ -e ~/.config/dotfiles/z.lua/z.lua ]; then
   # It also integrates w/ fzf
   eval "$(lua ~/.config/dotfiles/z.lua/z.lua --init bash enhanced ${_FZF_EXISTS:-})"
 
-  if [ -z ${_FZF_EXISTS+x} ]; then 
+  if [[ ! -z ${_FZF_EXISTS+x} ]]; then 
     alias zf='z -I'
   fi
 elif [ -e ~/.config/dotfiles/z.sh/z.sh ]; then
