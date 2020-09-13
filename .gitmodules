@@ -27,5 +27,5 @@
 	path = bootstrap/tools/z/z
 	url = https://github.com/rupa/z.git
 [submodule "bootstrap/tools/z/z.lua/z.lua"]
-	path = bootstrap/tools/z/z.lua/z.lua
+	path = bootstrap/tools/z/z.lua
 	url = https://github.com/skywind3000/z.lua
