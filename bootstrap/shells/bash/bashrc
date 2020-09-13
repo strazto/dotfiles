@@ -95,7 +95,7 @@ elif [ -e ~/.config/dotfiles/z.lua/z.lua ]; then
   # z.lua is faster than z.sh, and more portable
   # than zoxide. 
   # It also integrates w/ fzf
-  eval "$(lua /path/to/z.lua --init bash enhanced ${_FZF_EXISTS:-})"
+  eval "$(lua ~/.config/dotfiles/z.lua/z.lua --init bash enhanced ${_FZF_EXISTS:-})"
 
   if [ -z ${_FZF_EXISTS+x} ]; then 
     alias zf='z -I'
