@@ -29,7 +29,7 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 if [ -d "$HOME/.local/share/man" ]; then
-  export MANPATH="$HOME/.local/share/man:$(manpath)"
+  export MANPATH="$HOME/.local/share/share/man:$(manpath)"
 fi
 
 # set PATH to include another user bin
