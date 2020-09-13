@@ -78,6 +78,8 @@ fi
 # IF zoxide exists, use it
 if hash zoxide 2>/dev/null; then
   eval "$(zoxide init bash)"
+elif [ -e ~/.config/dotfiles/z/z.sh ]; then
+  . ~/.config/dotfiles/z/z.sh
 fi
 
 
