@@ -16,7 +16,7 @@
     create: true
 - link:
    ~/.local/share/share/man/man1/z.1:
-    path: tools/z/z.1
+    path: tools/z/z/z.1
     relink: true
     create: true
 
