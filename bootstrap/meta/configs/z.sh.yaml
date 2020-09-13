@@ -10,7 +10,7 @@
 #    relink: true
 #    create: true
 - link:
-   ~/.config/dotfiles/z:
+   ~/.config/dotfiles/z.sh:
     path: tools/z/z.sh
     relink: true
     create: true
