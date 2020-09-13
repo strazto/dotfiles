@@ -80,7 +80,10 @@ if [ -f ~/.fzf.bash ]; then
 fi
 
 # This will be changed if fzf exists && we can use z.lua
-alias zf='z'
+# zoxide exports this alias for interactive mode
+# z,sh doesn't have a decent interactive mode ( I think ), 
+# so fall back to z if fzf doesn't exist or is using z.sh
+alias zi='z'
 
 # IF zoxide exists, use it
 # https://github.com/ajeetdsouza/zoxide
@@ -98,7 +101,7 @@ elif [ -e ~/.config/dotfiles/z.lua/z.lua ]; then
   eval "$(lua ~/.config/dotfiles/z.lua/z.lua --init bash enhanced ${_FZF_EXISTS:-})"
 
   if [[ ! -z ${_FZF_EXISTS+x} ]]; then 
-    alias zf='z -I'
+    alias zi='z -I'
   fi
 elif [ -e ~/.config/dotfiles/z.sh/z.sh ]; then
   # z.sh is the most portable z implementation
