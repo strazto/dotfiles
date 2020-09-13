@@ -11,12 +11,12 @@
 #    create: true
 - link:
    ~/.config/dotfiles/z:
-    path: tools/z/z
+    path: tools/z/z.sh
     relink: true
     create: true
 - link:
    ~/.local/share/share/man/man1/z.1:
-    path: tools/z/z/z.1
+    path: tools/z/z.sh/z.1
     relink: true
     create: true
 
