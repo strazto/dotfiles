@@ -6,4 +6,4 @@ tmux
 git
 vim
 visidata
-z
+z.lua
