@@ -49,5 +49,5 @@ if [ -d "$HOME/.local/share/man" ]; then
 fi
 
 if [ -d "$HOME/usr/local/share/man" ]; then
-  export MANPATH=":$HOME/usr/local/share/man:$(manpath)"
+  export MANPATH="$HOME/usr/local/share/man:$(manpath)"
 fi
