@@ -7,7 +7,7 @@
 test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
 test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-[[ -e ~/.profile ]] && . ~/.profile
+[[ -e ~/.profile ]] && . ~/.profile "no-bashrc"
 [[ -e ~/.bashrc ]] && . ~/.bashrc
 
 
