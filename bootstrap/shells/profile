@@ -35,17 +35,19 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
-
-if [ -d "$HOME/.local/share/man" ]; then
-  export MANPATH="$HOME/.local/share/share/man:$(manpath)"
-fi
-
 # set PATH to include another user bin
 if [ -e ~/usr/local/bin ]; then
 	export PATH="~/usr/local/bin:${PATH}"
 fi
 
+##########################################
+# MANPATH handling
+##########################################
+
+if [ -d "$HOME/.local/share/man" ]; then
+  export MANPATH="$HOME/.local/share/share/man:$(manpath)"
+fi
 
 if [ -d "$HOME/usr/local/share/man" ]; then
-  export MANPATH="$HOME/usr/local/share/man:$(manpath)"
+  export MANPATH=":$HOME/usr/local/share/man:$(manpath)"
 fi
