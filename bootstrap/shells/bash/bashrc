@@ -65,7 +65,7 @@ if [ -f ~/.uni_auth ]; then
     . ~/.uni_auth
 fi
 
-export CC=clang
+#export CC=clang
 
 if [ -f ~/.bash_prompt ]; then
   . ~/.bash_prompt
