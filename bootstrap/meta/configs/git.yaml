@@ -9,4 +9,9 @@
      relink: true
 - shell:
   - [git config --global include.path '~/.config/dotfiles/git/config', Setting up git config!]
+- link:
+   ~/.configs/dotfiles/git/completion.bash:
+     path: tools/git/git-completion.bash
+     relink: true
+     create: true
 
