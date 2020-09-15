@@ -60,7 +60,6 @@ export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin
 [[ -e "/usr/local/etc/bash_completion.d/singularity" ]] && . "/usr/localal/etc/bash_completion.d/singularity"
 
 if [[ -e "$HOME/.config/dotfiles/git/completion.bash" ]]; then
-  echo "Sourcing git completion!"
   . "$HOME/.config/dotfiles/git/completion.bash"
 fi
 
