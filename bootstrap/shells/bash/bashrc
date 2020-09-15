@@ -49,6 +49,9 @@ if ! shopt -oq posix; then
     . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
+  elif [ -f "$HOME/.local/share/share/bash-completion/bash_completion" ]; then
+    # Source locally installed bash completions
+    . /"$HOME/.local/share/share/bash-completion/bash_completion"
   fi
 fi
 export GOPATH=${HOME}/go
