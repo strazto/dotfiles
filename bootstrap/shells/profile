@@ -44,10 +44,13 @@ fi
 # MANPATH handling
 ##########################################
 
+# I used to use $(manpath -g) but that gave a 
+# VERY verbose error on centos 6
+
 if [ -d "$HOME/.local/share/man" ]; then
-  export MANPATH="$HOME/.local/share/share/man:$(manpath -g)"
+  export MANPATH="$HOME/.local/share/share/man:$(manpath)"
 fi
 
 if [ -d "$HOME/usr/local/share/man" ]; then
-  export MANPATH="$HOME/usr/local/share/man:$(manpath -g)"
+  export MANPATH="$HOME/usr/local/share/man:$(manpath)"
 fi
