@@ -1,0 +1,3 @@
+- shell:
+   - [/usr/bin/env bash tools/fzf/install_tab_completion, Installing fzf tab completion]
+
