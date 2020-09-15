@@ -65,10 +65,14 @@ fi
 
 # Use fzf completion for any tabbed completion if possible
 if [[ -e "$HOME/.config/dotfiles/fzf/fzf-tab/bash/fzf-bash-completion.sh" ]]; then
-  . "$HOME/.config/dotfiles/fzf/fzf-tab/bash/fzf-bash-completion.sh"
-  bind -x '"\t": fzf_bash_completion'
-  export LD_PRELOAD="$HOME/.config/dotfiles/fzf/fzf-tab/readline/target/release/librl_custom_complete.so"
+  #module unload ag
+  #. "$HOME/.config/dotfiles/fzf/fzf-tab/bash/fzf-bash-completion.sh"
+  #bind -x '"\t": fzf_bash_completion'
+  #export LD_PRELOAD="$HOME/.config/dotfiles/fzf/fzf-tab/readline/target/release/librl_custom_complete.so"
+  :
 fi
+
+#[[ -e "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" ]] && . "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" 
 
 #export PATH=/usr/jdk/bin:${PATH}
 
