@@ -1,0 +1,3 @@
+$include function rl_custom_complete ~/.config/dotfiles/fzf/fzf-tab/readline/target/release/librl_custom_complete.so
+"\t" : rl_custom_complete
+
