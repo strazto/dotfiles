@@ -29,3 +29,5 @@ if [ -d "${run_d}" ] ; then
   done
 fi
 
+
+export PATH="$HOME/.cargo/bin:$PATH"
