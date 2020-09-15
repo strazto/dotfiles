@@ -29,9 +29,3 @@
 [submodule "bootstrap/tools/z/z.lua/z.lua"]
 	path = bootstrap/tools/z/z.lua
 	url = https://github.com/skywind3000/z.lua
-[submodule "bootstrap/tools/fzf/fzf-tab-completion"]
-	path = bootstrap/tools/fzf/fzf-tab-completion
-	url = https://github.com/lincheney/fzf-tab-completion.git
-[submodule "bootstrap/tools/fzf/rl_custom_function"]
-	path = bootstrap/tools/fzf/rl_custom_function
-	url = https://github.com/lincheney/rl_custom_function.git
