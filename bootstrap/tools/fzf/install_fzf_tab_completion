@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+install_tab_completion () {
+  local prefix="$HOME/.config/dotfiles/fzf"
+  mkdir -p "$prefix"
+  cd "$prefix"
+  git clone https://github.com/lincheney/fzf-tab-completion.git fzf-tab
+  git clone https://github.com/lincheney/rl_custom_function.git rl_custom_fn
+  
+  cd rl_custom_fn
+  cargo build --release
+  cd "$prefix"
+  
+  cd fzf-tab/readline
+  cargo build --release 
+  cd bin
+  local link_dest="$(pwd)/rl_custom_complete"
+
+  ln -fs "$link_dest" ~/.cargo/bin/rl_custom_complete
+}
+
+install_tab_completion

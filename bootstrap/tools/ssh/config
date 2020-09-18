@@ -1,0 +1,55 @@
+####################################
+# USYD Configs
+####################################
+
+Host jump hpc jhpc rcos
+  User mstr3336
+
+Host jump hpc jhpc
+  ForwardX11 yes
+  ForwardAgent yes
+
+# jump doesn't accept pubkey auth.
+Host jump
+  Hostname jump.research.sydney.edu.au
+  PreferredAuthentications keyboard-interactive
+  PubkeyAuthentication no
+
+Host hpc jhpc
+  HostName hpc.sydney.edu.au
+  IdentityFile ~/.ssh/id_rsa
+  IdentitiesOnly yes
+
+Match host jhpc !exec "nc -z -w 1 %h %p" 
+  ProxyCommand ssh jump nc %h %p
+
+Host rcos
+  HostName rcos.sydney.edu.au
+  PreferredAuthentications=keyboard-interactive
+  PubkeyAuthentication=no
+
+Host github.sydney.edu.au
+  IdentityFile ~/.ssh/id_rsa
+  IdentitiesOnly yes
+Host git.edstem.org
+  IdentityFile ~/.ssh/id_rsa_ed
+  IdentitiesOnly yes
+
+# I think this is defunct
+Host usyd_vm
+  HostName 10.86.163.24
+  IdentityFile ~/.ssh/id_rsa_usyd_vm
+  IdentitiesOnly yes
+
+Host cronnit
+  HostName 127.0.0.1
+  User cronnit
+  Port 2222
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  PasswordAuthentication no
+  IdentityFile /home/matty/projects/cronnit.us/.vagrant/machines/default/virtualbox/private_key
+  IdentitiesOnly yes
+  LogLevel FATAL
+  ForwardX11 yes
+

@@ -1,10 +1,14 @@
 #!/bin/env bash
 # ~/.bash_profile
 
+
 # Just source the generic profile, and bashrc
 
-[[ -f ~/.profile ]] && . ~/.profile
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+[[ -e ~/.profile ]] && . ~/.profile "no-bashrc"
+[[ -e ~/.bashrc ]] && . ~/.bashrc
 
 
 # Run any executables found in .config/dotfiles/run.d
@@ -25,3 +29,5 @@ if [ -d "${run_d}" ] ; then
   done
 fi
 
+
+export PATH="$HOME/.cargo/bin:$PATH"

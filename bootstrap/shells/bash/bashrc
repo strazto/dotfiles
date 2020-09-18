@@ -49,12 +49,30 @@ if ! shopt -oq posix; then
     . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
+  elif [ -f "$HOME/.local/share/share/bash-completion/bash_completion" ]; then
+    # Source locally installed bash completions
+    . /"$HOME/.local/share/share/bash-completion/bash_completion"
   fi
 fi
 export GOPATH=${HOME}/go
 export PATH=/usr/local/go/bin:${PATH}:${GOPATH}/bin
 
 [[ -e "/usr/local/etc/bash_completion.d/singularity" ]] && . "/usr/localal/etc/bash_completion.d/singularity"
+
+if [[ -e "$HOME/.config/dotfiles/git/completion.bash" ]]; then
+  . "$HOME/.config/dotfiles/git/completion.bash"
+fi
+
+# Use fzf completion for any tabbed completion if possible
+if [[ -e "$HOME/.config/dotfiles/fzf/fzf-tab/bash/fzf-bash-completion.sh" ]]; then
+  #module unload ag
+  #. "$HOME/.config/dotfiles/fzf/fzf-tab/bash/fzf-bash-completion.sh"
+  #bind -x '"\t": fzf_bash_completion'
+  #export LD_PRELOAD="$HOME/.config/dotfiles/fzf/fzf-tab/readline/target/release/librl_custom_complete.so"
+  :
+fi
+
+#[[ -e "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" ]] && . "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" 
 
 #export PATH=/usr/jdk/bin:${PATH}
 
@@ -65,7 +83,7 @@ if [ -f ~/.uni_auth ]; then
     . ~/.uni_auth
 fi
 
-export CC=clang
+#export CC=clang
 
 if [ -f ~/.bash_prompt ]; then
   . ~/.bash_prompt
