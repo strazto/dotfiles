@@ -1,6 +1,6 @@
 # Matthew's dotfiles
 
-![demo](demo2.x3.svg)
+![demo](demofont.svg)
 
 
 This repo uses `dotbot`. 
