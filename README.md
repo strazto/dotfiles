@@ -1,5 +1,8 @@
 # Matthew's dotfiles
 
+![demo](https://user-images.githubusercontent.com/39424834/94018765-4b931780-fdf4-11ea-8840-713ec3ea93fa.gif)
+
+
 This repo uses `dotbot`. 
 
 To install a profile, do the following:
