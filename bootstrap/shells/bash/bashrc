@@ -72,7 +72,6 @@ if [[ -e "$HOME/.config/dotfiles/fzf/fzf-tab/bash/fzf-bash-completion.sh" ]]; th
   :
 fi
 
-#[[ -e "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" ]] && . "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" 
 
 #export PATH=/usr/jdk/bin:${PATH}
 
@@ -127,6 +126,7 @@ elif [ -e ~/.config/dotfiles/z.sh/z.sh ]; then
   . ~/.config/dotfiles/z.sh/z.sh
 fi
 
+#[[ -e "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" ]] && . "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/matty/.sdkman"
