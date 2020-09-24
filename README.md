@@ -1,6 +1,6 @@
 # Matthew's dotfiles
 
-![demo](demo.3x.gif)
+![demo](demo.x3.gif)
 
 
 This repo uses `dotbot`. 
