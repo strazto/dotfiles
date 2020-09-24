@@ -1,9 +1,41 @@
-# Matthew's dotfiles
+# Matthew's :zap: bootstrappable dotrepo
+
+## Features
+
+- Uses [dotbot](https://github.com/anishathalye/dotbot) for bootstrapping installation
+- Breaks configuration for each program/component into standalone configs
+  - Uses profiles to specify which configs will be installed. 
+  - This enables reuse of common configs, while still supporting diverse envs/hosts
+  - Inspired/based off of:
+    - [vsund/dotfiles](https://github.com/vsund/dotfiles) for original 'meta' folder implementation
+    - [This guide for more information on usage](https://github.com/anishathalye/dotbot/wiki/Tips-and-Tricks#more-advanced-setup)
+- Provides:
+  - non-destructive configuration + aliases for `git`
+  - pretty, usable `.tmux` config, supporting tmux >=3
+  - SpaceVim config & bootstrap 
+    - Fluid navigation between vim splits & tmux panes
+  - fzf support built-in to profiles
+  - Bootstrap of various z jumpers, `zoxide`, `z.lua`, `z.sh`
+    Fallover support for various implementations of z jumper, 
+      - From fastest/less portable (zoxide), to slowest/most portable (z.sh)
+      - try `zoxide`->`z.lua`->`z.sh`
+- Profile specific startup scripts can be added ad-infinitum
+  using `run.d`, for flexible additions on host-specific basis.
+  - `.profile` sources `~/.config/dotfiles/run.d/*` 
+  - Eg: For my HPC host:
+    - `module_rc` & `hpc_aliases` are symlinked into `run.d`
+    - At start of bash sessions:
+      - all of my environment modules are loaded
+      - My most useful aliases for job submission, & other HPC
+        tasks are defined.
+- Support for X11 clipboard sharing in:
+  - vim, tmux, visidata
+
+## Demo
 
 ![demo](demo.x3.gif)
 
-
-This repo uses `dotbot`. 
+## Usage
 
 To install a profile, do the following:
 
@@ -12,6 +44,8 @@ cd bootstrap
 
 ./install-profile ubuntu
 ```
+
+## Details
 
 The installation mechanisms have been chosen to eliminate redundancy between
 configurations across separate machines.
