@@ -1,5 +1,8 @@
 - create: [~/.local/]
-- shell: [source tools/googler/install.sh, Installing googler]
+- shell: 
+  - command: bash tools/googler/install.sh
+    description: installing googler
+    stdout: true
 - link:
    ~/.config/dotfiles/run.d/:
     glob: true
