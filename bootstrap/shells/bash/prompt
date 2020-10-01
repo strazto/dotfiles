@@ -60,7 +60,7 @@ _truncate_path() {
       if (( i == 0 || i+1 >= n_comps )); then
         :
       else
-        breadcrumbs="$breadcrumbs/."
+        breadcrumbs="$breadcrumbs/${arr[$i]:0:1}"
       fi
     done
     # -ve array indices only added in bash 4.2, hpc has 4.1 :(
@@ -144,7 +144,7 @@ _get_ps1() {
   local bw="$b_fg$r_fg"
   local yb="$y_fg$b_bg"
   local by="$b_fg$y_bg"
-  local out="${py} ♥${yp}${_ms}${bold}${w_fg} ${cwd}${unbold} ${p_fg}${r_bg}${_ms}${wr}"
+  local out="${py} ♥${yp}${_ms}${w_fg} ${cwd} ${p_fg}${r_bg}${_ms}${wr}"
   out+=' \$ '
   out+="${r_fg}${b_bg}${_ms}${col_off}  "
   
