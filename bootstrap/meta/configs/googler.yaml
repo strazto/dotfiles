@@ -1,0 +1,2 @@
+- create: [~/.local/]
+- shell: [source tools/googler/install.sh, Installing googler]
