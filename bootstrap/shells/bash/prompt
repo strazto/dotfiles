@@ -144,7 +144,7 @@ _get_ps1() {
   local bw="$b_fg$r_fg"
   local yb="$y_fg$b_bg"
   local by="$b_fg$y_bg"
-  local out="${py} ♥${yp}${_ms}${w_fg} ${cwd} ${p_fg}${r_bg}${_ms}${wr}"
+  local out="${py} ♥${yp}${_ms}${bold}${w_fg} ${cwd}${unbold} ${p_fg}${r_bg}${_ms}${wr}"
   out+=' \$ '
   out+="${r_fg}${b_bg}${_ms}${col_off}  "
   
