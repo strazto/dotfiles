@@ -29,3 +29,6 @@
 [submodule "bootstrap/tools/z/z.lua/z.lua"]
 	path = bootstrap/tools/z/z.lua
 	url = https://github.com/skywind3000/z.lua
+[submodule "bootstrap/tools/googler"]
+	path = bootstrap/tools/googler
+	url = https://github.com/jarun/googler.git
