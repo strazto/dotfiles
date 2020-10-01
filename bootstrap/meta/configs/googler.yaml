@@ -1,2 +1,9 @@
 - create: [~/.local/]
 - shell: [source tools/googler/install.sh, Installing googler]
+- link:
+   ~/.config/dotfiles/run.d/:
+    glob: true
+    path: tools/googler/run.d/*
+    relink: true
+    create: true
+
