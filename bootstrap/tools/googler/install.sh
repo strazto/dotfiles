@@ -18,4 +18,4 @@ _install_googler () {
   rm -rf "$tmp_d"
 }
 
-$(_install_googler "$1")
+_install_googler "$1"
