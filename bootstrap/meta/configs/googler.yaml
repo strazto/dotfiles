@@ -3,7 +3,11 @@
 - link:
    ~/.config/dotfiles/run.d/:
     glob: true
-    path: tools/googler/run.d/*
+    path: tools/googler/googler/auto-completion/bash/*
     relink: true
     create: true
-
+   ~/.config/dotfiles/run.d/:
+    glob: true
+    path: tools/googler/googler/auto-completion/googler_at/*
+    relink: true
+    create: true
