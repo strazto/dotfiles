@@ -30,5 +30,5 @@
 	path = bootstrap/tools/z/z.lua
 	url = https://github.com/skywind3000/z.lua
 [submodule "bootstrap/tools/googler"]
-	path = bootstrap/tools/googler_tmp
+	path = bootstrap/tools/googler/googler
 	url = https://github.com/jarun/googler.git
