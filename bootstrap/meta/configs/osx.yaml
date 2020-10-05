@@ -1,0 +1,6 @@
+- link:
+   ~/.config/dotfiles/run.d/:
+    glob: true
+    path: envs/osx/run.d/*
+    relink: true
+    create: true
