@@ -7,6 +7,8 @@ append_or_not () {
   
   if (( "$(echo "$sshv < 7.3" | bc -l)" )); then
     echo "SSH version $sshv < 7.3, doesnt support includes"
+    # TODO: Hint @ https://superuser.com/a/916583/881137
+    # TODO: write a nice script for the above
     return 1
   fi
   
