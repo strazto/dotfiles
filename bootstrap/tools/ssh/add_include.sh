@@ -19,7 +19,7 @@ append_or_not () {
 
   if [[ ! -z "$linenums" ]]; then
     echo "Found line @ $linenums"
-    return 2
+    return 0
   fi
   
   sed -i "1i ${to_append}" "$HOME/.ssh/config"

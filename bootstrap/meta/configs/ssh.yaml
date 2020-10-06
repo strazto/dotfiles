@@ -1,17 +1,11 @@
 - link:
-   ~/.config/dotfiles/run.d/:
+   ~/.ssh/config.d/:
     glob: true
-    path: envs/hpc/run.d/*
+    path: tools/ssh/config.d/*
     relink: true
     create: true
-- link:
-   ~/.local/bin/:
-    glob: true
-    path: envs/hpc/usr/local/bin/*
-    relink: true
-    create: true
-- link:
-   ~/usr/local/bin/vd:
-    path: envs/hpc/visidata_hpc/bin/vd
-    relink: true
-    create: true
+- shell:
+  - command: '/bin/env bash tools/ssh/add_include.sh'
+    stdout: true
+    quiet: false
+    description: Add include statement to ssh config
