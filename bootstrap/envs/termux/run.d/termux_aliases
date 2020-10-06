@@ -1,3 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/env bash
 
 alias lua='lua5.3'
+
+alias xclip-o='termux-clipboard-get'
+alias xclip='termux-clipboard-set'
+
