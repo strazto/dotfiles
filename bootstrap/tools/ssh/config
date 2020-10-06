@@ -35,11 +35,21 @@ Host git.edstem.org
   IdentityFile ~/.ssh/id_rsa_ed
   IdentitiesOnly yes
 
-# I think this is defunct
-Host usyd_vm
-  HostName 10.86.163.24
-  IdentityFile ~/.ssh/id_rsa_usyd_vm
-  IdentitiesOnly yes
+Host windows home
+  HostName mstrasiotto.hopto.org
+  Port 2222
+  ForwardX11 yes
+  ForwardAgent yes
+
+Host home
+  User matty
+Host windows
+  User Matthew
+
+# Install the following on windows:
+# https://github.com/shayne/go-wsl2-host
+Host *.wsl
+  ProxyJump windows
 
 Host cronnit
   HostName 127.0.0.1
