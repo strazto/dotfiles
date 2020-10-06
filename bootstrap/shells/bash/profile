@@ -7,8 +7,15 @@
 test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
 test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-[[ -e ~/.profile ]] && . ~/.profile "no-bashrc"
-[[ -e ~/.bashrc ]] && . ~/.bashrc
+
+if [ "$1" != "no-recurse" ]; then
+  shell_confs=( ".bashrc" ".profile" )
+
+  for i in "${shell_confs[@]}"
+  if [ -e "${HOME}/${i}" ]; then
+   . "${HOME}/$i no-recurse"
+  fi
+fi
 
 
 # Run any executables found in .config/dotfiles/run.d
