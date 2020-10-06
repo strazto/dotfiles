@@ -13,9 +13,11 @@ if [ "$1" != "no-recurse" ]; then
   shell_confs=( ".bash_profile" ".profile" )
 
   for i in "${shell_confs[@]}"
-  if [ -e "${HOME}/${i}" ]; then
-   . "${HOME}/$i no-recurse"
-  fi
+  do
+    if [ -e "${HOME}/${i}" ]; then
+     . "${HOME}/$i" "no-recurse"
+    fi
+  done
 fi
 
 # don't put duplicate lines or lines starting with space in the history.

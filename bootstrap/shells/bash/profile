@@ -12,9 +12,11 @@ if [ "$1" != "no-recurse" ]; then
   shell_confs=( ".bashrc" ".profile" )
 
   for i in "${shell_confs[@]}"
-  if [ -e "${HOME}/${i}" ]; then
-   . "${HOME}/$i no-recurse"
-  fi
+  do
+    if [ -e "${HOME}/${i}" ]; then
+     . "${HOME}/$i" "no-recurse"
+    fi
+  done
 fi
 
 
