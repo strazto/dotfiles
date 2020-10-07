@@ -5,7 +5,7 @@
     relink: true
     create: true
 - shell:
-  - command: '/bin/env bash tools/ssh/add_include.sh'
+  - command: 'bash tools/ssh/add_include.sh'
     stdout: true
     quiet: false
     description: Add include statement to ssh config

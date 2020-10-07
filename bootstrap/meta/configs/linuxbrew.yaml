@@ -1,5 +1,5 @@
 - shell:
-  - command: '/bin/env bash tools/linuxbrew/install_linuxbrew'
+  - command: 'bash tools/linuxbrew/install_linuxbrew'
     stdout: true
     quiet: false
     description: Install linuxbrew via online script.
