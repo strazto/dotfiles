@@ -2,10 +2,10 @@
 
 _install_googler () {
   local tmp_d="$(mktemp -d -t .googler-tmp-XXX --tmpdir="$HOME")"
-  local release="${1:-v4.2}"
+  local release="${1:master}"
 
   echo "Building in $tmp_d"
-  echo "Using release $release"
+  echo "Using ref $release"
 
   cd "$tmp_d"
   git clone https://github.com/jarun/googler.git
