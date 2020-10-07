@@ -48,15 +48,17 @@ fi
 # MANPATH handling
 ##########################################
 
+# The truth is that this doesn't appear to be worth it
+
 # I used to use $(manpath -g) but that gave a 
 # VERY verbose error on centos 6
 
-if [ -d "$HOME/.local/share/man" ]; then
-  export MANPATH="$HOME/.local/share/share/man:$(manpath)"
-fi
+#if [ -d "$HOME/.local/share/man" ]; then
+#  export MANPATH="$HOME/.local/share/share/man:$(manpath)"
+#fi
 
-if [ -d "$HOME/usr/local/share/man" ]; then
-  export MANPATH="$HOME/usr/local/share/man:$(manpath)"
-fi
+#if [ -d "$HOME/usr/local/share/man" ]; then
+#  export MANPATH="$HOME/usr/local/share/man:$(manpath)"
+#fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
