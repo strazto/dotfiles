@@ -138,6 +138,15 @@ elif [ -e ~/.config/dotfiles/z.sh/z.sh ]; then
   . ~/.config/dotfiles/z.sh/z.sh
 fi
 
+# https://github.com/wernight/powerline-web-fonts/issues/8#issuecomment-353081869
+# This resolves issue with powerline fonts & tmux
+if [[ -z "$LANG" ]]; then
+  export LANG=en_US.UTF-8
+fi
+
+if [[ -z "$LC_CTYPE" ]]; then
+  export LC_CTYPE=en_US.UTF-8
+fi
 #[[ -e "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" ]] && . "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
