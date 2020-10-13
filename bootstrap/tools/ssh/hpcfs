@@ -27,9 +27,17 @@ sleep 1
 
 #ssh -v -fN "${UNIKEY}@hpc.sydney.edu.au" 
 
-sshfs jhpc:/project/STEMI/ ~/work/.project/STEMI -o allow_other -o IdentityFile=~/.ssh/id_rsa -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3
-#sudo -s sshfs "${UNIKEY}@hpc.sydney.edu.au:/project/STEMI/" /project/STEMI -o allow_other -o IdentityFile=~/.ssh/id_rsa -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3
-#sudo -s sshfs "${UNIKEY}@hpc.sydney.edu.au:/project/STEMI/" /project/STEMI -o allow_other -o IdentityFile=~/.ssh/id_rsa -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3
+sshfs jhpc:/project/STEMI/ ~/work/.project/STEMI \
+  -o IdentityFile=~/.ssh/id_rsa \
+  -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 \
+  #-o allow_other #commentted out because I'm not root
+
+
+
+sshfs jhpc:/project/ACS/ ~/work/.project/ACS \
+  -o IdentityFile=~/.ssh/id_rsa \
+  -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 
+
 
 ssh -XYC jhpc
 echo "Finsihed ssh-ing"
