@@ -5,5 +5,8 @@ Host *
 Host github.sydney.edu.au
   ControlMaster auto
 
-Host jump hpc jhpc
+
+Host jump jhpc
   ControlMaster auto
+  ServerAliveInterval 30
+  ServerAliveCountMax 3
