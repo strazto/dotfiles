@@ -2,5 +2,8 @@ Host *
   ControlPath ~/.ssh/sockets/%r@%h-%p
   ControlPersist 600
 
-Host jhpc hpc
+Host github.sydney.edu.au
+  ControlMaster auto
+
+Host jump hpc jhpc
   ControlMaster auto
