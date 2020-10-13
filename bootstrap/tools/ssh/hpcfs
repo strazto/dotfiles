@@ -4,22 +4,33 @@
 # Requires sshfs and openconnect
 # Requires UNIPASS and UNIKEY env vars to be set
 
+which sshpass>/dev/null && which autossh>/dev/null || \
+  echo "sshpass & autossh required"
 
 source ~/.uni_auth
 UNIKEY=$UNIKEY
-UNIPASS=$UNIPASS
+SSHPASS=$UNIPASS
 
-sudo -s echo "${UNIPASS}" | sudo -s openconnect -b -u $UNIKEY --passwd-on-stdin https://vpn.sydney.edu.au  
+# sudo -s echo "${UNIPASS}" | sudo -s openconnect -b -u $UNIKEY --passwd-on-stdin https://vpn.sydney.edu.au  
 
-echo "Finished connecting!"
+# Setup shared connection
+
+SSHPASS=$UNIPASS sshpass -e ssh -M -fN jump 
+
+unset SSHPASS
+unset UNIPASS
+
+echo "Finished connecting to bastion"
 
 sleep 1
 
+
 #ssh -v -fN "${UNIKEY}@hpc.sydney.edu.au" 
 
-sudo -s sshfs "${UNIKEY}@hpc.sydney.edu.au:/project/STEMI/" /project/STEMI -o allow_other -o IdentityFile=~/.ssh/id_rsa -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3
+sshfs jhpc:/project/STEMI/ ~/work/.project/STEMI -o allow_other -o IdentityFile=~/.ssh/id_rsa -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3
+#sudo -s sshfs "${UNIKEY}@hpc.sydney.edu.au:/project/STEMI/" /project/STEMI -o allow_other -o IdentityFile=~/.ssh/id_rsa -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3
 #sudo -s sshfs "${UNIKEY}@hpc.sydney.edu.au:/project/STEMI/" /project/STEMI -o allow_other -o IdentityFile=~/.ssh/id_rsa -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3
 
-ssh -XYC "${UNIKEY}@hpc.sydney.edu.au"
+ssh -XYC jhpc
 echo "Finsihed ssh-ing"
 bash
