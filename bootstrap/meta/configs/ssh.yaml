@@ -4,8 +4,17 @@
     path: tools/ssh/config.d/*
     relink: true
     create: true
+    # Used to mount hpc file systems
+   ~/.local/bin/hpcfs:
+    path: tools/ssh/hpcfs
+    create: true
+    relink: true
 - shell:
   - command: 'bash tools/ssh/add_include.sh'
     stdout: true
     quiet: false
     description: Add include statement to ssh config
+  # For connection sharing
+- create:
+   - ~/.ssh/sockets
+
