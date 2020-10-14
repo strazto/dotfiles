@@ -1,4 +1,10 @@
 - link:
+   ~/.config/dotfiles/run.d/:
+    glob: true
+    path: tools/ssh/run.d/*
+    relink: true
+    create: true
+    # For shared configuration
    ~/.ssh/config.d/:
     glob: true
     path: tools/ssh/config.d/*
