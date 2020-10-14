@@ -2,10 +2,10 @@
 # USYD Configs
 ####################################
 
-Host jump hpc jhpc rcos
+Host vhpc jump hpc jhpc rcos
   User mstr3336
 
-Host jump hpc jhpc
+Host jump vhpc hpc jhpc
   ForwardX11 yes
   ForwardAgent yes
 
@@ -15,10 +15,14 @@ Host jump
   PreferredAuthentications keyboard-interactive
   PubkeyAuthentication no
 
-Host hpc jhpc
+Host vhpc hpc jhpc
   HostName hpc.sydney.edu.au
   IdentityFile ~/.ssh/id_rsa
   IdentitiesOnly yes
+
+# Use a vpn if you have to
+Host vhpc
+  ProxyCommand nc-connect %h %p
 
 Match host jhpc !exec "nc -z -w 1 %h %p" 
   ProxyCommand ssh jump nc %h %p
