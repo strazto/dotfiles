@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+source ~/.uni_auth
+UNIKEY=$UNIKEY
+UNIPASS=$UNIPASS
+
+# Connect without root
+# https://www.infradead.org/openconnect/nonroot.html
+# Expects admin to have made a tunnel device named "openconnect"
+# 
+# As in:
+# 
+# sudo ip tuntap add openconnect mode tun user $USER
+# 
+# ^ adds a tunnel device named "openconnect" that $USER (you) can use
+echo "${UNIPASS}" | openconnect \
+  --background --interface=openconnect \
+  -u $UNIKEY --passwd-on-stdin \
+  https://vpn.sydney.edu.au
+
+echo "Finished connecting to VPN!"
+
+# Don't use jump, because you're using the VPN
+SSH_HOST="hpc"
+
+sshfs ${SSH_HOST}:/project/STEMI/ ~/work/.project/STEMI \
+  -o IdentityFile=~/.ssh/id_rsa \
+  -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 \
+  #-o allow_other #commentted out because I'm not root
+
+sshfs ${SSH_HOST}:/project/ACS/ ~/work/.project/ACS \
+  -o IdentityFile=~/.ssh/id_rsa \
+  -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 
+
+
+ssh "$SSH_HOST"
+
+echo "Finished ssh-ing"
+
+echo "Open Connect Process:\n"
+ps | grep -E openconnect
+
+bash
