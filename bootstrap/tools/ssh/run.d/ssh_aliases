@@ -11,7 +11,7 @@ alias sshpeed='sshpeed'
 
 function ssh_cancel_shared {
   local ssh_host=""
-  local hosts=(jump jhpc)
+  local hosts=(jump jhpc vhpc)
 
   local mounted=(ACS STEMI)
   local mount_point=""
