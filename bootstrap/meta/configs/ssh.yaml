@@ -11,12 +11,9 @@
     relink: true
     create: true
     # Used to mount hpc file systems
-   ~/.local/bin/hpcfs:
-    path: tools/ssh/hpcfs
-    create: true
-    relink: true
-   ~/.local/bin/hpcfs_v:
-    path: tools/ssh/hpcfs_v
+   ~/.local/bin/:
+    path: tools/ssh/bin/*
+    glob: true
     create: true
     relink: true
 - shell:
