@@ -22,7 +22,7 @@ Host vhpc hpc jhpc
 
 # Use a vpn if you have to
 Host vhpc
-  ProxyCommand nc-connect %h %p
+  ProxyCommand nc-openconnect %h %p
 
 Match host jhpc !exec "nc -z -w 1 %h %p" 
   ProxyCommand ssh jump nc %h %p
