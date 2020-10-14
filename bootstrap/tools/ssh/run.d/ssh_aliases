@@ -7,6 +7,7 @@ function sshpeed {
 
   pv --size "$TEST_SIZE" --stop-at-size -pteba /dev/zero | ssh "$@" 'cat > /dev/null'
 }
+alias sshpeed='sshpeed'
 
 function ssh_cancel_shared {
   local ssh_host=""
@@ -32,3 +33,5 @@ function ssh_cancel_shared {
     ssh -O check $ssh_host && ssh -O exit $ssh_host && echo "   - exited $ssh_host"
   done
 }
+
+alias ssh_cancel_shared='ssh_cancel_shared'
