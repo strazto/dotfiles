@@ -1,0 +1,32 @@
+#!/bin/bash
+# https://www.monperrus.net/martin/ssh-over-vpn-with-openconnect
+
+
+which openconnect>/dev/null && which ocproxy>/dev/null || \
+  echo "openconnect & ocproxy required"
+
+source ~/.uni_auth
+UNIKEY=$UNIKEY
+UNIPASS=$UNIPASS
+
+# connects to SSH through openconnect and VPN
+# for use iwth ProxyCommand in SSH
+
+VPN_HOST="https://vpn.sydney.edu.au"
+VPN_PROXY_PORT="9052"
+
+# first run openconnect
+/sbin/start-stop-daemon \
+  --pidfile /tmp/openconnect.pid --make-pidfile -b -S --startas /bin/bash -- \
+  -c "exec echo ${UNIPASS} | openconnect --reconnect-timeout 60 -u $UNIKEY --script-tun --script 'ocproxy -D 9052' $VPN_HOST" &
+
+sleep 2
+
+# kill connection on exit
+function cleanup {
+  /sbin/start-stop-daemon --stop --pidfile /tmp/openconnect.pid
+}
+trap cleanup EXIT
+
+# redirect traffic (standard input and output) through VPN
+nc -X 5 -x 127.0.0.1:$VPN_PROXY_PORT $1 $2
