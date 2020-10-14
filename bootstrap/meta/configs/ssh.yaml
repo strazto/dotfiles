@@ -9,6 +9,10 @@
     path: tools/ssh/hpcfs
     create: true
     relink: true
+   ~/.local/bin/hpcfs_v:
+    path: tools/ssh/hpcfs_v
+    create: true
+    relink: true
 - shell:
   - command: 'bash tools/ssh/add_include.sh'
     stdout: true
