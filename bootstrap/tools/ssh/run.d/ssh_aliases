@@ -20,16 +20,16 @@ function ssh_cancel_shared {
 
   for mount_point in ${mounted[@]}; do
     mount_path="$HOME/work/.project/${mount_point}"
-    echo " - $mount_path"
-
+    echo    " - $mount_path"
+    echo -n "   - "
     fusermount -u "$mount_path"
   done
 
   echo "Checking shared connections:"
 
   for ssh_host in ${hosts[@]}; do
-    echo " - $ssh_host"
-
+    echo    " - $ssh_host"
+    echo -n "   - "
     ssh -O check $ssh_host && ssh -O exit $ssh_host && echo "   - exited $ssh_host"
   done
 }
