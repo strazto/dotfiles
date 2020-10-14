@@ -1,7 +1,3 @@
-Host *
-  ControlPath ~/.ssh/sockets/%r@%h-%p
-  ControlPersist 600
-
 Host jhpc
   ControlPath ~/.ssh/sockets/jhpc-%r@%h-%p
 
@@ -17,3 +13,7 @@ Host vhpc jump jhpc
 
 Host github.sydney.edu.au
   ControlMaster auto
+
+Host *
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 600
