@@ -119,4 +119,10 @@ function ascend_to_root {
   fi
 }
 
+function sshpeed {
+  local TEST_SIZE=10485760 # 10 MB
+
+  pv --size "$TEST_SIZE" --stop-at-size /dev/zero | ssh "$@" 'cat > /dev/null'
+}
+
 alias here='ascend_to_root'
