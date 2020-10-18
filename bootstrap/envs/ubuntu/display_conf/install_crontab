@@ -5,10 +5,10 @@ tempfile="$(mktemp $HOME/crontab.tmp.XXXXX)"
 # ensure is cleaned up, kernel waits while 
 # fd open to remove
 
-exec 3>"$tempfile"
-rm "$tempfile"
+#exec 3>"$tempfile"
+#rm "$tempfile"
 
-crontab -l >&3
+crontab -l > "$tempfile"
 
 check_line="# === SETUP_COLOR_TEMPS ===" 
 
@@ -27,3 +27,5 @@ else
 
 fi
 
+crontab "$tempfile"
+rm "$tempfile"
