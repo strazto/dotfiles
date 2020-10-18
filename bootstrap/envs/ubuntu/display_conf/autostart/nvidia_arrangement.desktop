@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/fix_screens.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_AU]=01-Fix NVIDIA X Metamode
+Name=Fix NVIDIA X Metamode
+Comment[en_AU]=The MetaMode never persists and I go crazy
+Comment=The MetaMode never persists and I go crazy
