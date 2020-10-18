@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/usr/bin/fix_screens.sh
+Exec=~/.local/bin/arrange_monitors.bash
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
