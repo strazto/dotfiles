@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+tempfile="$(mktemp $HOME/crontab.tmp.XXXXX)"
+
+# ensure is cleaned up, kernel waits while 
+# fd open to remove
+
+exec 3>"$tempfile"
+rm "$tempfile"
+
+crontab -l >&3
+
+check_line="# === SETUP_COLOR_TEMPS ===" 
+
+if grep -q "$check_line" "$tempfile"; then
+	echo "$check_line found in crontab, doing nothing"
+else
+
+	cat <<-EOF >> "$tempfile"
+				# Please do not modify the following line as it is used 
+				# to detect whether color temp jobs are already installed
+				# === SETUP_COLOR_TEMPS ===
+				0  7 * * * .local/bin/set_nvidia_color_temp day
+				0 17 * * * .local/bin/set_nvidia_color_temp 2700k
+				0 20 * * * .local/bin/set_nvidia_color_temp 1900k
+				EOF
+
+fi
+
