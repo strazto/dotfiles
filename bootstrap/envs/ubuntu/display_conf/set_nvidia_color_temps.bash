@@ -38,14 +38,20 @@ function set_2600k {
   assign_rgb $R $G $B
 }
 
+[[ "$1" == "2600k" ]] && set_2600k
+
 function set_1900k {
   local R="$(to_frac 255)"
   local G="$(to_frac 147)"
   local B="$(to_frac 41)"
   assign_rgb $R $G $B
 }
+
+[[ "$1" == "1900k" ]] && set_1900k
+
 function set_normal {
   assign_rgb 0 0 0
 }
 
-"$@"
+[[ "$1" == "day" ]] && set_normal
+
