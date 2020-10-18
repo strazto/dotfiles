@@ -38,6 +38,12 @@ function set_2600k {
   assign_rgb $R $G $B
 }
 
+function set_1900k {
+  local R="$(to_frac 255)"
+  local G="$(to_frac 147)"
+  local B="$(to_frac 41)"
+  assign_rgb $R $G $B
+}
 function set_normal {
   assign_rgb 0 0 0
 }
