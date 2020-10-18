@@ -3,8 +3,10 @@
     path: envs/ubuntu/display_conf/autostart/nvidia_arrangement.desktop
     relink: true
     create: true
-   ~/.local/bin/arrange_monitors.bash:
-    path: envs/ubuntu/display_conf/arrange_monitors.bash
+   ~/.local/bin/:
+    path: envs/ubuntu/display_conf/bin/*
     relink: true
     create: true
+    glob: true
+
 
