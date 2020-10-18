@@ -1,0 +1,10 @@
+- link:
+   ~/.config/autostart/nvidia_arrangement.desktop:
+    path: envs/ubuntu/display_conf/autostart/nvidia_arrangement.desktop
+    relink: true
+    create: true
+   ~/.local/bin/arrange_monitors.bash:
+    path: envs/ubuntu/display_conf/arrange_monitors.bash
+    relink: true
+    create: true
+
