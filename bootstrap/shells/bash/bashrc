@@ -149,6 +149,14 @@ if [[ -z "$LC_CTYPE" ]]; then
 fi
 #[[ -e "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" ]] && . "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" 
 
+
+if hash ruby 2>/dev/null; then
+  # Install Ruby Gems to ~/gems
+  export GEM_HOME="$HOME/gems"
+  export PATH="$HOME/gems/bin:$PATH"
+
+fi
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/matty/.sdkman"
 [[ -s "/home/matty/.sdkman/bin/sdkman-init.sh" ]] && source "/home/matty/.sdkman/bin/sdkman-init.sh"
