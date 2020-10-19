@@ -3,7 +3,8 @@
 # From bash_bindings/linux/bash_aliases
 # Check the distro
 function check_distro {
-  unameOut="$(uname -s)"
+  local unameOut="$(uname -s)"
+  local machine="$unameOut"
   case "${unameOut}" in
       Linux*)     machine=Linux;;
       Darwin*)    machine=Mac;;
