@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+REAL_BINARY_DIR="$(dirname $(realpath $(which arrange_monitors.bash)))"
+
+( \
+  cd $REAL_BINARY_DIR/../autostart && \
+  sed "s#Exec=~#Exec=$HOME#g" nvidia_arrangement.desktop.template > nvidia_arrangement.desktop \
+)
+
