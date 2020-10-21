@@ -1,12 +1,15 @@
 - link:
-   ~/.config/autostart/nvidia_arrangement.desktop:
-    path: envs/ubuntu/display_conf/autostart/nvidia_arrangement.desktop
-    relink: true
-    create: true
    ~/.local/bin/:
     path: envs/ubuntu/display_conf/bin/*
     relink: true
     create: true
     glob: true
-
+- shell:
+  - command: "bash envs/ubuntu/display_conf/install_autostart"
+    description: "Setting up autostart definition"
+- link:
+   ~/.config/autostart/nvidia_arrangement.desktop:
+    path: envs/ubuntu/display_conf/autostart/nvidia_arrangement.desktop
+    relink: true
+    create: true
 
