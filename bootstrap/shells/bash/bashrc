@@ -10,7 +10,7 @@ esac
 
 # Profile the startup of bash
 # https://stackoverflow.com/a/5015179/9238801
-export PROFILE_STARTUP="1"
+# export PROFILE_STARTUP="1"
 if [[ ! -z "$PROFILE_STARTUP" ]]; then
   # This redirects output of -x bash trace
   # if its already set, (something else is trying to debug)
