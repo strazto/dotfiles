@@ -10,16 +10,16 @@ esac
 
 # Profile the startup of bash
 # https://stackoverflow.com/a/5015179/9238801
-# export PROFILE_STARTUP="1"
-if [[ ! -z "$PROFILE_STARTUP" ]]; then
+# export BASH_PROFILE_STARTUP="1"
+if [[ ! -z "$BASH_PROFILE_STARTUP" ]]; then
   # This redirects output of -x bash trace
   # if its already set, (something else is trying to debug)
   # dont re-set it
   # This works for bash >= 4.1
   # luckily the oldest bash I use is on the HPC, and is 4.1
   if [[ -z "$BASH_XTRACEFD" ]]; then
-    export PROFILE_STARTUP_LOG="$HOME/bashstart.$$.log"
-    exec 5> "$PROFILE_STARTUP_LOG" 
+    export BASH_PROFILE_STARTUP_LOG="$HOME/bashstart.$$.log"
+    exec 5> "$BASH_PROFILE_STARTUP_LOG" 
     export BASH_XTRACEFD="5"
   fi
 
@@ -188,10 +188,10 @@ export NVM_DIR="$HOME/.nvm"
 
 
 # Finish profiling bashrc startup
-if [[ ! -z "$PROFILE_STARTUP" ]]; then
+if [[ ! -z "$BASH_PROFILE_STARTUP" ]]; then
   # Stop the trace
   set +x
 
-  unset PROFILE_STARTUP
-  echo "Profiled start up to $PROFILE_STARTUP_LOG"
+  unset BASH_PROFILE_STARTUP
+  echo "Profiled start up to $BASH_PROFILE_STARTUP_LOG"
 fi
