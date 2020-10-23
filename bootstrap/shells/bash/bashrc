@@ -23,7 +23,7 @@ if [[ ! -z "$PROFILE_STARTUP" ]]; then
     export BASH_XTRACEFD="5"
   fi
 
-  export PS4='+ $(date "+%s.%N")\011 '
+  export PS4='+\011 $(date "+%s.%N")\011 '
   set -x
 
 fi
