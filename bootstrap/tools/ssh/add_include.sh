@@ -16,7 +16,7 @@ append_or_not () {
   fi
   
   if [[ ! -e "$HOME/.ssh/config" ]]; then
-    touch "$HOME/.ssh/config"
+    echo "\n" >> "$HOME/.ssh/config"
   fi
   local linenums="$(sed -n "\,^${to_append},=" "$HOME/.ssh/config")"
 
