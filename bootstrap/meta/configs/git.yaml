@@ -4,9 +4,10 @@
      relink: true
      create: true
 - link:
-   ~/bin/diff-so-fancy:
+   ~/.local/bin/diff-so-fancy:
      path: tools/git/diff-so-fancy/diff-so-fancy
      relink: true
+     create: true
 - shell:
   - [git config --global include.path '~/.config/dotfiles/git/config', Setting up git config!]
 - link:
