@@ -8,3 +8,8 @@
     path: tmux/config/conf.d/*
     relink: true
     create: true
+- shell:
+  - command: ~/.tmux/plugins/tpm/bin/clean_plugins
+    description: Cleaning TPM plugins
+  - command: ~/.tmux/plugins/tpm/bin/install_plugins
+    description: Installing TPM plugins
