@@ -122,13 +122,15 @@ function ascend_to_root {
 
 if hash aws; then
 
-function aws_list_all {
-  for region in `aws ec2 describe-regions --region us-east-1 --output text | cut -f4`
-  do
-    echo -e "\nListing Instances in region:'$region'..."
-    aws ec2 describe-instances --region $region
-  done
-}
+  function aws_list_all {
+    for region in `aws ec2 describe-regions --region us-east-1 --output text | cut -f4`
+    do
+      echo -e "\nListing Instances in region:'$region'..."
+      aws ec2 describe-instances --region $region
+    done
+  }
+
+  alias aws_ls='aws_list_all'
 
 fi
 
