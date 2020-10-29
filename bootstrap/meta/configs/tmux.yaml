@@ -13,3 +13,10 @@
     description: Cleaning TPM plugins
   - command: ~/.tmux/plugins/tpm/bin/install_plugins
     description: Installing TPM plugins
+- link:
+   ~/.local/share/bash_completion.d/:
+    glob: true
+    path: tmux/completion/completions/*
+    relink: true
+    create: true
+
