@@ -6,3 +6,6 @@
    ~/.bash_profile: shells/bash/profile
    ~/.bash_aliases: shells/bash/aliases
    ~/.bash_prompt:  shells/bash/prompt
+   ~/.bash_completion: shells/bash/bash_completion
+
+
