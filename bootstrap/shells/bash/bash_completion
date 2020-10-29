@@ -1,0 +1,15 @@
+
+completion_d="$HOME/.local/share/bash_completion.d"
+
+if [ -d "${completion_d}" ] ; then
+  for f in ${completion_d}/{.*,*} ; do
+    if [[ \
+      ( ! -z "${f}" ) && \
+      "$f" != "${completion_d}/." && \
+      "$f" != "${completion_d}/.." \
+      ]]; then
+
+      source "${f}"
+    fi
+  done
+fi
