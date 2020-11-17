@@ -9,6 +9,7 @@ Host vhpc jump jhpc
   ControlMaster auto
   ServerAliveInterval 30
   ServerAliveCountMax 3
+  ForwardX11 yes
 
 
 Host github.sydney.edu.au

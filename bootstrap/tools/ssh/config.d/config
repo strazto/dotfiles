@@ -25,7 +25,7 @@ Host vhpc
   ProxyCommand nc-openconnect %h %p
 
 Match host jhpc !exec "nc -z -w 1 %h %p" 
-  ProxyCommand ssh jump nc %h %p
+  ProxyCommand ssh -XC jump nc %h %p
 
 Host rcos
   HostName rcos.sydney.edu.au
