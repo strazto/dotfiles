@@ -1,0 +1,4 @@
+- shell:
+  - command: bash tools/linuxbrew/install_brew_utils
+    description: installing helpful utilities via brew
+
