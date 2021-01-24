@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e
+
+profile_name=$1
+
+if [ $# -eq 0 ] ; then
+  echo "Must pass profile name as argument"
+  exit 1
+fi
+
+install_profile_path="$HOME/.config/dotfiles/private-dotfiles/install-profile"
+
+if [[ -x "$install_profile_path" ]]; then
+ $install_profile_path $profile_name
+else
+  echo "No executable at $install_profile_path"
+fi
+
