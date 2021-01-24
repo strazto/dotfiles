@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# if gnu-sed is installed (via Homebrew)
+# use gsed instead of the atrocious BSD sed
+
+if hash gsed 2>/dev/null; then
+  ln -sf "$(which gsed)" "$HOME/.local/bin/sed" 
+fi

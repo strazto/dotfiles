@@ -1,5 +1,16 @@
 #!/bin/bash
 
+
+defer_permissions=""
+allow_other=""
+# defer_permissions helps with OSX compat, & is only 
+# accepted as sshfs command on OSX
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  echo "running osx"
+  defer_permissions="-o defer_permissions"
+  allow_other="-o allow_other"
+fi
+
 # For Ubuntu 18.04
 # Requires sshfs and openconnect
 # Requires UNIPASS and UNIKEY env vars to be set
@@ -30,14 +41,15 @@ sleep 1
 sshfs jhpc:/project/STEMI/ ~/work/.project/STEMI \
   -o IdentityFile=~/.ssh/id_rsa \
   -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 \
+  $defer_permissions \
+  $allow_other
   #-o allow_other #commentted out because I'm not root
-
-
 
 sshfs jhpc:/project/ACS/ ~/work/.project/ACS \
   -o IdentityFile=~/.ssh/id_rsa \
-  -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 
-
+  -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 \
+  $defer_permissions \
+  $allow_other
 
 ssh -XYC jhpc
 echo "Finsihed ssh-ing"

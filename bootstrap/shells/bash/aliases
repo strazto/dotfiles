@@ -138,3 +138,6 @@ fi
 alias here='ascend_to_root'
 
 alias @alias='alias | fzf'
+
+# https://github.com/Peltoche/lsd
+hash lsd && alias ls='lsd'

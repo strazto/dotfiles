@@ -25,7 +25,7 @@ Host vhpc
   ProxyCommand nc-openconnect %h %p
 
 Match host jhpc !exec "nc -z -w 1 %h %p" 
-  ProxyCommand ssh jump nc %h %p
+  ProxyCommand ssh -XC jump nc %h %p
 
 Host rcos
   HostName rcos.sydney.edu.au
@@ -49,7 +49,9 @@ Host home
   User matty
 Host windows
   User Matthew
-
+  # This is for tightVNC
+  LocalForward 6969 localhost:6969
+  LocalForward 8080 localhost:8080
 # Install the following on windows:
 # https://github.com/shayne/go-wsl2-host
 Host *.wsl

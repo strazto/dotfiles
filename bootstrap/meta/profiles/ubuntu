@@ -7,5 +7,6 @@ git
 vim
 visidata
 linuxbrew
+brew_utils
 z.lua
 googler
