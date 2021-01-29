@@ -1,0 +1,10 @@
+Host server-box
+  # This is for tightVNC
+  LocalForward 6969 localhost:6969
+  # Webservers 
+  LocalForward 8080 localhost:8080
+  # Flood Client 
+  LocalForward 8081 localhost:8081
+  # Jellyfin Web Interface
+  LocalForward 3333 localhost:3333
+
