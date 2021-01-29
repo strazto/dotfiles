@@ -139,5 +139,7 @@ alias here='ascend_to_root'
 
 alias @alias='alias | fzf'
 
+alias vncinit='vncserver -rfbport 6969'
+
 # https://github.com/Peltoche/lsd
 hash lsd && alias ls='lsd'
