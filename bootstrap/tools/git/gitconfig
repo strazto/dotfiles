@@ -40,17 +40,17 @@
         root = rev-parse --show-toplevel
 
 [url "git@github.com:"]
-  insteadOf = s.gh:
-  insteadOf = s.github:
+  insteadOf = @gh:
+  insteadOf = @github:
 #  insteadOf = https://github.com
 
 [url "git@github.sydney.edu.au:"]
-  insteadOf = s.uni:
+  insteadOf = @uni:
 
 [url "https://github.com/"]
-  insteadOf = gh/
-  insteadOf = github/
+  insteadOf = gh:
+  insteadOf = github:
 
 [url "https://github.sydney.edu.au/"]
-  insteadOf = uni/
+  insteadOf = uni:
 
