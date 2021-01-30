@@ -1,2 +1,9 @@
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
-alias user_docker='systemctl --user (start|stop|restart) docker.service'
+
+function user_docker_f {
+  local CMD=${1:-restart}
+
+  systemctl --user $CMD docker.service
+}
+
+alias user_docker=user_docker_f
