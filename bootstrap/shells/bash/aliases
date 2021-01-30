@@ -143,3 +143,6 @@ alias vncinit='vncserver -rfbport 6969'
 
 # https://github.com/Peltoche/lsd
 hash lsd && alias ls='lsd'
+
+alias user_docker='systemctl --user (start|stop|restart) docker.service'
+
