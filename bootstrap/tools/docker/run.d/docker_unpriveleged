@@ -1,2 +1,2 @@
-│export DOCKER_HOST=unix:///run/user/1000/docker.sock
-
+export DOCKER_HOST=unix:///run/user/1000/docker.sock
+alias user_docker='systemctl --user (start|stop|restart) docker.service'
