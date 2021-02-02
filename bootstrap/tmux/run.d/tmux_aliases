@@ -1,0 +1,46 @@
+#!/usr/env/bin bash
+
+# https://stackoverflow.com/a/7819465/9238801
+tmux_takeover() {
+    # create a temporary session that displays the "how to go back" message
+    tmp='takeover temp session'
+    if ! tmux has-session -t "$tmp" 1>&2 2>/dev/null; then
+        echo "Attaching clients to new session '$tmp'" 1>&2
+
+        tmux new-session -d -s "$tmp"
+        # TODO: Maybe check tmux versions
+        # (From experience, version strings for tmux are a mess though) 
+        # Old tmux:
+        # tmux set-option -t "$tmp" set-remain-on-exit on
+
+        # New tmux:
+        tmux set-hook -t "$tmp" window-linked 'set remain-on-exit on'
+
+        tmux new-window -kt "$tmp":0 \
+            'echo "Use Prefix + L (i.e. ^B L) to return to session."'
+    fi
+
+    # switch any clients attached to the target session to the temp session
+    session="$1"
+    for client in $(tmux list-clients -t "$session" | cut -f 1 -d :); do
+        tmux switch-client -c "$client" -t "$tmp"
+    done
+
+    # attach to the target session
+    tmux attach -t "$session"
+}
+
+function _tmux_complete_takeover() {
+    local IFS=$'\n'
+    local cur="${2}" && shift
+    
+    local suggestions=( $(compgen -W "$(tmux list-sessions -F '#{session_name}' 2> /dev/null)" -- "${cur}") )
+   
+    COMPREPLY=( ${COMPREPLY[@]:-} ${suggestions[@]:-} )
+
+    return 0
+}
+
+
+complete -F _tmux_complete_takeover tmux_takeover
+

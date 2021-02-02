@@ -1,0 +1,7 @@
+- link:
+   ~/.config/dotfiles/run.d/:
+    glob: true
+    path: tools/docker/run.d/*
+    relink: true
+    create: true
+

@@ -19,4 +19,8 @@
     path: tmux/completion/completions/*
     relink: true
     create: true
-
+   ~/.config/dotfiles/run.d/:
+    glob: true
+    path: tmux/run.d/*
+    relink: true
+    create: true
