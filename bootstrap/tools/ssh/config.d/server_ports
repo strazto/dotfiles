@@ -12,3 +12,7 @@ Host server-box
   # Homer
   LocalForward 3008 localhost:3008
   LocalForward 8080 localhost:8080
+  
+  # Proxy endpoint
+  LocalForward 1337 localhost:1337
+
