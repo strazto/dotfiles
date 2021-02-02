@@ -144,3 +144,21 @@ alias vncinit='vncserver -rfbport 6969'
 # https://github.com/Peltoche/lsd
 hash lsd && alias ls='lsd'
 
+
+function docker_bash_f {
+  local container="$1" 
+  shift
+  local cmd
+
+  if [ "$#" -eq "0" ]; then
+    cmd="bash"
+  else
+    cmd="$1"
+    shift
+
+  fi
+
+  sudo docker exec -it "$container" "$cmd" "$@"
+}
+
+alias docker_bash='docker_bash_f'
