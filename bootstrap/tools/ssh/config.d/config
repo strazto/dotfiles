@@ -13,15 +13,4 @@ Host windows
 Host *.wsl
   ProxyJump windows
 
-Host cronnit
-  HostName 127.0.0.1
-  User cronnit
-  Port 2222
-  UserKnownHostsFile /dev/null
-  StrictHostKeyChecking no
-  PasswordAuthentication no
-  IdentityFile /home/matty/projects/cronnit.us/.vagrant/machines/default/virtualbox/private_key
-  IdentitiesOnly yes
-  LogLevel FATAL
-  ForwardX11 yes
 
