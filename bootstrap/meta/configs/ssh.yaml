@@ -1,3 +1,5 @@
+- clean:
+  - '~/.ssh/config.d'
 - link:
    ~/.config/dotfiles/run.d/:
     glob: true
