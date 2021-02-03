@@ -1,20 +1,3 @@
-Host jhpc
-  ControlPath ~/.ssh/sockets/jhpc-%r@%h-%p
-
-Host vhpc
-  ControlPath ~/.ssh/sockets/vhpc-%r@%h-%p
-
-
-Host vhpc jump jhpc
-  ControlMaster auto
-  ServerAliveInterval 30
-  ServerAliveCountMax 3
-  ForwardX11 yes
-
-
-Host github.sydney.edu.au
-  ControlMaster auto
-
 Host *
   ControlPath ~/.ssh/sockets/%r@%h-%p
   ControlPersist 600
