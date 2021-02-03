@@ -10,6 +10,7 @@
     path: tools/ssh/config.d/*
     relink: true
     create: true
+    clean: true
     # Used to mount hpc file systems
    ~/.local/bin/:
     path: tools/ssh/bin/*
