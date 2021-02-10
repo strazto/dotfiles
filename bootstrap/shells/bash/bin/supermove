@@ -1,0 +1,22 @@
+#!/bin/bash
+# Recursively moves & merges
+# https://serverfault.com/a/882821/615908
+
+
+src=$1
+dest=$2
+
+src=$(readlink -f "$src")
+dest=$(readlink -f "$dest")
+
+cd "$src"
+
+# also copy hidden files
+shopt -s dotglob
+
+# make dirs (missing old permission,acl,xattr data), and then mv the files
+time find * -type d -exec mkdir -p "$dest"/{} \;
+time find * -type f -exec mv {} "$dest"/{} \;
+
+# also copy permissions, acls, xattrs
+rsync -aAX "$src"/ "$dest"/
