@@ -195,3 +195,5 @@ if [[ ! -z "$BASH_PROFILE_STARTUP" ]]; then
   unset BASH_PROFILE_STARTUP
   echo "Profiled start up to $BASH_PROFILE_STARTUP_LOG"
 fi
+
+[[ -f ~/.config/broot/launcher/bash/br  ]] && source /home/matty/.config/broot/launcher/bash/br

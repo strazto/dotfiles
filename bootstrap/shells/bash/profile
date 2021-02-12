@@ -40,3 +40,6 @@ fi
 
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+
+[[ -f ~/.config/broot/launcher/bash/br  ]] && source /home/matty/.config/broot/launcher/bash/br
