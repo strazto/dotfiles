@@ -7,7 +7,9 @@ if hash brew 2>/dev/null; then
     # fast & featured path jumper
     zoxide \
     # fancier version of ls
-    lsd
+    lsd \
+    # Really nice version of tree
+    broot
   
   # Install recent tmux
   brew install --HEAD tmux
