@@ -197,3 +197,5 @@ if [[ ! -z "$BASH_PROFILE_STARTUP" ]]; then
 fi
 
 [[ -f ~/.config/broot/launcher/bash/br  ]] && source /home/matty/.config/broot/launcher/bash/br
+[[ -f ~/.idgit.bash ]] && . ~/.idgit.bash
+
