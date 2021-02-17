@@ -174,7 +174,8 @@ function git_migrate {
 
   local new_origin="$1"
 
-  local reponame="$(basename $(git remote get-url origin) .git"
+  local reponame="$(basename $(git remote get-url origin) .git)"
+  
   git fetch --prune
   
   git remote rename origin old-origin
@@ -183,3 +184,23 @@ function git_migrate {
 
   git push --prune origin +refs/remotes/old-origin/*:refs/heads/* +refs/tags/*:refs/tags/*
 }
+
+function table_sed {
+  local pattern="$1"
+  local n_extra_lines="${2:-0}"
+
+  sed -n "1,+${n_extra_lines}p ; /.*${pattern}.*/p"
+}
+
+function docker_pgrep {
+  local pattern="$1"
+  docker ps | table_sed "$pattern" "0"
+
+}
+
+function compose_pgrep {
+  local pattern="$1"
+  docker-compose ps | table_sed "$pattern" "1"
+}
+
+
