@@ -162,3 +162,23 @@ function docker_bash_f {
 }
 
 alias docker_bash='docker_bash_f'
+
+function table_sed {
+  local pattern = "$1"
+  local n_extra_lines = "${2:-0}"
+
+  sed -n "1,+${n_extra_lines}p ; /.*${pattern}.*/p"
+}
+
+function docker_pgrep {
+  local pattern = "$1"
+  docker ps | table_sed "$pattern" "0"
+
+}
+
+function compose_pgrep {
+  local pattern = "$1"
+  docker-compose | table_sed "$pattern" "1"
+}
+
+
