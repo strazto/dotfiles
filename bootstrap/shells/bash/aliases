@@ -163,6 +163,28 @@ function docker_bash_f {
 
 alias docker_bash='docker_bash_f'
 
+function git_migrate {
+  if [[ $# -eq 0 ]]; then
+    echo "usage: $FUNCNAME <url-to-reponame>" 1>&2
+    echo "  <url-to-reponame> should include everything up to the name of this repo" 1>&2
+    echo "     eg git@github.com:username"
+
+    return 1
+  fi
+
+  local new_origin="$1"
+
+  local reponame="$(basename $(git remote get-url origin) .git)"
+  
+  git fetch --prune
+  
+  git remote rename origin old-origin
+  
+  git remote add origin "${new_origin}/${reponame}"
+
+  git push --prune origin +refs/remotes/old-origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+}
+
 function table_sed {
   local pattern="$1"
   local n_extra_lines="${2:-0}"
