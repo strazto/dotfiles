@@ -172,13 +172,13 @@ function table_sed {
 
 function docker_pgrep {
   local pattern="$1"
-  docker ps | table_sed "$pattern" "0"
+  sudo docker ps | table_sed "$pattern" "0"
 
 }
 
 function compose_pgrep {
   local pattern="$1"
-  docker-compose ps | table_sed "$pattern" "1"
+  sudo docker-compose ps | table_sed "$pattern" "1"
 }
 
 
