@@ -203,4 +203,32 @@ function compose_pgrep {
   docker-compose ps | table_sed "$pattern" "1"
 }
 
+function check_author {
+  if [[ "$#" -eq 0 ]]; then
+    echo "Incorrect usage, no email given, usage is: $FUNCNAME <email>" 1>&2
+    return 1
+  fi
+  local author="$1"
 
+  # Get the email for current author:
+  # git log -1 --pretty=format:'%ae'
+
+  [[ "$(git log -1 --pretty=format:'%ae')" == "$author" ]]
+}
+
+function reauthor_all {
+  if [[ "$#" -eq 0 ]]; then
+    echo "Incorrect usage, no email given, usage is: $FUNCNAME <email>" 1>&2
+    return 1
+  fi
+
+  local old_email="$1"
+
+  # SO: https://stackoverflow.com/a/34863275/9238801
+  # git rebase -i HEAD~40 -x "git commit --amend --author 'Author Name <author.name@mail.com>' --no-edit"
+  local new_email="$(git config --get user.email)"
+  local new_name="$(git config --get user.name)"
+  
+
+  git rebase -i --root -x "check author '$old_email' && git commit --amend --author '$new_name <$new_email>' --no-edit"
+}
