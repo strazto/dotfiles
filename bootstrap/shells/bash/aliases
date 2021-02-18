@@ -217,6 +217,8 @@ function reauthor_all {
   local new_email="$(git config --get user.email)"
   local new_name="$(git config --get user.name)"
 
+  # https://stackoverflow.com/a/58635589/9238801
+  # get each commit's email address
   local command='[[ "$(git log -1 --pretty=format:'%ae')" ==' 
   command+=" '$old_email' ]] && git commit --amend --author '$new_name <$new_email>' --no-edit || true"
 
