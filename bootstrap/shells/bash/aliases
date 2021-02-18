@@ -230,5 +230,5 @@ function reauthor_all {
   local new_name="$(git config --get user.name)"
   
 
-  git rebase -i --root -x "check author '$old_email' && git commit --amend --author '$new_name <$new_email>' --no-edit"
+  git rebase -i --root -x "check author '$old_email' && git commit --amend --author '$new_name <$new_email>' --no-edit || true"
 }
