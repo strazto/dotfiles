@@ -199,3 +199,11 @@ fi
 [[ -f ~/.config/broot/launcher/bash/br  ]] && source /home/matty/.config/broot/launcher/bash/br
 [[ -f ~/.idgit.bash ]] && . ~/.idgit.bash
 
+# Set the editor if noone else has
+if [[ -z "$EDITOR" ]]; then
+  if [[ hash editor 2>/dev/null ]]; then
+    export EDITOR=editor
+  else
+    export EDITOR=vi
+  fi
+fi
