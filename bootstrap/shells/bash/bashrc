@@ -201,7 +201,7 @@ fi
 
 # Set the editor if noone else has
 if [[ -z "$EDITOR" ]]; then
-  if [[ hash editor 2>/dev/null ]]; then
+  if hash editor 2>/dev/null ; then
     export EDITOR=editor
   else
     export EDITOR=vi
