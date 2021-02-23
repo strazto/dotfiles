@@ -185,6 +185,8 @@ function git_migrate {
   git push --prune origin +refs/remotes/old-origin/*:refs/heads/* +refs/tags/*:refs/tags/*
 }
 
+alias git2uni='git_migrate git@github.sydney.edu.au:speed-extract'
+
 function table_sed {
   local pattern="$1"
   local n_extra_lines="${2:-0}"
@@ -203,6 +205,7 @@ function compose_pgrep {
   sudo docker-compose ps | table_sed "$pattern" "1"
 }
 
+alias pip='python -m pip'
 
 function reauthor_all {
   if [[ "$#" -eq 0 ]]; then
