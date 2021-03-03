@@ -45,3 +45,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 [[ -f ~/.config/broot/launcher/bash/br  ]] && source /home/matty/.config/broot/launcher/bash/br
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
