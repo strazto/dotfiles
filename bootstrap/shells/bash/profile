@@ -39,6 +39,20 @@ if [ -d "${run_d}" ] ; then
 fi
 
 
+compgen_d="$HOME/.local/share/bash_completion.d" 
+if [ -d "${compgen_d}" ] ; then
+  for f in ${compgen_d}/{.*,*} ; do
+    if [[ \
+      ( ! -z "${f}" ) && \
+      "$f" != "${compgen_d}/." && \
+      "$f" != "${compgen_d}/.." \
+      ]]; then
+
+      source "${f}"
+    fi
+  done
+fi
+
 export PATH="$HOME/.cargo/bin:$PATH"
 
 
