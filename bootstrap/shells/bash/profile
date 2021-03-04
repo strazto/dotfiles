@@ -60,5 +60,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+# Show me my agenda, run in background as it is a bit slow
+hash gcalcli 2>1 >/dev/null && gcalcli agenda &
 
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
