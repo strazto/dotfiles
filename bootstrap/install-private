@@ -29,7 +29,7 @@ fi
 
 
 if [[ -x "$install_standalone_path" ]]; then
- $install_standalone_path $profile_name
+ $install_standalone_path $profile_name || true 
 else
   echo "No executable at $install_profile_path" 1>2
   echo "$USAGE_SPIEL" 1>2
