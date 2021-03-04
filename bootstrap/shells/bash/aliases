@@ -229,3 +229,7 @@ function reauthor_all {
 
   git rebase -i --root -x "$command"
 }
+
+# this is now recommended practise
+alias pip='python -m pip'
+
