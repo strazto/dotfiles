@@ -1,0 +1,6 @@
+- shell:
+  - command: 'bash ./tools/gcalcli/install_gcalcli.sh'
+    stderr: true
+  - command: 'bash install-private gcalcli'
+    stderr: true
+
