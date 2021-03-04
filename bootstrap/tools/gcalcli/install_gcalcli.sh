@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-echo "$(pwd)" 1>2
+hash gcalcli 2>1 >/dev/null ||  python -m pip install gcalcli
+
