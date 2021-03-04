@@ -1,19 +1,37 @@
 #!/usr/bin/env bash
+# Installs a corresponding config from a private dotfiles repo, for user specific configs.
+
+install_standalone_path="$HOME/.config/dotfiles/private-dotfiles/install-standalone"
+
+USAGE_SPIEL=$(cat << EOF
+Usage:
+  install-private <config_name>
+
+install-private is a convenience script for invoking 'install-standalone' in
+  another, user specific dotbot repo.
+
+install-private will attempt to call $install_standalone_path <config_name> 
+
+If $install_standalone_path isn't found, it does nothing.
+EOF
+)
 
 set -e
+
 
 profile_name=$1
 
 if [ $# -eq 0 ] ; then
-  echo "Must pass profile name as argument"
+  echo "Incorrect usage, needs config name as an argument" 1>2
+  echo "$USAGE_SPIEL" 1>2
   exit 1
 fi
 
-install_profile_path="$HOME/.config/dotfiles/private-dotfiles/install-profile"
 
-if [[ -x "$install_profile_path" ]]; then
- $install_profile_path $profile_name
+if [[ -x "$install_standalone_path" ]]; then
+ $install_standalone_path $profile_name
 else
-  echo "No executable at $install_profile_path"
+  echo "No executable at $install_profile_path" 1>2
+  echo "$USAGE_SPIEL" 1>2
 fi
 
