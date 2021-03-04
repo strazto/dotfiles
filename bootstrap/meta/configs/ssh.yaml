@@ -25,6 +25,9 @@
     quiet: false
     description: Add include statement to ssh config
   # For connection sharing
+- shell:
+  - command: 'bash install-private ssh'
+    stderr: true
 - create:
    - ~/.ssh/sockets
 
