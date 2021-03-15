@@ -233,3 +233,25 @@ function reauthor_all {
 # this is now recommended practise
 alias pip='python -m pip'
 
+
+
+if hash scrcpy 1>&2 2>/dev/null ; then
+  function _mirror_droid_connect {
+    scrcpy --stay-awake --turn-screen-off 2>&1 >>~/.scrcpy.log 
+  }
+
+  function _mirror_droid_repeat {
+    while :
+    do
+      adb wait-for-usb-device
+      _mirror_droid_connect
+      sleep 0.1
+    done
+  }
+
+  function mirror_droid_repeat {
+    _mirror_droid_repeat &
+  }
+
+  
+fi
