@@ -222,9 +222,10 @@ function reauthor_all {
 
   # https://stackoverflow.com/a/58635589/9238801
   # get each commit's email address
-  local command='[[ "$(git log -1 --pretty=format:'%ae')" ==' 
+  local command='bash -c "'
+  command+='[[ "$(git log -1 --pretty=format:'%ae')" ==' 
   command+=" '$old_email' ]] && git commit --amend --author '$new_name <$new_email>' --no-edit || true"
-
+  command+='"'
   
 
   git rebase -i "${to_ref}" -x "$command"
