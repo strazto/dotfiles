@@ -209,12 +209,12 @@ alias pip='python -m pip'
 
 function reauthor_all {
   if [[ "$#" -eq 0 ]]; then
-    echo "Incorrect usage, no email given, usage is: $FUNCNAME <email>" 1>&2
+    echo "Incorrect usage, no email given, usage is: $FUNCNAME <email> [reference point]" 1>&2
     return 1
   fi
 
   local old_email="$1"
-
+  local to_ref="${2:---root}"
   # SO: https://stackoverflow.com/a/34863275/9238801
   # git rebase -i HEAD~40 -x "git commit --amend --author 'Author Name <author.name@mail.com>' --no-edit"
   local new_email="$(git config --get user.email)"
@@ -227,7 +227,7 @@ function reauthor_all {
 
   
 
-  git rebase -i --root -x "$command"
+  git rebase -i "${to_ref}" -x "$command"
 }
 
 # this is now recommended practise
