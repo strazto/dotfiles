@@ -11,6 +11,9 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   allow_other="-o allow_other"
 fi
 
+sshfs_id_opts="-o IdentityFile=$HOME/.ssh/id_rsa"
+sshfs_general_opts="-o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3"
+
 # For Ubuntu 18.04
 # Requires sshfs and openconnect
 # Requires UNIPASS and UNIKEY env vars to be set
@@ -39,15 +42,27 @@ sleep 1
 #ssh -v -fN "${UNIKEY}@hpc.sydney.edu.au" 
 
 sshfs jhpc:/project/STEMI/ ~/work/.project/STEMI \
-  -o IdentityFile=~/.ssh/id_rsa \
-  -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 \
+  $sshfs_id_opts \
+  $sshfs_general_opts \
   $defer_permissions \
   $allow_other
   #-o allow_other #commentted out because I'm not root
 
 sshfs jhpc:/project/ACS/ ~/work/.project/ACS \
-  -o IdentityFile=~/.ssh/id_rsa \
-  -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 \
+  $sshfs_id_opts \
+  $sshfs_general_opts \
+  $defer_permissions \
+  $allow_other
+
+sshfs jhpc:/rds/PRJ-STEMI/ ~/work/.rds/PRJ-STEMI \
+  $sshfs_id_opts \
+  $sshfs_general_opts \
+  $defer_permissions \
+  $allow_other
+
+sshfs jhpc:/rds/PRJ-ACS/ ~/work/.rds/PRJ-ACS \
+  $sshfs_id_opts \
+  $sshfs_general_opts \
   $defer_permissions \
   $allow_other
 
