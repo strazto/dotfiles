@@ -141,9 +141,20 @@ alias @alias='alias | fzf'
 
 alias vncinit='vncserver -rfbport 6969'
 
-# https://github.com/Peltoche/lsd
-hash lsd && alias ls='lsd'
+###########################################
+# ls
+###########################################
 
+# lsd (LSDeluxe) is a fancier ls
+
+# https://github.com/Peltoche/lsd
+if hash lsd 2>&1 >/dev/null; then
+  alias ls='lsd'
+  alias l='ls -l'
+  alias la='ls --almost-all'
+  alias lla='ls -l --almost-all'
+  alias lt='ls --tree'
+fi
 
 function docker_bash_f {
   local container="$1" 
