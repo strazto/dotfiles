@@ -33,7 +33,7 @@ function mount_fs {
 
 
 # For Ubuntu 18.04
-# Requires sshfs and openconnect
+# Requires sshfs
 # Requires UNIPASS and UNIKEY env vars to be set
 
 which sshpass>/dev/null || echo "sshpass required"
