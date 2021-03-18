@@ -45,6 +45,8 @@ SSHPASS=$UNIPASS
 # sudo -s echo "${UNIPASS}" | sudo -s openconnect -b -u $UNIKEY --passwd-on-stdin https://vpn.sydney.edu.au  
 
 # Setup shared connection
+# You need to set ControlPath for the host
+ssh -G jump | grep -q '^controlpath' || echo "no controlpath set for bastion"
 
 SSHPASS=$UNIPASS sshpass -e ssh -M -fN jump 
 
