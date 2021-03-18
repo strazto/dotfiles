@@ -22,11 +22,9 @@ function mount_fs {
     allow_other="-o allow_other"
   fi
 
-  local sshfs_id_opts="-o IdentityFile=$HOME/.ssh/id_rsa"
   local sshfs_general_opts="-o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3"
 
   sshfs "$remote_mount" "$local_mount" \
-    $sshfs_id_opts \
     $sshfs_general_opts \
     $defer_permissions \
     $allow_other
