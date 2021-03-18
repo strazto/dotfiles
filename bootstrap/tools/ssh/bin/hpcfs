@@ -36,8 +36,7 @@ function mount_fs {
 # Requires sshfs and openconnect
 # Requires UNIPASS and UNIKEY env vars to be set
 
-which sshpass>/dev/null && which autossh>/dev/null || \
-  echo "sshpass & autossh required"
+which sshpass>/dev/null || echo "sshpass required"
 
 source ~/.uni_auth
 UNIKEY=$UNIKEY
