@@ -219,8 +219,32 @@ function compose_pgrep {
 alias pip='python -m pip'
 
 function reauthor_all {
+  local USAGE=$(cat << EOF
+  Usage:
+    ${FUNCNAME[0]} <email> [<upstream>]
+
+  DESCRIPTION:
+
+  For each commit between HEAD & <upstream> where the commit email matches
+  <email>, reauthor the commit to the current settings for user.name & user.email
+
+  OPTIONS:
+    <email>
+      Required.
+      The invalid email address that should be replaced with the currently
+      configured email
+
+    <upstream>
+      Optional.
+      defaults to --root. The parent of the last commit to be reauthored.
+      (<upstream> is used in the same sense as git rebase documentation uses it)
+EOF
+  )
+
+
   if [[ "$#" -eq 0 ]]; then
-    echo "Incorrect usage, no email given, usage is: $FUNCNAME <email> [reference point]" 1>&2
+    echo "Incorrect usage, no email given, usage is: " 1>&2
+    echo "$USAGE" 1>&2
     return 1
   fi
 
