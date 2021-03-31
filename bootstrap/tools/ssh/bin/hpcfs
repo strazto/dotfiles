@@ -46,7 +46,9 @@ SSHPASS=$UNIPASS
 
 # Setup shared connection
 # You need to set ControlPath for the host
+
 ssh -G jump | grep -q '^controlpath' || echo "no controlpath set for bastion"
+ssh -G jhpc | grep -q '^controlpath' || echo "no controlpath set for host"
 
 SSHPASS=$UNIPASS sshpass -e ssh -M -fN jump 
 
@@ -57,6 +59,9 @@ echo "Finished connecting to bastion"
 
 sleep 1
 
+# Background connect to jhpc before connecting with sshfs so that
+# X connection is forwarded
+ssh -M -fN jhpc
 
 #ssh -v -fN "${UNIKEY}@hpc.sydney.edu.au" 
 
