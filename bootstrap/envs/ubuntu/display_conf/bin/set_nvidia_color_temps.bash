@@ -38,8 +38,6 @@ function set_2600k {
   assign_rgb $R $G $B
 }
 
-[[ "$1" == "2600k" ]] && set_2600k
-
 function set_1900k {
   local R="$(to_frac 255)"
   local G="$(to_frac 147)"
@@ -47,11 +45,40 @@ function set_1900k {
   assign_rgb $R $G $B
 }
 
-[[ "$1" == "1900k" ]] && set_1900k
-
 function set_normal {
   assign_rgb 0 0 0
 }
 
-[[ "$1" == "day" ]] && set_normal
+function set_day {
+  set_normal
+}
 
+# https://unix.stackexchange.com/a/396124
+function get_setting {
+  case $(date +%H:%M) in
+    (1[789]:*)     echo 2700k;;
+    (2[01234]:*)   echo 1900k;;
+    (0[0123456]:*) echo 1900k;;
+    # (06:[012]*)   echo YES;;
+    (*)           echo day;;
+  esac
+}
+
+function set_auto {
+  local setting="$(get_setting)"
+  choose_function "$setting"
+}
+
+function choose_function {
+  local choice="$1"
+  case "$choice" in
+    (2700k) set_2700k;;
+    (1900k) set_1900k;;
+    (day)   set_day;;
+    (normal) set_normal;;
+    (auto)   set_auto;;
+    (*)      set_normal;;
+  esac
+}
+
+choose_function "$1"
