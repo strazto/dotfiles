@@ -20,9 +20,7 @@ else
 				# Please do not modify the following line as it is used 
 				# to detect whether color temp jobs are already installed
 				# === SETUP_COLOR_TEMPS ===
-				0  7 * * * .local/bin/set_nvidia_color_temp day
-				0 17 * * * .local/bin/set_nvidia_color_temp 2700k
-				0 20 * * * .local/bin/set_nvidia_color_temp 1900k
+				*  * * * * \$HOME/.local/bin/set_nvidia_color_temp.bash auto
 				EOF
 
 fi
