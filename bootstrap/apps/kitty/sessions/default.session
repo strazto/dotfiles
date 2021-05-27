@@ -1,0 +1,11 @@
+new_tab HPC
+
+cd ~
+
+launch hpcfs
+
+new_tab local
+
+cd ~
+focus
+launch bash
