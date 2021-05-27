@@ -1,0 +1,15 @@
+- clean:
+  - '~/.config/wezterm/'
+- link:
+   ~/.config/wezterm/wezterm.lua:
+     path: apps/wezterm/wezterm.lua
+     relink: true
+     create: true
+   # ~/.config/kitty/conf.d:
+     # path: apps/kitty/conf.d
+     # relink: true
+     # create: true
+   # ~/.config/kitty/sessions:
+     # path: apps/kitty/sessions
+     # relink: true
+     # create: true
