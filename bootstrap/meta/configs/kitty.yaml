@@ -9,3 +9,7 @@
      path: apps/kitty/conf.d
      relink: true
      create: true
+   ~/.config/kitty/sessions:
+     path: apps/kitty/sessions
+     relink: true
+     create: true
