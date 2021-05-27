@@ -5,10 +5,11 @@
      path: apps/wezterm/wezterm.lua
      relink: true
      create: true
-   # ~/.config/kitty/conf.d:
-     # path: apps/kitty/conf.d
-     # relink: true
-     # create: true
+   ~/.config/wezterm/conf_d/:
+     path: apps/wezterm/conf_d/*
+     relink: true
+     create: true
+     glob: true
    # ~/.config/kitty/sessions:
      # path: apps/kitty/sessions
      # relink: true
