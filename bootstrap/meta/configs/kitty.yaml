@@ -1,0 +1,11 @@
+- clean:
+  - '~/.config/kitty/'
+- link:
+   ~/.config/kitty/kitty.conf:
+     path: apps/kitty/kitty.conf
+     relink: true
+     create: true
+   ~/.config/kitty/conf.d:
+     path: apps/kitty/conf.d
+     relink: true
+     create: true
