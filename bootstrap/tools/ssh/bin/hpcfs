@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DEFAULT_AUTH_FILE=$HOME/.uni_pass
+AUTH_FILE="${1:-$DEFAULT_AUTH_FILE}"
 
 function mount_fs {
   if [ "$#" -lt 2 ]; then
@@ -30,61 +32,67 @@ function mount_fs {
     $allow_other
 }
 
-DEFAULT_AUTH_FILE=$HOME/.uni_pass
-AUTH_FILE="${1:-$DEFAULT_AUTH_FILE}"
 
-AUTH_FILE_ERROR=1
-SSHPASS_NOT_FOUND_ERROR=2
-CONTROL_PATH_FAILED_ERROR=3
+function check_setup_correct {
 
-function auth_file_panic {
   local AUTH_FILE="${1:-$DEFAULT_AUTH_FILE}"
-  
-  echo "Must put ssh password in $AUTH_FILE with permissions 600"
-  exit $AUTH_FILE_ERROR
-}
 
+  local AUTH_FILE_ERROR=1
+  local SSHPASS_NOT_FOUND_ERROR=2
+  local CONTROL_PATH_FAILED_ERROR=3
+
+
+  if ! which sshpass>/dev/null; then
+    echo "sshpass not found on PATH"
+    echo "sshpass is required, exiting"
+    exit $SSHPASS_NOT_FOUND_ERROR
+  fi
+
+  local AUTH_FILE_FAILED=false
+  if [[ ! -f "$AUTH_FILE" ]]; then
+    echo "Missing $AUTH_FILE"
+    AUTH_FILE_FAILED=true
+  fi
+
+  local AUTH_FILE_PERMISSIONS=$(stat -c %a "$AUTH_FILE")
+
+  if [[ ! $AUTH_FILE_PERMISSIONS == "600" ]]; then 
+    echo "Incorrect permssions for $AUTH_FILE"
+    echo "Expecting 600, got $AUTH_FILE_PERMISSIONS"
+    AUTH_FILE_FAILED=true
+  fi
+
+  if $AUTH_FILE_FAILED; then
+    echo "Must put ssh password in $AUTH_FILE with permissions 600"
+    exit $AUTH_FILE_ERROR
+  fi
+    
+  # Setup shared connection
+  # You need to set ControlPath for the host
+  local CONTROL_PATH_FAILED=false
+
+  if ! ssh -G jump | grep -q '^controlpath'; then  
+    echo "no controlpath set for bastion"
+    CONTROL_PATH_FAILED=true
+  fi
+  if ! ssh -G jhpc | grep -q '^controlpath'; then
+    echo "no controlpath set for host"
+    CONTROL_PATH_FAILED=true
+  fi
+
+  if $CONTROL_PATH_FAILED; then
+    echo "must set controlpath for both host & bastion in ssh config"
+    exit $CONTROL_PATH_FAILED_ERROR
+  fi
+
+
+}
 
 # For Ubuntu 18.04
 # Requires sshfs
 # Requires UNIPASS and UNIKEY env vars to be set
 
-if ! which sshpass>/dev/null; then
-  echo "sshpass not found on PATH"
-  echo "sshpass is required, exiting"
-  exit $SSHPASS_NOT_FOUND_ERROR
-fi
-
-if [[ ! -f "$AUTH_FILE" ]]; then
-  echo "Missing $AUTH_FILE"
-  auth_file_panic $AUTH_FILE
-fi
-
-AUTH_FILE_PERMISSIONS=$(stat -c %a "$AUTH_FILE")
-
-if [[ ! $AUTH_FILE_PERMISSIONS == "600" ]]; then 
-  echo "Incorrect permssions for $AUTH_FILE"
-  echo "Expecting 600, got $AUTH_FILE_PERMISSIONS"
-  auth_file_panic $AUTH_FILE
-fi
-  
-# Setup shared connection
-# You need to set ControlPath for the host
-CONTROL_PATH_FAILED=false
-
-if ! ssh -G jump | grep -q '^controlpath'; then  
-  echo "no controlpath set for bastion"
-  CONTROL_PATH_FAILED=true
-fi
-if ! ssh -G jhpc | grep -q '^controlpath'; then
-  echo "no controlpath set for host"
-  CONTROL_PATH_FAILED=true
-fi
-
-if $CONTROL_PATH_FAILED; then
-  echo "must set controlpath for both host & bastion in ssh config"
-  exit $CONTROL_PATH_FAILED_ERROR
-fi
+check_setup_correct "$AUTH_FILE"
 
 sshpass -f "$AUTH_FILE" ssh -M -fN jump 
 
