@@ -44,15 +44,19 @@ function check_setup_correct {
   local required_binaries=(sshpass sshfs)
   local required_bin=""
 
+  local IS_MISSING_BINARY=false
   for required_bin in ${required_binaries[@]}; do
     if ! which "${required_bin}" >/dev/null; then
 
       echo "$required_bin not found on PATH"
       echo "$required_bin is required, exiting"
-      exit $BINARY_NOT_FOUND_ERROR
-    
+      IS_MISSING_BINARY=true
     fi
   done
+
+  if $IS_MISSING_BINARY; then
+    exit $BINARY_NOT_FOUND_ERROR 
+  fi
 
   local AUTH_FILE_FAILED=false
   if [[ ! -f "$AUTH_FILE" ]]; then
