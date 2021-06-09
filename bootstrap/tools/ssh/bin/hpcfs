@@ -94,27 +94,36 @@ function check_setup_correct {
 
 }
 
-# For Ubuntu 18.04
-# Requires sshfs
+function setup_ssh_connection {
+  local AUTH_FILE="${1:-$DEFAULT_AUTH_FILE}" 
+  check_setup_correct "$AUTH_FILE"
 
-check_setup_correct "$AUTH_FILE"
+  sshpass -f "$AUTH_FILE" ssh -M -fN jump 
 
-sshpass -f "$AUTH_FILE" ssh -M -fN jump 
+  echo "Finished connecting to bastion"
 
-echo "Finished connecting to bastion"
+  sleep 1
 
-sleep 1
-
-# Background connect to jhpc before connecting with sshfs so that
-# X connection is forwarded
-ssh -M -fN jhpc
-
-mount_fs jhpc:/project/STEMI/ ~/work/.project/STEMI
-mount_fs jhpc:/project/ACS/ ~/work/.project/ACS
-mount_fs jhpc:/rds/PRJ-STEMI/ ~/work/.rds/PRJ-STEMI
-mount_fs jhpc:/rds/PRJ-ACS/ ~/work/.rds/PRJ-ACS
+  # Background connect to jhpc before connecting with sshfs so that
+  # X connection is forwarded
+  ssh -M -fN jhpc
+}
 
 
-ssh -XYC jhpc
-echo "Finsihed ssh-ing"
-bash
+function mount_all_fs {
+  mount_fs jhpc:/project/STEMI/ ~/work/.project/STEMI
+  mount_fs jhpc:/project/ACS/ ~/work/.project/ACS
+  mount_fs jhpc:/rds/PRJ-STEMI/ ~/work/.rds/PRJ-STEMI
+  mount_fs jhpc:/rds/PRJ-ACS/ ~/work/.rds/PRJ-ACS
+}
+
+function entire_workflow {
+  local AUTH_FILE="${1:-$DEFAULT_AUTH_FILE}" 
+  setup_ssh_connection "$AUTH_FILE"
+  mount_all_fs
+
+  ssh -XYC jhpc
+  echo "Finsihed ssh-ing"
+}
+
+entire_workflow "$AUTH_FILE"
