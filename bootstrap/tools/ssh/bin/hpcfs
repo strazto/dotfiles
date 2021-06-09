@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEFAULT_AUTH_FILE=$HOME/.uni_pass
+DEFAULT_AUTH_FILE=$HOME/.ssh/uni_pass
 AUTH_FILE="${1:-$DEFAULT_AUTH_FILE}"
 
 function mount_fs {
