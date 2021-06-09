@@ -38,15 +38,21 @@ function check_setup_correct {
   local AUTH_FILE="${1:-$DEFAULT_AUTH_FILE}"
 
   local AUTH_FILE_ERROR=1
-  local SSHPASS_NOT_FOUND_ERROR=2
+  local BINARY_NOT_FOUND_ERROR=2
   local CONTROL_PATH_FAILED_ERROR=3
+  
+  local required_binaries=(sshpass sshfs)
+  local required_bin=""
 
+  for required_bin in ${required_binaries[@]}; do
+    if ! which "${required_bin}" >/dev/null; then
 
-  if ! which sshpass>/dev/null; then
-    echo "sshpass not found on PATH"
-    echo "sshpass is required, exiting"
-    exit $SSHPASS_NOT_FOUND_ERROR
-  fi
+      echo "$required_bin not found on PATH"
+      echo "$required_bin is required, exiting"
+      exit $BINARY_NOT_FOUND_ERROR
+    
+    fi
+  done
 
   local AUTH_FILE_FAILED=false
   if [[ ! -f "$AUTH_FILE" ]]; then
@@ -90,7 +96,6 @@ function check_setup_correct {
 
 # For Ubuntu 18.04
 # Requires sshfs
-# Requires UNIPASS and UNIKEY env vars to be set
 
 check_setup_correct "$AUTH_FILE"
 
