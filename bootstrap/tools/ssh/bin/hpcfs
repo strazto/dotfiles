@@ -30,30 +30,63 @@ function mount_fs {
     $allow_other
 }
 
+DEFAULT_AUTH_FILE=$HOME/.uni_pass
+AUTH_FILE="${1:-$DEFAULT_AUTH_FILE}"
+
+AUTH_FILE_ERROR=1
+SSHPASS_NOT_FOUND_ERROR=2
+CONTROL_PATH_FAILED_ERROR=3
+
+function auth_file_panic {
+  local AUTH_FILE="${1:-$DEFAULT_AUTH_FILE}"
+  
+  echo "Must put ssh password in $AUTH_FILE with permissions 600"
+  exit $AUTH_FILE_ERROR
+}
 
 
 # For Ubuntu 18.04
 # Requires sshfs
 # Requires UNIPASS and UNIKEY env vars to be set
 
-which sshpass>/dev/null || echo "sshpass required"
+if ! which sshpass>/dev/null; then
+  echo "sshpass not found on PATH"
+  echo "sshpass is required, exiting"
+  exit $SSHPASS_NOT_FOUND_ERROR
+fi
 
-source ~/.uni_auth
-UNIKEY=$UNIKEY
-SSHPASS=$UNIPASS
+if [[ ! -f "$AUTH_FILE" ]]; then
+  echo "Missing $AUTH_FILE"
+  auth_file_panic $AUTH_FILE
+fi
 
-# sudo -s echo "${UNIPASS}" | sudo -s openconnect -b -u $UNIKEY --passwd-on-stdin https://vpn.sydney.edu.au  
+AUTH_FILE_PERMISSIONS=$(stat -c %a "$AUTH_FILE")
 
+if [[ ! $AUTH_FILE_PERMISSIONS == "600" ]]; then 
+  echo "Incorrect permssions for $AUTH_FILE"
+  echo "Expecting 600, got $AUTH_FILE_PERMISSIONS"
+  auth_file_panic $AUTH_FILE
+fi
+  
 # Setup shared connection
 # You need to set ControlPath for the host
+CONTROL_PATH_FAILED=false
 
-ssh -G jump | grep -q '^controlpath' || echo "no controlpath set for bastion"
-ssh -G jhpc | grep -q '^controlpath' || echo "no controlpath set for host"
+if ! ssh -G jump | grep -q '^controlpath'; then  
+  echo "no controlpath set for bastion"
+  CONTROL_PATH_FAILED=true
+fi
+if ! ssh -G jhpc | grep -q '^controlpath'; then
+  echo "no controlpath set for host"
+  CONTROL_PATH_FAILED=true
+fi
 
-SSHPASS=$UNIPASS sshpass -e ssh -M -fN jump 
+if $CONTROL_PATH_FAILED; then
+  echo "must set controlpath for both host & bastion in ssh config"
+  exit $CONTROL_PATH_FAILED_ERROR
+fi
 
-unset SSHPASS
-unset UNIPASS
+sshpass -f "$AUTH_FILE" ssh -M -fN jump 
 
 echo "Finished connecting to bastion"
 
@@ -62,8 +95,6 @@ sleep 1
 # Background connect to jhpc before connecting with sshfs so that
 # X connection is forwarded
 ssh -M -fN jhpc
-
-#ssh -v -fN "${UNIKEY}@hpc.sydney.edu.au" 
 
 mount_fs jhpc:/project/STEMI/ ~/work/.project/STEMI
 mount_fs jhpc:/project/ACS/ ~/work/.project/ACS
