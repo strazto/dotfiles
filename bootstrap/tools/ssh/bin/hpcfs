@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DEFAULT_AUTH_FILE=$HOME/.ssh/uni_pass
+AUTH_FILE="${1:-$DEFAULT_AUTH_FILE}"
 
 function mount_fs {
   if [ "$#" -lt 2 ]; then
@@ -31,46 +33,101 @@ function mount_fs {
 }
 
 
+function check_setup_correct {
 
-# For Ubuntu 18.04
-# Requires sshfs
-# Requires UNIPASS and UNIKEY env vars to be set
+  local AUTH_FILE="${1:-$DEFAULT_AUTH_FILE}"
 
-which sshpass>/dev/null || echo "sshpass required"
+  local AUTH_FILE_ERROR=1
+  local BINARY_NOT_FOUND_ERROR=2
+  local CONTROL_PATH_FAILED_ERROR=3
+  
+  local required_binaries=(sshpass sshfs)
+  local required_bin=""
 
-source ~/.uni_auth
-UNIKEY=$UNIKEY
-SSHPASS=$UNIPASS
+  local IS_MISSING_BINARY=false
+  for required_bin in ${required_binaries[@]}; do
+    if ! which "${required_bin}" >/dev/null; then
 
-# sudo -s echo "${UNIPASS}" | sudo -s openconnect -b -u $UNIKEY --passwd-on-stdin https://vpn.sydney.edu.au  
+      echo "$required_bin not found on PATH"
+      echo "$required_bin is required, exiting"
+      IS_MISSING_BINARY=true
+    fi
+  done
 
-# Setup shared connection
-# You need to set ControlPath for the host
+  if $IS_MISSING_BINARY; then
+    exit $BINARY_NOT_FOUND_ERROR 
+  fi
 
-ssh -G jump | grep -q '^controlpath' || echo "no controlpath set for bastion"
-ssh -G jhpc | grep -q '^controlpath' || echo "no controlpath set for host"
+  local AUTH_FILE_FAILED=false
+  if [[ ! -f "$AUTH_FILE" ]]; then
+    echo "Missing $AUTH_FILE"
+    AUTH_FILE_FAILED=true
+  fi
 
-SSHPASS=$UNIPASS sshpass -e ssh -M -fN jump 
+  local AUTH_FILE_PERMISSIONS=$(stat -c %a "$AUTH_FILE")
 
-unset SSHPASS
-unset UNIPASS
+  if [[ ! $AUTH_FILE_PERMISSIONS == "600" ]]; then 
+    echo "Incorrect permssions for $AUTH_FILE"
+    echo "Expecting 600, got $AUTH_FILE_PERMISSIONS"
+    AUTH_FILE_FAILED=true
+  fi
 
-echo "Finished connecting to bastion"
+  if $AUTH_FILE_FAILED; then
+    echo "Must put ssh password in $AUTH_FILE with permissions 600"
+    exit $AUTH_FILE_ERROR
+  fi
+    
+  # Setup shared connection
+  # You need to set ControlPath for the host
+  local CONTROL_PATH_FAILED=false
 
-sleep 1
+  if ! ssh -G jump | grep -q '^controlpath'; then  
+    echo "no controlpath set for bastion"
+    CONTROL_PATH_FAILED=true
+  fi
+  if ! ssh -G jhpc | grep -q '^controlpath'; then
+    echo "no controlpath set for host"
+    CONTROL_PATH_FAILED=true
+  fi
 
-# Background connect to jhpc before connecting with sshfs so that
-# X connection is forwarded
-ssh -M -fN jhpc
-
-#ssh -v -fN "${UNIKEY}@hpc.sydney.edu.au" 
-
-mount_fs jhpc:/project/STEMI/ ~/work/.project/STEMI
-mount_fs jhpc:/project/ACS/ ~/work/.project/ACS
-mount_fs jhpc:/rds/PRJ-STEMI/ ~/work/.rds/PRJ-STEMI
-mount_fs jhpc:/rds/PRJ-ACS/ ~/work/.rds/PRJ-ACS
+  if $CONTROL_PATH_FAILED; then
+    echo "must set controlpath for both host & bastion in ssh config"
+    exit $CONTROL_PATH_FAILED_ERROR
+  fi
 
 
-ssh -XYC jhpc
-echo "Finsihed ssh-ing"
-bash
+}
+
+function setup_ssh_connection {
+  local AUTH_FILE="${1:-$DEFAULT_AUTH_FILE}" 
+  check_setup_correct "$AUTH_FILE"
+
+  sshpass -f "$AUTH_FILE" ssh -M -fN jump 
+
+  echo "Finished connecting to bastion"
+
+  sleep 1
+
+  # Background connect to jhpc before connecting with sshfs so that
+  # X connection is forwarded
+  ssh -M -fN jhpc
+}
+
+
+function mount_all_fs {
+  mount_fs jhpc:/project/STEMI/ ~/work/.project/STEMI
+  mount_fs jhpc:/project/ACS/ ~/work/.project/ACS
+  mount_fs jhpc:/rds/PRJ-STEMI/ ~/work/.rds/PRJ-STEMI
+  mount_fs jhpc:/rds/PRJ-ACS/ ~/work/.rds/PRJ-ACS
+}
+
+function entire_workflow {
+  local AUTH_FILE="${1:-$DEFAULT_AUTH_FILE}" 
+  setup_ssh_connection "$AUTH_FILE"
+  mount_all_fs
+
+  ssh -XYC jhpc
+  echo "Finsihed ssh-ing"
+}
+
+entire_workflow "$AUTH_FILE"
