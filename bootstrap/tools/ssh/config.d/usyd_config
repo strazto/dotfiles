@@ -4,7 +4,6 @@
 
 Host jump vhpc hpc jhpc
   ForwardX11 yes
-  ForwardAgent yes
 
 # jump doesn't accept pubkey auth.
 Host jump
@@ -25,7 +24,6 @@ Host vhpc hpc jhpc
 Host vhpc
   ProxyCommand nc-openconnect %h %p
 
-# Match host jhpc !exec "nc -z -w 1 %h %p"
 Host jhpc
   ProxyCommand ssh -XC jump nc %h %p
 
