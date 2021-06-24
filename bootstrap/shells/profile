@@ -61,4 +61,4 @@ fi
 #  export MANPATH="$HOME/usr/local/share/man:$(manpath)"
 #fi
 
-export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"
