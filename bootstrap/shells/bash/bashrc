@@ -106,13 +106,6 @@ fi
 
 #export PATH=/usr/jdk/bin:${PATH}
 
-# Load uni credentials to environment
-# Sets UNIKEY and UNIPASS
-
-if [ -f ~/.uni_auth ]; then
-    . ~/.uni_auth
-fi
-
 #export CC=clang
 
 if [ -f ~/.bash_prompt ]; then
@@ -207,3 +200,4 @@ if [[ -z "$EDITOR" ]]; then
     export EDITOR=vi
   fi
 fi
+. "$HOME/.cargo/env"

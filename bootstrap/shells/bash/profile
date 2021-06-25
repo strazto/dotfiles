@@ -53,7 +53,6 @@ if [ -d "${compgen_d}" ] ; then
   done
 fi
 
-export PATH="$HOME/.cargo/bin:$PATH"
 
 
 [[ -f ~/.config/broot/launcher/bash/br  ]] && source /home/matty/.config/broot/launcher/bash/br
@@ -61,6 +60,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 
 # Show me my agenda, run in background as it is a bit slow
-hash gcalcli 2>&1 >/dev/null && ( gcalcli agenda && echo -n "${PS1@P}") &
+if hash gcalcli >/dev/null 2>&1 ; then
+  ( gcalcli agenda && echo -n "${PS1@P}") &
+fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+. "$HOME/.cargo/env"
