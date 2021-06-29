@@ -14,9 +14,9 @@
 #   - command: ~/.tmux/plugins/tpm/bin/install_plugins
 #     description: Installing TPM plugins
 - link:
-   ~/.local/share/bash_completion.d/:
-    glob: true
-    path: tmux/completion/completions/*
+   ~/.local/share/bash_completion.d/tmux:
+    # glob: true
+    path: tmux/completion/completions/tmux
     relink: true
     create: true
    ~/.config/dotfiles/run.d/:
