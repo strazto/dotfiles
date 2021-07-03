@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+function mount_fs {
+  if [ "$#" -lt 2 ]; then
+    echo "Usage: <remote_mount> <local_mount>"
+
+    exit 1
+  fi
+
+  local remote_mount="$1"
+  local local_mount="$2"
+
+  # Handle OSX compatibility
+  local defer_permissions=""
+  local allow_other=""
+  # defer_permissions helps with OSX compat, & is only 
+  # accepted as sshfs command on OSX
+  if [[ "$(uname -s)" == "Darwin" ]]; then
+    echo "running osx"
+    defer_permissions="-o defer_permissions"
+    allow_other="-o allow_other"
+  fi
+
+  local sshfs_general_opts="-o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3"
+
+  sshfs "$remote_mount" "$local_mount" \
+    $sshfs_general_opts \
+    $defer_permissions \
+    $allow_other
+}
+
+mount_fs "$1" "$2"
