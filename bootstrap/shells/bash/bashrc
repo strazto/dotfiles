@@ -200,4 +200,4 @@ if [[ -z "$EDITOR" ]]; then
     export EDITOR=vi
   fi
 fi
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"

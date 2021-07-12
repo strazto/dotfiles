@@ -65,4 +65,5 @@ if hash gcalcli >/dev/null 2>&1 ; then
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-. "$HOME/.cargo/env"
+
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
