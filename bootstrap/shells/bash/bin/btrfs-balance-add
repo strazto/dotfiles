@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/sh
 USAGE_HINT="Usage: $0 <temp_filesystem> <size_used> <btrfs_fs_mountpoint>"
 
 TEMP_FS="$1"
 SIZE="$2"
-if [ "$#" -lt 3]; then
+if [ "$#" -lt 3 ]; then
   echo "Not enough arguments!"
   echo "$USAGE_HINT"
   exit 2
