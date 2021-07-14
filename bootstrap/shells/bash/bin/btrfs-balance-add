@@ -1,21 +1,24 @@
 #!/usr/bin/env bash
+USAGE_HINT="Usage: $0 <temp_filesystem> <size_used> <btrfs_fs_mountpoint>"
 
-FILE="$1"
+TEMP_FS="$1"
 SIZE="$2"
 if [ "$#" -lt 3]; then
-    LOC="/"
+  echo "Not enough arguments!"
+  echo "$USAGE_HINT"
+  exit 2
 else
-    LOC="$3"
+    BTRFS_MOUNT="$3"
 fi
 
-btrfs filesystem df "$LOC" # Print old
-truncate -s "$SIZE" "$FILE" # If filesystem doesn't support "truncate", then use dd
+btrfs filesystem df "$BTRFS_MOUNT" # Print old
+truncate -s "$SIZE" "$TEMP_FS" # If filesystem doesn't support "truncate", then use dd
 modprobe loop # in case system hasn't yet loaded support for loopback devices
 DEV_LOOP="$(losetup -f)"
-losetup "$DEV_LOOP" "$FILE"
-btrfs device add -f "$DEV_LOOP" "$LOC"
-btrfs balance start -dusage=20 -musage=20 "$LOC" # feel free to tweak these values
-btrfs device delete "$DEV_LOOP" "$LOC"
-btrfs filesystem df "$LOC" # Print new
+losetup "$DEV_LOOP" "$TEMP_FS"
+btrfs device add -f "$DEV_LOOP" "$BTRFS_MOUNT"
+btrfs balance start -dusage=20 -musage=20 "$BTRFS_MOUNT" # feel free to tweak these values
+btrfs device delete "$DEV_LOOP" "$BTRFS_MOUNT"
+btrfs filesystem df "$BTRFS_MOUNT" # Print new
 losetup -d "$DEV_LOOP"
-rm "$FILE"
+rm "$TEMP_FS"
