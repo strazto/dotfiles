@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 
 function mount_fs {
-  if [ "$#" -lt 2 ]; then
-    echo "Usage: <remote_mount> <local_mount>"
+  local GIVE_UP=false
+  [ "$#" -lt 2 ] && GIVE_UP=true
+  [ -z "$1" ] && GIVE_UP=true
+  [ -z "$2" ]  && GIVE_UP=true
 
+  if [ "$GIVE_UP" == "true" ]; then
+    echo "Usage: <remote_mount> <local_mount>"
     exit 1
   fi
+
 
   local remote_mount="$1"
   local local_mount="$2"
