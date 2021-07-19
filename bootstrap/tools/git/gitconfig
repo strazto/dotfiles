@@ -35,7 +35,8 @@
         # http://stackoverflow.com/a/34467298
         graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
         root = rev-parse --show-toplevel
-
+        diff-new = !_git_diff_new.sh
+        rm-removed = !_git_remove_removed.sh
 [url "git@github.com:"]
   insteadOf = @gh:
   insteadOf = @github:
