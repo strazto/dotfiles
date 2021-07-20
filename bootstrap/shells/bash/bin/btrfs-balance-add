@@ -1,24 +1,48 @@
 #!/bin/sh
+
+# Lets exit on failure
+set -e
 USAGE_HINT="Usage: $0 <temp_filesystem> <size_used> <btrfs_fs_mountpoint>"
+USAGE_HINT2="<temp_filesystem> should be a non-existing file (we create it), preferably inside a tmpfs"
 
 TEMP_FS="$1"
 SIZE="$2"
 if [ "$#" -lt 3 ]; then
   echo "Not enough arguments!"
   echo "$USAGE_HINT"
+  echo "$USAGE_HINT2"
   exit 2
 else
     BTRFS_MOUNT="$3"
 fi
 
 btrfs filesystem df "$BTRFS_MOUNT" # Print old
+
+echo "Creating file of $SIZE at $TEMP_FS"
+if [ -f  "$TEMP_FS" ]; then
+  echo "Found existing file at $TEMP_FS, quitting"
+  echo "$USAGE_HINT"
+  echo "$USAGE_HINT2"
+  exit 1
+fi
+
 truncate -s "$SIZE" "$TEMP_FS" # If filesystem doesn't support "truncate", then use dd
 modprobe loop # in case system hasn't yet loaded support for loopback devices
 DEV_LOOP="$(losetup -f)"
+echo "Setting up loopback dev $DEV_LOOP at $TEMP_FS"
 losetup "$DEV_LOOP" "$TEMP_FS"
+
+echo "Adding $DEV_LOOP as device to $BTRFS_MOUNT"
 btrfs device add -f "$DEV_LOOP" "$BTRFS_MOUNT"
+
+echo "Performing btrfs balance at $BTRFS_MOUNT"
 btrfs balance start -dusage=20 -musage=20 "$BTRFS_MOUNT" # feel free to tweak these values
-btrfs device delete "$DEV_LOOP" "$BTRFS_MOUNT"
+
+echo "Removing $DEV_LOOP from $BTRFS_MOUNT"
+btrfs device delete "$DEV_LOOP" "$BTRFS_MOUNt"
 btrfs filesystem df "$BTRFS_MOUNT" # Print new
+
+echo "Removing loopback device $DEV_LOOP"
 losetup -d "$DEV_LOOP"
+echo "Removing temporary file $TEMP_FS"
 rm "$TEMP_FS"
