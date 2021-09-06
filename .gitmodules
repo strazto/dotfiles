@@ -29,9 +29,6 @@
 [submodule "bootstrap/tools/z/z.lua/z.lua"]
 	path = bootstrap/tools/z/z.lua
 	url = https://github.com/skywind3000/z.lua
-[submodule "bootstrap/tools/googler"]
-	path = bootstrap/tools/googler/googler
-	url = https://github.com/jarun/googler.git
 [submodule "bootstrap/tmux/tmux-bash-completion"]
 	path = bootstrap/tmux/completion
 	url = https://github.com/imomaliev/tmux-bash-completion.git
