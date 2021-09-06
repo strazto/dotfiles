@@ -1,34 +1,34 @@
 [submodule "bootstrap/meta/dotbot"]
-	path = bootstrap/meta/dotbot
+	path = meta/dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
 [submodule "bootstrap/tmux/tpm"]
-	path = bootstrap/tmux/tpm
+	path = tmux/tpm
 	url = https://github.com/tmux-plugins/tpm.git
 	ignore = dirty
 [submodule "bootstrap/vim/config"]
-	path = bootstrap/vim/config
+	path = vim/config
   url = https://github.com/mstr3336/.spacevim.git
   ignore = dirty
 [submodule "bootstrap/tmux/config"]
-	path = bootstrap/tmux/config
+	path = tmux/config
 	url = https://github.com/mstr3336/.tmux.git
 	ignore = dirty
 [submodule "bootstrap/tools/git/diff-so-fancy"]
-	path = bootstrap/tools/git/diff-so-fancy
+	path = tools/git/diff-so-fancy
 	url = https://github.com/so-fancy/diff-so-fancy.git
 	ignore = dirty
 [submodule "dotbot"]
 	ignore = dirty
 [submodule "bootstrap/envs/hpc/visidata_hpc"]
-	path = bootstrap/envs/hpc/visidata_hpc
+	path = envs/hpc/visidata_hpc
 	url = https://github.com/mstr3336/visidata_hpc
 [submodule "bootstrap/tools/z/z"]
-	path = bootstrap/tools/z/z.sh
+	path = tools/z/z.sh
 	url = https://github.com/rupa/z.git
 [submodule "bootstrap/tools/z/z.lua/z.lua"]
-	path = bootstrap/tools/z/z.lua
+	path = tools/z/z.lua
 	url = https://github.com/skywind3000/z.lua
 [submodule "bootstrap/tmux/tmux-bash-completion"]
-	path = bootstrap/tmux/completion
+	path = tmux/completion
 	url = https://github.com/imomaliev/tmux-bash-completion.git
