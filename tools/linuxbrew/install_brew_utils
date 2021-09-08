@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 if hash brew 2>/dev/null; then
-  brew install \ 
-    # fuzzyfinder
-    fzf \
-    # fast & featured path jumper
-    zoxide \
-    # fancier version of ls
-    lsd \
-    # Really nice version of tree
-    broot
+  # Fuzzy Finder
+  brew install fzf 
+  # fast & featured path jumper
+  brew install zoxide
+  
+  # fancier version of ls 
+  brew install lsd
+  # Really nice version of tree 
+  brew install broot
   
   # Install recent tmux
   brew install --HEAD tmux
