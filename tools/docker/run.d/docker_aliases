@@ -1,0 +1,8 @@
+
+
+function interrogate_networks {
+  sudo docker network ls --filter driver=bridge --quiet | \
+    xargs -I % /bin/bash -c \
+    "sudo docker network inspect --format '{{(index .IPAM.Config 0).Subnet}} {{ .Name}}' %"
+
+}
