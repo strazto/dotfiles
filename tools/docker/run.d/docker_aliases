@@ -6,3 +6,4 @@ function interrogate_networks {
     "sudo docker network inspect --format '{{(index .IPAM.Config 0).Subnet}} {{ .Name}}' %"
 
 }
+# interrogate_networks | grep 192.168 | cut -d. -f3 | xargs -I % /bin/bash -c 'echo "obase=16;%" | bc' | sort 
