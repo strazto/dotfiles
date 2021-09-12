@@ -1,9 +1,31 @@
 
 
-function interrogate_networks {
+function docker_interrogate_bridge_subnets {
   sudo docker network ls --filter driver=bridge --quiet | \
     xargs -I % /bin/bash -c \
     "sudo docker network inspect --format '{{(index .IPAM.Config 0).Subnet}} {{ .Name}}' %"
 
 }
-# interrogate_networks | grep 192.168 | cut -d. -f3 | xargs -I % /bin/bash -c 'echo "obase=16;%" | bc' | sort 
+
+function ip_to_hex {
+  printf '%02X.' ${1//./ } | sed s'/\.$//'
+}
+
+function docker_hex_network {
+  local line="$1"
+
+  local addr="$(echo $line  | cut -d'/' -f1)"
+  local mask="$(echo $line | cut -d'/' -f2 | cut -d' ' -f1)"
+  local name="$(echo $line | cut -d' ' -f2)"
+
+  echo "$(ip_to_hex $addr)/${mask} ${name}"
+}
+
+function docker_hex_networks {
+  export -f docker_hex_network
+  export -f ip_to_hex
+  docker_interrogate_bridge_subnets | xargs -I % /bin/bash -c 'docker_hex_network "%"'
+
+}
+
+# docker_interrogate_bridge_subnets | grep 192.168 | cut -d. -f3 | xargs -I % /bin/bash -c 'echo "obase=16;%" | bc' | sort 
