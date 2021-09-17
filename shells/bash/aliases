@@ -291,5 +291,5 @@ if hash scrcpy 1>&2 2>/dev/null ; then
   
 fi
 
-alias tty-share-own='tty-share -public -tty-proxy tty.mstrasiot.to:3456'
+alias tty-share-own='tty-share -public -tty-proxy term.straz.to:3456'
 
