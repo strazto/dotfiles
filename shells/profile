@@ -64,3 +64,8 @@ fi
 export PATH="$HOME/.poetry/bin:$PATH"
 
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+# Use native links on windows
+# probably have to change UAC to work
+export CYGWIN="winsymlinks:nativestrict ${CYGWIN:-}"
+
