@@ -69,3 +69,6 @@ export PATH="$HOME/.poetry/bin:$PATH"
 # probably have to change UAC to work
 export CYGWIN="winsymlinks:nativestrict ${CYGWIN:-}"
 
+# Leave me at the end, always
+export PATH="$HOME/.local/bin:$PATH"
+
