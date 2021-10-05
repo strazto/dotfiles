@@ -20,6 +20,6 @@ if file_exists(wezterm.config_dir .. '/conf_d/default_prog.lua') then
   config["default_prog"] = require 'conf_d.default_prog' 
 end
 
--- config["launch_menu"] = require 'conf_d.launch_menu'
+config["launch_menu"] = require 'conf_d.launch_menu'
 
 return config
