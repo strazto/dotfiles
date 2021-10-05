@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+LN_CMD=winln
+if [[ ! -f "/usr/bin/${LN_CMD}" ]]; then
+	LN_CMD=ln
+fi
+
+/usr/bin/${LN_CMD} "$@"
