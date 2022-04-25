@@ -1,4 +1,4 @@
-export DOCKER_HOST=unix:///run/user/1000/docker.sock
+# export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
 function user_docker_f {
   local CMD=${1:-restart}
