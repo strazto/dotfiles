@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-git ls-files --deleted -z | xargs -0 git add -u
+git diff --diff-filter=D --name-only -z | xargs -0 -I"{}" git add -u "{}"
