@@ -37,6 +37,7 @@
         root = rev-parse --show-toplevel
         diff-new = !_git_diff_new.sh
         rm-removed = !_git_remove_removed.sh
+        cz = !npx cz
 [url "git@github.com:"]
   insteadOf = @gh:
   insteadOf = @github:
