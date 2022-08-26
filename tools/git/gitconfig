@@ -53,3 +53,6 @@
 [url "https://github.sydney.edu.au/"]
   insteadOf = uni:
 
+[diff]
+  colorMovedWS = ignore-all-space
+  colorMoved = zebra
