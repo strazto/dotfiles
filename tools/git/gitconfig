@@ -56,6 +56,14 @@
 [url "https://github.sydney.edu.au/"]
   insteadOf = uni:
 
+[color "diff"]
+  # dim cyan (#009999) -> cyan (#00ffff)
+  oldMoved = "#009999 normal"
+  newMoved = "#00ffff normal bold"
+  # dim yellow -> yellow
+  oldMovedAlternative = "#999900 normal"
+  newMovedAlternative = "#ffff00 normal bold"
+
 [diff]
   colorMovedWS = ignore-all-space
   colorMoved = zebra
