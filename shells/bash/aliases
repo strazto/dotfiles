@@ -266,6 +266,8 @@ EOF
   git rebase -i "${to_ref}" -x "$command"
 }
 
+alias git_reauthor_all='reauthor_all'
+
 # this is now recommended practise
 alias pip='python -m pip'
 
