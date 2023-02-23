@@ -41,6 +41,8 @@
         diff-new = !_git_diff_new.sh
         rm-removed = !_git_remove_removed.sh
         cz = !npx cz
+        # This is for snyk pattern development
+        marker = restore -- ':/**/markers.txt'
 [url "git@github.com:"]
   insteadOf = @gh:
   insteadOf = @github:
