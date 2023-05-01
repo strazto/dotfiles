@@ -295,3 +295,4 @@ fi
 
 alias tty-share-own='tty-share -public -tty-proxy term.straz.to:3456'
 
+alias k=kubectl
