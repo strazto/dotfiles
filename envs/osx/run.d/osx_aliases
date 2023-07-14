@@ -4,5 +4,17 @@
 # use gsed instead of the atrocious BSD sed
 
 if hash gsed 2>/dev/null; then
-  ln -sf "$(which gsed)" "$HOME/.local/bin/sed" 
+  export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+fi
+
+if hash gdir 2>/dev/null; then
+  export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+fi
+
+if hash gfind 2>/dev/null; then
+  export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
+fi
+
+if hash ggrep 2>/dev/null; then
+  export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
 fi
