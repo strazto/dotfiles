@@ -37,11 +37,15 @@ fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+    export PATH="$HOME/.local/bin:$PATH"
 fi
 # set PATH to include another user bin
 if [ -e ~/usr/local/bin ]; then
 	export PATH="~/usr/local/bin:${PATH}"
+fi
+
+if [ -d "$HOME/.local/go/bin" ] ; then
+    export PATH="$HOME/.local/go/bin:$PATH"
 fi
 
 ##########################################
@@ -68,6 +72,8 @@ export PATH="$HOME/.poetry/bin:$PATH"
 # Use native links on windows
 # probably have to change UAC to work
 export CYGWIN="winsymlinks:nativestrict ${CYGWIN:-}"
+
+
 
 # Leave me at the end, always
 export PATH="$HOME/.local/bin:$PATH"
