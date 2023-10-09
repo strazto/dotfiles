@@ -100,6 +100,10 @@
 
 [delta]
     navigate = true    # use n and N to move between diff sections
-    side-by-side = true
+    # side-by-side = true
+
+[alias]
+  dss = ! DELTA_FEATURES='+side-by-side' git diff
+
 [merge]
     conflictstyle = diff3
