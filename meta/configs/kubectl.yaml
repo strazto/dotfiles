@@ -1,0 +1,6 @@
+- link:
+   ~/.local/share/bash_completion.d/kubectl:
+    # glob: true
+    path: tools/kubectl/completion/bash_completions.d/kubectl
+    relink: true
+    create: true
