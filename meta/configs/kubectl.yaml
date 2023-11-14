@@ -1,3 +1,5 @@
+- clean:
+  - '~/.local/share/bash_completion.d/'
 - link:
    ~/.local/share/bash_completion.d/:
     glob: true
