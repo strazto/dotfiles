@@ -290,6 +290,8 @@ if hash scrcpy 1>&2 2>/dev/null ; then
   function mirror_droid_repeat {
     _mirror_droid_repeat &
   }
+
+  alias phone_cast='scrcpy --turn-screen-off --stay-awake'
   
 fi
 
