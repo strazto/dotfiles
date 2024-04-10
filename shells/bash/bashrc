@@ -126,6 +126,10 @@ if hash fzf 2>/dev/null; then
     #export LD_PRELOAD="$HOME/.config/dotfiles/fzf/fzf-tab/readline/target/release/librl_custom_complete.so"
     :
   fi
+ 
+  # Fzf takes over all shell completions
+
+  # [[ -e "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" ]] && . "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash"
 fi
 # This will be changed if fzf exists && we can use z.lua
 # zoxide exports this alias for interactive mode
