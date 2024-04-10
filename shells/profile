@@ -48,6 +48,11 @@ if [ -d "$HOME/.local/go/bin" ] ; then
     export PATH="$HOME/.local/go/bin:$PATH"
 fi
 
+
+if [ -d "$HOME/.local/share/codeql" ]; then
+    export PATH="$HOME/.local/share/codeql:${PATH}"
+fi
+
 ##########################################
 # MANPATH handling
 ##########################################
