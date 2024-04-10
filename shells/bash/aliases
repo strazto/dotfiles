@@ -296,3 +296,22 @@ if hash scrcpy 1>&2 2>/dev/null ; then
 fi
 
 alias tty-share-own='tty-share -public -tty-proxy term.straz.to:3456'
+
+
+function compare_versions {
+  local USAGE=$(cat << EOF
+  Usage:
+    ${FUNCNAME[0]} <current_version> <minimum_version>
+EOF
+  )
+  # local current_version="$1"
+  # local required_version="$2"
+
+  if [[ "$#" -lt 2 ]]; then
+    echo "Incorrect usage: Expect 2 args" 1>&2
+    echo "$USAGE" 1>&2
+    return 2
+  fi
+
+  printf '%s\n%s\n' "$2" "$1" | sort --check=quiet --version-sort
+}
