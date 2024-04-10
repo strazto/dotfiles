@@ -94,14 +94,6 @@ if [[ -e "$HOME/.config/dotfiles/git/completion.bash" ]]; then
   . "$HOME/.config/dotfiles/git/completion.bash"
 fi
 
-# Use fzf completion for any tabbed completion if possible
-if [[ -e "$HOME/.config/dotfiles/fzf/fzf-tab/bash/fzf-bash-completion.sh" ]]; then
-  #module unload ag
-  #. "$HOME/.config/dotfiles/fzf/fzf-tab/bash/fzf-bash-completion.sh"
-  #bind -x '"\t": fzf_bash_completion'
-  #export LD_PRELOAD="$HOME/.config/dotfiles/fzf/fzf-tab/readline/target/release/librl_custom_complete.so"
-  :
-fi
 
 
 #export PATH=/usr/jdk/bin:${PATH}
@@ -112,6 +104,19 @@ if [ -f ~/.bash_prompt ]; then
   . ~/.bash_prompt
 fi
 
+############################################
+# FZF
+
+# [[ -e "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" ]] && . "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" 
+
+# Use fzf completion for any tabbed completion if possible
+if [[ -e "$HOME/.config/dotfiles/fzf/fzf-tab/bash/fzf-bash-completion.sh" ]]; then
+  #module unload ag
+  #. "$HOME/.config/dotfiles/fzf/fzf-tab/bash/fzf-bash-completion.sh"
+  #bind -x '"\t": fzf_bash_completion'
+  #export LD_PRELOAD="$HOME/.config/dotfiles/fzf/fzf-tab/readline/target/release/librl_custom_complete.so"
+  :
+fi
 
 # If fzf exists, use it
 if [ -f ~/.fzf.bash ]; then
@@ -165,7 +170,6 @@ if [[ -z "$LC_ALL" ]]; then
   export LC_ALL=en_US.UTF-8
 fi
 
-#[[ -e "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" ]] && . "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" 
 
 
 if hash ruby 2>/dev/null; then
