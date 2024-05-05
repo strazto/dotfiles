@@ -133,8 +133,7 @@ if hash fzf 2>/dev/null; then
 fi
 # This will be changed if fzf exists && we can use z.lua
 # zoxide exports this alias for interactive mode
-# z,sh doesn't have a decent interactive mode ( I think ), 
-# so fall back to z if fzf doesn't exist or is using z.sh
+# so fall back to z if fzf doesn't exist
 alias zi='z'
 
 # IF zoxide exists, use it
@@ -147,7 +146,7 @@ if hash zoxide 2>/dev/null; then
   eval "$(zoxide init bash)"
 elif [ -e ~/.config/dotfiles/z.lua/z.lua ]; then
   # https://github.com/skywind3000/z.lua
-  # z.lua is faster than z.sh, and more portable
+  # z.lua is slightly more portable
   # than zoxide. 
   # It also integrates w/ fzf
   eval "$(lua ~/.config/dotfiles/z.lua/z.lua --init bash enhanced ${_FZF_EXISTS:-})"
@@ -155,10 +154,6 @@ elif [ -e ~/.config/dotfiles/z.lua/z.lua ]; then
   if [[ ! -z ${_FZF_EXISTS+x} ]]; then 
     alias zi='z -I'
   fi
-elif [ -e ~/.config/dotfiles/z.sh/z.sh ]; then
-  # z.sh is the most portable z implementation
-  # That i've noticed (maybe z.lua is equal)
-  . ~/.config/dotfiles/z.sh/z.sh
 fi
 
 # https://github.com/wernight/powerline-web-fonts/issues/8#issuecomment-353081869
