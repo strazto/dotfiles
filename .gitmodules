@@ -14,10 +14,6 @@
 	path = tmux/config
 	url = https://github.com/mstr3336/.tmux.git
 	ignore = dirty
-[submodule "bootstrap/tools/git/diff-so-fancy"]
-	path = tools/git/diff-so-fancy
-	url = https://github.com/so-fancy/diff-so-fancy.git
-	ignore = dirty
 [submodule "dotbot"]
 	ignore = dirty
 [submodule "bootstrap/envs/hpc/visidata_hpc"]
