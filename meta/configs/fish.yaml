@@ -1,0 +1,15 @@
+- defaults:
+    create: true
+    relink: true
+- link:
+    ~/.config/fish/config.fish: shells/fish/config.fish
+    ~/.config/fish/conf.d/:
+      path: shells/fish/conf.d/*
+      relink: true
+      create: true
+      glob: true
+    ~/.config/fish/functions/:
+      path: shells/fish/functions/*
+      relink: true
+      create: true
+      glob: true
