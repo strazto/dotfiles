@@ -200,59 +200,9 @@ function compose_pgrep {
 
 alias pip='python -m pip'
 
-function reauthor_all {
-  local USAGE=$(cat << EOF
-  Usage:
-    ${FUNCNAME[0]} <email> [<upstream>]
-
-  DESCRIPTION:
-
-  For each commit between HEAD & <upstream> where the commit email matches
-  <email>, reauthor the commit to the current settings for user.name & user.email
-
-  OPTIONS:
-    <email>
-      Required.
-      The invalid email address that should be replaced with the currently
-      configured email
-
-    <upstream>
-      Optional.
-      defaults to --root. The parent of the last commit to be reauthored.
-      (<upstream> is used in the same sense as git rebase documentation uses it)
-EOF
-  )
-
-
-  if [[ "$#" -eq 0 ]]; then
-    echo "Incorrect usage, no email given, usage is: " 1>&2
-    echo "$USAGE" 1>&2
-    return 1
-  fi
-
-  local old_email="$1"
-  local to_ref="${2:---root}"
-  # SO: https://stackoverflow.com/a/34863275/9238801
-  # git rebase -i HEAD~40 -x "git commit --amend --author 'Author Name <author.name@mail.com>' --no-edit"
-  local new_email="$(git config --get user.email)"
-  local new_name="$(git config --get user.name)"
-
-  # https://stackoverflow.com/a/58635589/9238801
-  # get each commit's email address
-  local command='bash -c "'
-  command+='[[ "$(git log -1 --pretty=format:'%ae')" ==' 
-  command+=" '$old_email' ]] && git commit --amend --author '$new_name <$new_email>' --no-edit || true"
-  command+='"'
-  
-
-  git rebase -i "${to_ref}" -x "$command"
-}
-
-alias git_reauthor_all='reauthor_all'
 
 # this is now recommended practise
 alias pip='python -m pip'
-
 
 
 if hash scrcpy 1>&2 2>/dev/null ; then
