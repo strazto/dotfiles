@@ -141,6 +141,7 @@ alias vncinit='vncserver -rfbport 6969'
 # ls
 ###########################################
 
+# Now in fish
 # some more ls aliases
 alias ls='ls --color=auto'
 alias ll='ls -alF'
@@ -150,6 +151,7 @@ alias l='ls -CF'
 # lsd (LSDeluxe) is a fancier ls
 
 # https://github.com/Peltoche/lsd
+# Now in fish
 if hash lsd 2>&1 >/dev/null; then
   alias ls='lsd'
   alias l='ls -l'
