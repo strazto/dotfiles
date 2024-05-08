@@ -15,10 +15,10 @@
   - SpaceVim config & bootstrap 
     - Fluid navigation between vim splits & tmux panes
   - fzf support built-in to profiles
-  - Bootstrap of various z jumpers, `zoxide`, `z.lua`, `z.sh`
+  - Bootstrap of various z jumpers, `zoxide`, `z.lua`
     Fallover support for various implementations of z jumper, 
-      - From fastest/less portable (zoxide), to slowest/most portable (z.sh)
-      - try `zoxide`->`z.lua`->`z.sh`
+      - From fastest/less portable (zoxide), to slowest/most portable
+      - try `zoxide`->`z.lua`
 - Profile specific startup scripts can be added ad-infinitum
   using `run.d`, for flexible additions on host-specific basis.
   - `.profile` sources `~/.config/dotfiles/run.d/*` 
