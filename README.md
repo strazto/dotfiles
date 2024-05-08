@@ -1,5 +1,11 @@
 # Matthew's :zap: bootstrappable dotrepo
 
+## TODO:
+
+- [] `diff-so-fancy` -> `delta`
+     - Delta is nicer to config / use IMO
+- [] `bash` -> `fish` migration
+
 ## Features
 
 - Uses [dotbot](https://github.com/anishathalye/dotbot) for bootstrapping installation
