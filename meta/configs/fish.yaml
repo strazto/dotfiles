@@ -3,6 +3,7 @@
     relink: true
 - link:
     ~/.config/fish/config.fish: shells/fish/config.fish
+    ~/.config/fish/fish_plugins: shells/fish/fish_plugins
     ~/.config/fish/conf.d/:
       path: shells/fish/conf.d/*
       relink: true
