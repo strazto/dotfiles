@@ -1,5 +1,13 @@
 #!/bin/sh
 
+# From Stack Exchange:
+# ~ https://unix.stackexchange.com/a/618450
+# It's now documented that ramdisk is risky
+# ~ https://ohthehugemanatee.org/blog/2019/02/11/btrfs-out-of-space-emergency-response/
+# However this solution doesn't actually require use of a ramdisk, just a loopback device
+# with file backing on another partition
+
+
 # Lets exit on failure
 set -e
 USAGE_HINT="Usage: $0 <temp_filesystem> <size_used> <btrfs_fs_mountpoint>"
