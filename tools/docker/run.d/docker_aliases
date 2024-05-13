@@ -1,4 +1,4 @@
-
+#!/usr/bin/env bash
 
 function docker_interrogate_bridge_subnets {
   sudo docker network ls --filter driver=bridge --quiet | \
@@ -26,6 +26,12 @@ function docker_hex_networks {
   export -f ip_to_hex
   docker_interrogate_bridge_subnets | xargs -I % /bin/bash -c 'docker_hex_network "%"'
 
+}
+
+function docker_list_bind_mounts {
+  docker ps -a --format '{{ .ID }}' \
+    | xargs -I {} docker inspect \
+    -f '{{ .Name }}{{ printf "\n" }}{{ range .Mounts }}{{ printf "\n\t" }}{{ .Type }} {{ if eq .Type "bind" }}{{ .Source }}{{ end }}{{ .Name }} => {{ .Destination }}{{ end }}{{ printf "\n" }}' {}
 }
 
 # docker_interrogate_bridge_subnets | grep 192.168 | cut -d. -f3 | xargs -I % /bin/bash -c 'echo "obase=16;%" | bc' | sort 
