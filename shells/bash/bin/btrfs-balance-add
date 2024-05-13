@@ -39,7 +39,7 @@ echo "Performing btrfs balance at $BTRFS_MOUNT"
 btrfs balance start -dusage=20 -musage=20 "$BTRFS_MOUNT" # feel free to tweak these values
 
 echo "Removing $DEV_LOOP from $BTRFS_MOUNT"
-btrfs device delete "$DEV_LOOP" "$BTRFS_MOUNt"
+btrfs device delete "$DEV_LOOP" "$BTRFS_MOUNT"
 btrfs filesystem df "$BTRFS_MOUNT" # Print new
 
 echo "Removing loopback device $DEV_LOOP"
