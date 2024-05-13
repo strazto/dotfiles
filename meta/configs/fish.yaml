@@ -9,8 +9,18 @@
       relink: true
       create: true
       glob: true
+    # Install fisher
+    ~/.config/fish/functions/fisher.fish:
+      path: ./shells/fish/functions/fisher.fish
+      relink: true
+      create: true
+- shell:
+    - command: 'fish --command="fisher update"'
+- link:
+    # Install / Reinstall functions
     ~/.config/fish/functions/:
       path: shells/fish/functions/*
       relink: true
       create: true
       glob: true
+      force: true
