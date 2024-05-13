@@ -206,6 +206,8 @@ if [[ -z "$EDITOR" ]]; then
 fi
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
+# TODO: Add to fish
 if hash direnv 2>/dev/null; then
   eval "$(direnv hook bash)"
 fi
+
