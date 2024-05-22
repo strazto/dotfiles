@@ -12,3 +12,5 @@ hash zoxide 2>/dev/null || pkg install zoxide
 hash tmux 2>/dev/null || pkg install tmux
 
 hash fish 2>/dev/null || pkg install fish
+
+hash chsh 2>/dev/null || pkg install termux-tools
