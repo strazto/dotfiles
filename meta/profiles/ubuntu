@@ -4,6 +4,7 @@ run_d
 ssh
 linuxbrew
 brew_utils
+fish
 tmux
 git
 vim

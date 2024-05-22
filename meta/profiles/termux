@@ -2,6 +2,7 @@ profile
 bash
 run_d
 termux
+fish
 ssh
 tmux
 git

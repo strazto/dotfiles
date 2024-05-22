@@ -3,6 +3,7 @@ bash
 run_d
 osx
 install_brew_utils
+fish
 ssh
 tmux
 git
