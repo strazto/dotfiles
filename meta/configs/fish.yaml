@@ -15,12 +15,14 @@
       relink: true
       create: true
 - shell:
+    - command: |
+        bash -c "test -e ~/.config/fish/functions/_tide_item_kubectl.fish && rm ~/.config/fish/functions/_tide_item_kubectl.fish"
+      description: Deleting _tide_item_kubectl.fish
     - command: 'fish --command="fisher update"'
 - link:
     # Install / Reinstall functions
-    ~/.config/fish/functions/:
-      path: shells/fish/functions/*
+    ~/.config/fish/functions/_tide_item_kubectl.fish:
+      path: shells/fish/functions/_tide_item_kubectl.fish
       relink: true
       create: true
-      glob: true
       force: true
