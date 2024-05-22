@@ -14,3 +14,5 @@ hash tmux 2>/dev/null || pkg install tmux
 hash fish 2>/dev/null || pkg install fish
 
 hash chsh 2>/dev/null || pkg install termux-tools
+
+hash delta 2>/dev/null || pkg install git-delta

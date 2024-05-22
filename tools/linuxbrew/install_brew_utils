@@ -20,4 +20,6 @@ if hash brew 2>/dev/null; then
 
   # Install fish shell
   hash fish 2>/dev/null || brew install fish
+
+  hash delta 2>/dev/null || brew install git-delta
 fi
