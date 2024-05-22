@@ -4,4 +4,6 @@
     path: envs/termux/run.d/*
     relink: true
     create: true
-
+- shell:
+  - command: bash envs/termux/install_utils.bash
+    description: installing helpful utilities
