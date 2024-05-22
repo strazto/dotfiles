@@ -1,6 +1,7 @@
 profile
 bash
 osx
+install_brew_utils
 ssh
 run_d
 tmux
