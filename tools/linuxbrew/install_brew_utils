@@ -17,4 +17,7 @@ if hash brew 2>/dev/null; then
   
   # Install recent tmux
   brew install --HEAD tmux
+
+  # Install fish shell
+  hash fish 2>/dev/null || brew install fish
 fi
