@@ -1,9 +1,9 @@
 profile
 bash
+run_d
 osx
 install_brew_utils
 ssh
-run_d
 tmux
 git
 vim
