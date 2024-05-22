@@ -2,11 +2,11 @@ profile
 bash
 run_d
 ssh
+linuxbrew
+brew_utils
 tmux
 git
 vim
 visidata
-linuxbrew
-brew_utils
 z.lua
 kubectl
