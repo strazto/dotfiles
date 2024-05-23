@@ -10,7 +10,7 @@ declare -a dotfiles=(
     ".bash_completion"
     )
 
-new_dir=".config/dotfile-backups"
+new_dir="$HOME/.config/dotfile-backups"
 
 mkdir -p "$new_dir"
 
