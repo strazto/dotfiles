@@ -1,0 +1,3 @@
+- shell:
+    - command: shells/bash/move_old_dotfiles.bash
+      description: Moving old dotfiles
