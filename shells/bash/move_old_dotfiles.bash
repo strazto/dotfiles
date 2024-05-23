@@ -2,6 +2,7 @@
 
 # Move old dotfiles that aren't symlinks
 declare -a dotfiles=(
+    ".profile"
     ".bashrc"
     ".bash_profile"
     ".bash_aliases"
