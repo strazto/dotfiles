@@ -41,6 +41,7 @@
         marker = restore -- ':/**/markers.txt'
         diff-rebase = !_git_diff_rebase
         diff-rebase2 = range-diff @{u} @{1} @
+        diff-rebase3 = !_git_diff_rebase_3
 [url "git@github.com:"]
   insteadOf = @gh:
   insteadOf = @github:

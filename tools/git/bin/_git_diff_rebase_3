@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+preferred_diff=diff
+diff_args='-u'
+
+if hash delta 2>/dev/null; then
+    preferred_diff=delta
+    diff_args=''
+fi
+
+main_branch="$(basename $(git symbolic-ref refs/remotes/origin/HEAD))"
+
+$preferred_diff <(git diff -U10 "${main_branch}...@{u}") <(git diff -U10 "${main_branch}...@{1}")
