@@ -39,6 +39,8 @@
         cz = !npx cz
         # This is for snyk pattern development
         marker = restore -- ':/**/markers.txt'
+        diff-rebase = !_git_diff_rebase
+        diff-rebase2 = range-diff @{u} @{1} @
 [url "git@github.com:"]
   insteadOf = @gh:
   insteadOf = @github:
