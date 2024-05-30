@@ -23,3 +23,8 @@
       relink: true
       create: true
       force: true
+    ~/.config/fish/functions/:
+      path: shells/fish/functions/*
+      relink: true
+      create: true
+      glob: true
