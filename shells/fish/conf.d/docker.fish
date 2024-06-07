@@ -20,5 +20,9 @@ abbr --add dc-ex (_get_docker_binary) -f docker-compose.yml -f docker-compose.ov
 
 abbr --add dc-e2e (_get_docker_binary) -f docker-compose.no-bind.yaml -f docker-compose.e2e.yaml
 
+abbr --add dc-dev (_get_docker_binary) --env-file .env -f docker-compose.base.yaml -f docker-compose.dev.yaml
+
 # Split media server stack
 abbr --add dc-split (_get_docker_binary) -f docker-compose.yml -f docker-compose.override.yml -f gateway/docker-compose.yml -f gateway/docker-compose.override.yml -f worker/docker-compose.yml -f worker/docker-compose.override.yml -f worker/docker-compose.readonly.yml
+
+
