@@ -1,0 +1,1 @@
+abbr --add android scrcpy --stay-awake --turn-screen-off
