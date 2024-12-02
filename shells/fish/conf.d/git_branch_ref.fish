@@ -10,3 +10,10 @@ function _git_branch_master
 end
 
 abbr --add git_branch_master --position anywhere --set-cursor --function _git_branch_master
+
+
+function _git_remote_tracking_branch_name
+    git rev-parse --abbrev-ref --symbolic-full-name @{u}
+end
+
+abbr --add git_tracking --position anywhere --set-cursor --function _git_remote_tracking_branch_name
