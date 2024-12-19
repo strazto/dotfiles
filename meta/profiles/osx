@@ -2,7 +2,8 @@ profile
 bash
 run_d
 osx
-install_brew_utils
+linuxbrew
+brew_utils
 fish
 ssh
 tmux
