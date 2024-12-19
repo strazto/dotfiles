@@ -17,3 +17,14 @@ function _git_remote_tracking_branch_name
 end
 
 abbr --add git_tracking --position anywhere --set-cursor --function _git_remote_tracking_branch_name
+
+function _groot
+    if set -l top_level "$(git rev-parse --show-toplevel 2>/dev/null)"
+        echo "$top_level"
+        return 0
+    end
+    echo "not in a repo" >2
+    return 1
+end
+
+abbr --add groot --position anywhere --set-cursor --function _groot
