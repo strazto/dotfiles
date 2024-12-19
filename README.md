@@ -2,9 +2,9 @@
 
 ## TODO:
 
-- [] `diff-so-fancy` -> `delta`
+- [x] `diff-so-fancy` -> `delta`
      - Delta is nicer to config / use IMO
-- [] `bash` -> `fish` migration
+- [x] `bash` -> `fish` migration
 
 ## Features
 
