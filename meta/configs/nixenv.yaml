@@ -1,0 +1,6 @@
+- shell:
+  - command: 'bash tools/nixenv/install_nixenv.bash'
+    stdout: true
+    quiet: false
+    description: Install nix package manager (multiuser) via online script.
+

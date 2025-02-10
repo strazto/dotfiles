@@ -1,0 +1,13 @@
+profile
+bash
+run_d
+ssh
+nixenv
+install_nixenv_utils
+fish
+tmux
+git
+vim
+visidata
+z.lua
+kubectl
