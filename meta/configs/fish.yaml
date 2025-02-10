@@ -13,7 +13,7 @@
       create: true
 - shell:
     - command: |
-        bash -c "test -e ~/.config/fish/functions/_tide_item_kubectl.fish && rm ~/.config/fish/functions/_tide_item_kubectl.fish"
+        bash -c "test -e ~/.config/fish/functions/_tide_item_kubectl.fish && rm ~/.config/fish/functions/_tide_item_kubectl.fish || true"
       description: Deleting _tide_item_kubectl.fish
     - command: 'fish --command="fisher update"'
 - link:
