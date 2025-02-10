@@ -3,7 +3,7 @@ bash
 run_d
 ssh
 nixenv
-install_nixenv_utils
+install_raspi_utils
 fish
 tmux
 git

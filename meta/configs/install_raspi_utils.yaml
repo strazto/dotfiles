@@ -1,0 +1,4 @@
+- shell:
+  - command: bash envs/raspi/install_utils.bash
+    description: installing helpful utilities via brew
+
