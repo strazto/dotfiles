@@ -1,7 +1,10 @@
 function _get_docker_binary
     set dc docker-compose
 
-    docker compose &> /dev/null && set dc "docker compose"
+    if type -q docker
+        docker compose &> /dev/null && set dc "docker compose"
+    end
+
     echo $dc
 end
 
