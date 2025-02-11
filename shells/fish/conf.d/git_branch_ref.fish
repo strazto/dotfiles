@@ -5,6 +5,12 @@ end
 
 abbr --add git_branch_ref --position anywhere --set-cursor --function _git_branch_ref
 
+function _git_branch_ref_no_path_prefix
+    basename "$(_git_branch_ref)"
+end
+
+abbr --add gbr --position anywhere --set-cursor --function _git_branch_ref_no_path_prefix
+
 function _git_branch_master
     echo "master.$(git rev-parse HEAD | head -c 7)%"
 end
