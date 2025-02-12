@@ -18,3 +18,5 @@ hash tmux 2>/dev/null || nix-env -iA nixpkgs.tmux
 hash fish 2>/dev/null || nix-env -iA nixpkgs.fish
 
 hash delta 2>/dev/null || nix-env -iA nixpkgs.delta
+
+hash btop 2>/dev/null || nix-env -iA nixpkgs.btop
