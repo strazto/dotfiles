@@ -1,3 +1,6 @@
+if ! status is-interactive
+    exit
+end
 
 function _git_branch_ref
     echo "$(git branch --show-current).$(git rev-parse HEAD | head -c 7)%"

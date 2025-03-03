@@ -1,3 +1,7 @@
+if ! status is-interactive
+    exit
+end
+
 function _get_docker_binary
     set dc docker-compose
 

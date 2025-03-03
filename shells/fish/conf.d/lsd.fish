@@ -1,3 +1,7 @@
+if ! status is-interactive
+    exit
+end
+
 if type -q lsd
     alias ls=lsd
     abbr --add l lsd -l
