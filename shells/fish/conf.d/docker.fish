@@ -18,7 +18,7 @@ abbr --add dc-ro (_get_docker_binary) -f docker-compose.yml -f docker-compose.ov
 
 abbr --add dc-ex (_get_docker_binary) -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.readonly.yml -f ../media_secondary/compose.yml
 
-abbr --add dc-e2e (_get_docker_binary) -f docker-compose.no-bind.yaml -f docker-compose.e2e.yaml
+abbr --add dc-e2e (_get_docker_binary) -f docker-compose.base.yaml -f docker-compose.e2e.yaml
 
 abbr --add dc-dev (_get_docker_binary) --env-file .env -f docker-compose.base.yaml -f docker-compose.dev.yaml
 
