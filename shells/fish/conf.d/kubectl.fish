@@ -4,4 +4,5 @@ end
 
 if type -q kubectl
     kubectl completion fish | source
+    abbr --add k kubectl
 end
