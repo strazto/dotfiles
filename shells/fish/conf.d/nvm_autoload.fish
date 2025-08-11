@@ -1,3 +1,8 @@
+if not type -q nvm
+    exit
+end
+
+
 function __nvm_auto --on-variable PWD
   nvm use --silent 2>/dev/null
 end
