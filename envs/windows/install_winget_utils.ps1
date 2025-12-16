@@ -18,15 +18,14 @@ function Test-WingetPackageInstalled {
     )
 
     $output = & winget list -e --id $Id 2>&1
-    $exitCode = $LASTEXITCODE
-
-    if ($exitCode -ne 0) {
-        throw ("winget list failed for id '{0}' (exit {1}). Output: {2}" -f $Id, $exitCode, ($output | Out-String))
-    }
-
     $text = ($output | Out-String)
     if ($text -match 'No installed package found matching input criteria') {
         return $false
+    }
+
+    $exitCode = $LASTEXITCODE
+    if ($exitCode -ne 0) {
+        throw ("winget list failed for id '{0}' (exit {1}). Output: {2}" -f $Id, $exitCode, $text)
     }
 
     # If winget didn't print the \"no package\" message, it generally found a match.
