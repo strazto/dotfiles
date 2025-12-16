@@ -1,0 +1,12 @@
+- link:
+   ~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1:
+     path: shells/powershell/Microsoft.PowerShell_profile.ps1
+     relink: true
+     create: true
+   ~/Documents/PowerShell/conf.d/:
+     path: shells/powershell/conf.d/*
+     relink: true
+     create: true
+     glob: true
+
+

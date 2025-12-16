@@ -1,0 +1,5 @@
+- shell:
+  - command: powershell.exe -NoProfile -ExecutionPolicy Bypass -File envs/windows/install_winget_utils.ps1
+    description: installing helpful utilities via winget
+
+
