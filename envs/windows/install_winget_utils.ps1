@@ -60,7 +60,8 @@ $packageIds = @(
     'Microsoft.PowerShell',
     'junegunn.fzf',
     'ajeetdsouza.zoxide',
-    'BurntSushi.ripgrep.MSVC'
+    'BurntSushi.ripgrep.MSVC',
+    'JanDeDobbeleer.OhMyPosh'
 )
 
 foreach ($id in $packageIds) {
