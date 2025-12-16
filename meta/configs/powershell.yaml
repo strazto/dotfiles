@@ -4,7 +4,7 @@
      relink: true
      create: true
    ~/Documents/PowerShell/conf.d/:
-     path: shells/powershell/conf.d/*
+     path: 'shells\powershell\conf.d\*'
      relink: true
      create: true
      glob: true
