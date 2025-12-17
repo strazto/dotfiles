@@ -7,11 +7,12 @@ if (Test-Path -LiteralPath $confDir) {
     Get-ChildItem -LiteralPath $confDir -Filter '*.ps1' -File |
         Sort-Object -Property Name |
         ForEach-Object {
+            $scriptPath = $_.FullName
             try {
-                . $_.FullName
+                . $scriptPath
             }
             catch {
-                Write-Warning ("Failed to load PowerShell conf.d script: {0}. Error: {1}" -f $_.FullName, $_.Exception.Message)
+                Write-Warning ("Failed to load PowerShell conf.d script: {0}. Error: {1}" -f $scriptPath, $_.Exception.Message)
             }
         }
 }
