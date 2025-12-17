@@ -4,7 +4,7 @@ if ($null -ne $psReadLineAvailable) {
 
     Set-PSReadLineOption -PredictionSource HistoryAndPlugin -PredictionViewStyle ListView
     Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
-    Set-PSReadLineKeyHandler -Key Shift+Tab -Function MenuCompleteBackward
+    Set-PSReadLineKeyHandler -Key Shift+Tab -Function TabCompletePrevious
     Set-PSReadLineKeyHandler -Key RightArrow -Function AcceptSuggestion
 }
 
