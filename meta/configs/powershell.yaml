@@ -8,5 +8,17 @@
      relink: true
      create: true
      glob: true
+     force: true
+- shell:
+  - command: >
+      powershell.exe -NoProfile -ExecutionPolicy Bypass -Command
+      "$confDir = Join-Path $HOME 'Documents/PowerShell/conf.d';
+       $repoDir = Join-Path $HOME '.config/dotfiles/bootstrap/shells/powershell/conf.d';
+       Get-ChildItem $repoDir -Filter '*.ps1' | ForEach-Object {
+         $linkPath = Join-Path $confDir $_.Name;
+         if (Test-Path $linkPath) { Remove-Item $linkPath -Force };
+         New-Item -ItemType SymbolicLink -Path $linkPath -Target $_.FullName -Force | Out-Null
+       }"
+    description: Recreate PowerShell conf.d symlinks with Windows paths
 
 
