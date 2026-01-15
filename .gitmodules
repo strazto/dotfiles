@@ -19,9 +19,6 @@
 [submodule "bootstrap/envs/hpc/visidata_hpc"]
 	path = envs/hpc/visidata_hpc
 	url = https://github.com/mstr3336/visidata_hpc
-[submodule "bootstrap/tools/z/z.lua/z.lua"]
-	path = tools/z/z.lua
-	url = https://github.com/skywind3000/z.lua
 [submodule "bootstrap/tmux/tmux-bash-completion"]
 	path = tmux/completion
 	url = https://github.com/imomaliev/tmux-bash-completion.git
