@@ -131,7 +131,6 @@ if hash fzf 2>/dev/null; then
 
   # [[ -e "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash" ]] && . "$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash"
 fi
-# This will be changed if fzf exists && we can use z.lua
 # zoxide exports this alias for interactive mode
 # so fall back to z if fzf doesn't exist
 alias zi='z'
@@ -144,16 +143,6 @@ alias zi='z'
 # eg the hpc. I install it w/ linuxbrew
 if hash zoxide 2>/dev/null; then
   eval "$(zoxide init bash)"
-elif [ -e ~/.config/dotfiles/z.lua/z.lua ]; then
-  # https://github.com/skywind3000/z.lua
-  # z.lua is slightly more portable
-  # than zoxide. 
-  # It also integrates w/ fzf
-  eval "$(lua ~/.config/dotfiles/z.lua/z.lua --init bash enhanced ${_FZF_EXISTS:-})"
-
-  if [[ ! -z ${_FZF_EXISTS+x} ]]; then 
-    alias zi='z -I'
-  fi
 fi
 
 # https://github.com/wernight/powerline-web-fonts/issues/8#issuecomment-353081869
