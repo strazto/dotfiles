@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# chrome-cdp.sh
+# Launches Google Chrome with CDP (remote debugging) enabled, using a persistent profile
+# stored under ~/.config so you can manually set up state (logins, tabs, extensions) once.
+
+PORT="${1:-9222}"
+UDIR="${CHROME_CDP_DIR:-$HOME/.config/chrome-cdp}"
+CHROME_BIN="${CHROME_BIN:-/Applications/Google Chrome.app/Contents/MacOS/Google Chrome}"
+ADDR="127.0.0.1"
+
+usage() {
+  cat <<EOF
+Usage:
+  $(basename "$0") [port]
+
+Environment overrides:
+  CHROME_CDP_DIR   Profile dir (default: ~/.config/chrome-cdp)
+  CHROME_BIN       Chrome binary (default: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome)
+
+Examples:
+  $(basename "$0")              # starts on 9222
+  $(basename "$0") 9223         # starts on 9223
+  CHROME_CDP_DIR=~/.config/chrome-cdp-work $(basename "$0")
+EOF
+}
+
+require_cmd() {
+  command -v "$1" >/dev/null 2>&1 || { echo "Missing dependency: $1" >&2; exit 1; }
+}
+
+require_cmd lsof
+require_cmd curl
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  usage
+  exit 0
+fi
+
+if ! [[ "$PORT" =~ ^[0-9]+$ ]] || (( PORT < 1024 || PORT > 65535 )); then
+  echo "Invalid port: $PORT (must be 1024-65535)" >&2
+  exit 1
+fi
+
+if [[ ! -x "$CHROME_BIN" ]]; then
+  echo "Chrome binary not found/executable: $CHROME_BIN" >&2
+  echo "Install Google Chrome or set CHROME_BIN to the correct path." >&2
+  exit 1
+fi
+
+mkdir -p "$UDIR"
+
+# Check if port is already taken
+if lsof -nP -iTCP:"$PORT" -sTCP:LISTEN >/dev/null 2>&1; then
+  echo "Port $PORT is already in use." >&2
+  echo "Pick another port, e.g.: $(basename "$0") $((PORT+1))" >&2
+  exit 1
+fi
+
+# If an instance using this profile dir is already running, do nothing.
+if pgrep -af "Google Chrome.*--user-data-dir=$UDIR" >/dev/null 2>&1; then
+  echo "Chrome already running with this user-data-dir:"
+  echo "  $UDIR"
+else
+  nohup "$CHROME_BIN" \
+    --remote-debugging-address="$ADDR" \
+    --remote-debugging-port="$PORT" \
+    --user-data-dir="$UDIR" \
+    --no-first-run \
+    --no-default-browser-check \
+    >/dev/null 2>&1 &
+
+  # Wait briefly for CDP to come up
+  for _ in {1..50}; do
+    if curl -sf "http://$ADDR:$PORT/json/version" >/dev/null 2>&1; then
+      break
+    fi
+    sleep 0.1
+  done
+fi
+
+# Print connection info (and fail loudly if CDP still isn't reachable)
+echo "Chrome CDP profile: $UDIR"
+echo "CDP endpoint:       http://$ADDR:$PORT"
+echo
+echo "CDP version check:"
+curl -s "http://$ADDR:$PORT/json/version" || {
+  echo "Failed to reach CDP at http://$ADDR:$PORT" >&2
+  echo "Common causes:" >&2
+  echo "  - Chrome didn't start (check CHROME_BIN path)" >&2
+  echo "  - Port is blocked/taken" >&2
+  echo "  - Enterprise policy disables remote debugging" >&2
+  exit 1
+}
