@@ -54,8 +54,10 @@ function __update_jira_key --on-event fish_prompt
         set -l jira_key (_jira_key)
         if test -n "$jira_key"
             set -gx JIRA_KEY "$jira_key"
+            set -gx JK "$jira_key"
         else
             set -e JIRA_KEY
+            set -e JK
         end
     end
 end
