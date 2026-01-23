@@ -38,3 +38,27 @@ function _jira_key_colon
 end
 
 abbr --add jk: --position anywhere --set-cursor --function _jira_key_colon
+
+# Cache the current branch name to avoid unnecessary updates
+set -g __wbs_cached_branch ""
+
+function __update_jira_key --on-event fish_prompt
+    # Get current branch name
+    set -l current_branch (git branch --show-current 2>/dev/null)
+
+    # Only update if branch has changed
+    if test "$current_branch" != "$__wbs_cached_branch"
+        set -g __wbs_cached_branch "$current_branch"
+
+        # Extract and set JIRA_KEY
+        set -l jira_key (_jira_key)
+        if test -n "$jira_key"
+            set -gx JIRA_KEY "$jira_key"
+        else
+            set -e JIRA_KEY
+        end
+    end
+end
+
+# Initialize on first load
+__update_jira_key
