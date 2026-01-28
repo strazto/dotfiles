@@ -1,0 +1,6 @@
+- link:
+    ~/.config/fish/conf.d/:
+      path: tools/opentofu/fish/conf.d/*
+      relink: true
+      create: true
+      glob: true
