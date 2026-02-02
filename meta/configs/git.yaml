@@ -4,6 +4,11 @@
      relink: true
      create: true
 - link:
+   ~/.config/dotfiles/git/gitignore_global:
+     path: tools/git/gitignore_global
+     relink: true
+     create: true
+- link:
    ~/.local/bin/:
      path: tools/git/bin/*
      glob: true

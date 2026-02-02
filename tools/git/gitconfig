@@ -5,6 +5,7 @@
         helper = cache --timeout=7200
 [core]
         editor = vim
+        excludesFile = ~/.config/dotfiles/git/gitignore_global
 
 [color]
   branch = true
