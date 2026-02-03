@@ -4,6 +4,7 @@
 
 # Convention: $type/$jira-key-$description
 # Maybe sometimes $type will be missing but ALWAYS jira key
+# Special: NOISSUE means no associated Jira (e.g. feat/NOISSUE-blablabla)
 
 if ! status is-interactive
     exit
@@ -14,6 +15,11 @@ function _jira_key
     if test -z "$branch"
         echo ""
         return 1
+    end
+    # Special: NOISSUE means no associated Jira (e.g. feat/NOISSUE-blablabla)
+    if string match -q '*NOISSUE*' -- "$branch"
+        echo "NOISSUE"
+        return 0
     end
     # Extract Jira key (format: UPPERCASE-NUMBERS) from branch name
     set -l jira_key (string match -r '[A-Z]+-[0-9]+' "$branch")
