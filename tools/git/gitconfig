@@ -43,6 +43,40 @@
         diff-rebase = !_git_diff_rebase
         diff-rebase2 = range-diff @{u} @{1} @
         diff-rebase3 = !_git_diff_rebase_3
+
+[alias]
+        # Create a safety branch: <current>-backup-pre-rebase-YYYY-MM-dd
+        pre-rebase = "!f(){ \
+          b=$(git rev-parse --abbrev-ref HEAD) || exit; \
+          [ \"$b\" = HEAD ] && { echo \"Detached HEAD, can’t infer branch\" >&2; exit 2; }; \
+          d=$(date +%F); \
+          backup=\"${b}-backup-pre-rebase-${d}\"; \
+          git branch \"$backup\" && echo \"$backup\"; \
+        }; f"
+
+        # Range-diff your pre-rebase backup vs current HEAD, relative to a base branch.
+        # Usage:
+        #   git rdiff <oldref> [newref] [base]
+        # Examples:
+        #   git rdiff feat/foo-backup-pre-rebase-2026-02-17
+        #   git rdiff <oldref> HEAD origin/release/1.2
+        rdiff = "!f(){ \
+          old=\"$1\"; new=\"${2:-HEAD}\"; base=\"$3\"; \
+          [ -z \"$old\" ] && { echo \"usage: git rdiff <oldref> [newref] [base]\" >&2; exit 2; }; \
+          if [ -z \"$base\" ]; then \
+            base=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@'); \
+            if [ -z \"$base\" ]; then \
+              git show-ref --verify --quiet refs/heads/main && base=main; \
+              git show-ref --verify --quiet refs/heads/master && base=master; \
+            fi; \
+          fi; \
+          if git show-ref --verify --quiet \"refs/remotes/origin/$base\"; then base_ref=\"origin/$base\"; else base_ref=\"$base\"; fi; \
+          git range-diff \"$base_ref..$old\" \"$base_ref..$new\"; \
+        }; f"
+
+        # Show what git thinks your default base is (origin/HEAD)
+        mainish = "!git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null || true"
+
 [url "git@github.com:"]
   insteadOf = @gh:
   insteadOf = @github:
