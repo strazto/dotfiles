@@ -3,8 +3,7 @@
 
 install_standalone_path="$HOME/.config/dotfiles/private-dotfiles/install-standalone"
 
-USAGE_SPIEL=$(cat << EOF
-Usage:
+USAGE_SPIEL="Usage:
   install-private <config_name>
 
 install-private is a convenience script for invoking 'install-standalone' in
@@ -12,26 +11,22 @@ install-private is a convenience script for invoking 'install-standalone' in
 
 install-private will attempt to call $install_standalone_path <config_name> 
 
-If $install_standalone_path isn't found, it does nothing.
-EOF
-)
+If $install_standalone_path isn't found, it does nothing."
 
 set -e
-
 
 profile_name=$1
 
 if [ $# -eq 0 ] ; then
-  echo "Incorrect usage, needs config name as an argument" 1>2
-  echo "$USAGE_SPIEL" 1>2
+  echo "Incorrect usage, needs config name as an argument" >&2
+  echo "$USAGE_SPIEL" >&2
   exit 1
 fi
 
 
 if [[ -x "$install_standalone_path" ]]; then
- $install_standalone_path $profile_name || true 
+  "$install_standalone_path" "$profile_name" || true
 else
-  echo "No executable at $install_profile_path" 1>2
-  echo "$USAGE_SPIEL" 1>2
+  echo "No executable at $install_standalone_path" >&2
+  echo "$USAGE_SPIEL" >&2
 fi
-
