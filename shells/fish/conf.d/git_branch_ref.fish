@@ -37,3 +37,13 @@ function _groot
 end
 
 abbr --add groot --position anywhere --set-cursor --function _groot
+
+function _git_merge_base
+    set -l main_branch "$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null || true)"
+    if test -z "$main_branch"
+        set main_branch "main"
+    end
+    git merge-base "$main_branch" HEAD
+end
+
+abbr --add gmb --position anywhere --set-cursor --function _git_merge_base
