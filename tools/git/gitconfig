@@ -28,6 +28,7 @@
         required = true
 [alias]
         pushnew = push -u origin HEAD
+        pf = push --force-with-lease
 
         # https://github.com/anishathalye/dotfiles/blob/master/gitconfig
         update-submodules = submodule update --init --recursive
