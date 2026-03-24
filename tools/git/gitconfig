@@ -46,20 +46,21 @@
         diff-rebase3 = !_git_diff_rebase_3
 
 [alias]
-        # Create a safety branch: <current>-backup-pre-rebase-YYYY-MM-dd
+        # Create a safety branch: <current>-backup-pre-rebase-YYYY-MM-dd-HH-MM (24h)
         pre-rebase = "!f(){ \
           b=$(git rev-parse --abbrev-ref HEAD) || exit; \
           [ \"$b\" = HEAD ] && { echo \"Detached HEAD, can’t infer branch\" >&2; exit 2; }; \
-          d=$(date +%F); \
+          d=$(date +%F-%H-%M); \
           backup=\"${b}-backup-pre-rebase-${d}\"; \
           git branch \"$backup\" && echo \"$backup\"; \
+          echo \"On branch $(git rev-parse --abbrev-ref HEAD)\" >&2; \
         }; f"
 
         # Range-diff your pre-rebase backup vs current HEAD, relative to a base branch.
         # Usage:
         #   git rdiff <oldref> [newref] [base]
         # Examples:
-        #   git rdiff feat/foo-backup-pre-rebase-2026-02-17
+        #   git rdiff feat/foo-backup-pre-rebase-2026-02-17-14-30
         #   git rdiff <oldref> HEAD origin/release/1.2
         rdiff = "!f(){ \
           old=\"$1\"; new=\"${2:-HEAD}\"; base=\"$3\"; \
