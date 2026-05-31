@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+_script="$(readlink -f "${BASH_SOURCE[0]}")"
+# shellcheck source=../lib/dc_lib.sh
+source "$(cd "$(dirname "$_script")/.." && pwd)/lib/dc_lib.sh"
+_dc_exec "$@"

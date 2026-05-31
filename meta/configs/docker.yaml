@@ -4,4 +4,9 @@
     path: tools/docker/run.d/*
     relink: true
     create: true
+- link:
+   ~/.local/bin/:
+     path: tools/docker/bin/*
+     glob: true
+     relink: true
 
