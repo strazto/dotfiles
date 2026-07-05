@@ -1,3 +1,6 @@
+if ! type -q brew
+    return
+end
 
 if test -d "$(brew --prefix)/opt/python/libexec/bin"
     # append to avoid shadowing venv python
