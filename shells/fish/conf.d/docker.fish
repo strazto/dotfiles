@@ -29,3 +29,6 @@ abbr --add dc-split-ro (_get_docker_binary) -f docker-compose.yml -f docker-comp
 
 
 abbr --add dc-gw (_get_docker_binary) -f docker-compose.yml -f docker-compose.override.yml -f gateway/docker-compose.yml -f gateway/docker-compose.override.yml
+
+# plexus backend debug
+abbr --add dc-db (_get_docker_binary) -f debug.docker-compose.yml --env-file debug.env
